@@ -26,7 +26,6 @@ function showStop(i){
                     <img src="${s.image}" alt="">
                     <audio controls src="${s.audio}"></audio>`;
   if(isMap){
-    map.setView([s.lat,s.lon],16);
     markers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));
   }
 }
