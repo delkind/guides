@@ -1,7 +1,7 @@
 const stops = [
   {
     title: "Площадь Вольница и ратуша Казимежа",
-    description: "Сердце древнего города Казимеж, бывшая рыночная площадь и ратуша.",
+    description: "Сердце древнего города Казимеж.",
     audio: "audio/001_plac_wolnica.mp3",
     image: "images/001.jpg",
     lat: 50.0486624,
@@ -9,7 +9,7 @@ const stops = [
   },
   {
     title: "Улица Йозефа",
-    description: "Одна из самых атмосферных улиц Казимежа с магазинами, кафе и культурой.",
+    description: "Атмосферная улица Казимежа.",
     audio: "audio/002_jozefa.mp3",
     image: "images/002.jpg",
     lat: 50.0513067,
