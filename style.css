@@ -32,5 +32,6 @@ button.next {
   }
 }
 
-/* выделение активного маркера */
-.leaflet-marker-icon.selected { filter:hue-rotate(120deg); }
+.leaflet-marker-icon.selected {
+  filter: hue-rotate(-50deg) saturate(4) brightness(1.2);
+`}
