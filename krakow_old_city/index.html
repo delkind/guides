@@ -1,34 +1,69 @@
-
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Прогулка по Старому городу Кракова</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-<link rel="stylesheet" href="../style.css"></head>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="tour-page-title"></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
 <body>
   <div class="wrapper">
-    <h1 id="title">Прогулка по Старому городу Кракова</h1>
+    <div class="tour-header">
+      <!-- Заголовок тура -->
+      <h1 class="tour-title" id="tour-title"></h1>
+      <!-- Кнопка «Все туры» -->
+      <a href="../index.html" class="back-link">
+        <span id="back-link-text"></span> ↑
+      </a>
+    </div>
+
+    <!-- Элемент для заголовка текущей остановки -->
+    <h1 id="title" style="margin:0; padding:0.5em 1em;"></h1>
+
     <div id="scrollable">
+      
       <div id="map"></div>
+      
       <div id="info"></div>
     </div>
+
     <div class="navbar">
       <button class="nav" onclick="prevStop()">&larr;</button>
       <button class="nav" onclick="firstStop()">&circledcirc;</button>
       <button class="nav" onclick="nextStop()">&rarr;</button>
     </div>
   </div>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="js/data.js"></script><script src="js/map.js"></script>
-<script>
-  function fixViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
 
-  window.addEventListener('resize', fixViewportHeight);
-  fixViewportHeight();
-</script>
+  
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  
+  <script src="js/data.js"></script>
+  <script src="../js/map.js"></script>
+  <script>
+    function fixViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    window.addEventListener('resize', fixViewportHeight);
+    fixViewportHeight();
+
+    // Локализация «Все туры» и заголовка тура
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('uiLang') || 'ru';
+      fetch(`../locales/${lang}.json`)
+        .then(r => r.json())
+        .then(strings => {
+          document.getElementById('back-link-text').textContent =
+            strings.all_tours;
+          document.getElementById('tour-title').textContent =
+            "Прогулка по Старому городу Кракова";
+          document.getElementById('tour-page-title').textContent =
+            strings.all_tours + ' – ' + "Прогулка по Старому городу Кракова";
+          document.title = document.getElementById('tour-page-title').textContent;
+        })
+        .catch(console.error);
+    });
+  </script>
 </body>
 </html>
-    

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "krakow_kazimierz",
+    "title": "Прогулка по еврейскому Казимежу",
+    "description": "Маршрут по историческому району Казимеж в Кракове, охватывающий памятники архитектуры и еврейского наследия.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "ru",
+    "length": 5,
+    "duration": 107,
+    "stops_count": 25
+  },
+  {
+    "id": "krakow_old_city",
+    "title": "Прогулка по Старому городу Кракова",
+    "description": "Аудиогид по главнейшим достопримечательностям Старого города Кракова",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "ru",
+    "length": 4,
+    "duration": 99,
+    "stops_count": 26
+  }
+]

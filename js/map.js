@@ -4,12 +4,33 @@ const info = document.getElementById('info');
 function showStop(i){
   currentIndex = i;
   const s = stops[i];
-  document.getElementById('title').innerText = `Остановка ${s.id}: ${s.title}`;
+  document.getElementById('title').innerText = `${s.id}. ${s.title}`;
   const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
   const table = `<table class="stop-text">${paragraphs}</table></p></p></p>`;
   info.innerHTML = `<audio controls src="${s.audio}"></audio>` + table;
   if (typeof markers !== 'undefined') {
-    markers.forEach((m, j) => m.getElement().classList.toggle('selected', j === i));
+    markers.forEach((m, j) => {
+      const isSel = j === i;
+      // переключаем класс на маркере
+      m.getElement().classList.toggle('selected', isSel);
+
+      if (isSel) {
+        // и тултип
+        const tip = m.getTooltip && m.getTooltip();
+        if (tip && tip.bringToFront) {
+          tip.bringToFront();
+        } else if (tip && tip.getElement) {
+          // fallback: повысим z-index у DOM-элемента тултипа
+          tip.getElement().style.zIndex = 10000;
+        }
+      }
+    });
+  }
+
+  // Прокрутить контейнер наверх при смене остановки
+  const scrollable = document.getElementById('scrollable');
+  if (scrollable) {
+    scrollable.scrollTop = 0;
   }
 }
 

@@ -1,0 +1,11 @@
+{
+  "all_tours": "Alle Touren",
+  "interface_lang": "Oberflächensprache",
+  "country": "Land",
+  "city": "Stadt",
+  "language": "Sprache",
+  "tour_name": "Tourname",
+  "length_m": "Km",
+  "duration_min": "Min",
+  "stops_count": "Anzahl der Haltestellen"
+}

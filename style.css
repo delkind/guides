@@ -1,3 +1,147 @@
+/* style.css */
+/* Разметка верхней панели: две строки */
+.top-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 0.5em;
+}
+
+/* Верхняя строка (заголовок + язык) на чёрном фоне */
+.top-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  background: #000;        /* чёрный фон */
+  color: #fff;             /* белый текст */
+  padding: 0.5em 1em;      /* отступы сверху/снизу и слева/справа */
+}
+
+/* Чтобы все вложенные элементы (h1 и select) тоже были белыми/контрастными */
+.top-header h1,
+.top-header select {
+  color: #fff;
+}
+
+/* Селектор языка */
+.top-header #ui-lang-select {
+  margin-left: auto;
+  background: #222;        /* чуть светлее, чем фон, чтобы было видно */
+  border: 1px solid #444;
+}
+
+/* При наведении на селект — чуть другой фон */
+.top-header #ui-lang-select:hover {
+  background: #333;
+}
+
+
+/* Вторая строка: фильтры по центру */
+.filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+/* Общие стили для селектов */
+.top-controls select {
+  padding: 0.3em;
+  font-size: 1rem;
+  max-width: 30vw;
+  box-sizing: border-box;
+}
+
+/* Мобильные уточнения */
+@media (max-width: 600px) {
+  .top-header, .filter-row {
+    flex-wrap: wrap;
+  }
+  .top-controls select {
+    max-width: 45vw;
+    font-size: 0.85rem;
+  }
+}
+
+/* Главная таблица со списком туров */
+#tours-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+#tours-table th,
+#tours-table td {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  text-align: left;
+}
+
+#tours-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+#tours-table th {
+  background: #333;
+  color: #fff;
+}
+
+/* Сбрасываем границы для таблиц описаний остановок */
+.stop-text {
+  width: auto;            /* можно оставить авто-ширину или убрать вовсе */
+  border: none;
+  border-collapse: separate;
+  margin-top: 0.5em;
+}
+
+.stop-text td {
+  border: none;
+  padding: 0.3em 0;
+  line-height: 1.5;
+}
+
+.tour-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  color: #fff;
+  padding: 0.2em 0.8em;      /* уменьшили отступы сверху/снизу и слева/справа */
+  line-height: 1.0;         /* чуть компактнее */
+}
+
+.tour-header .tour-title {
+  margin: 0;
+  font-size: 1rem;          /* сделали мельче (было 1.4rem) */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tour-header .back-link {
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 8px;         /* поменьше отступы внутри кнопки */
+  border-radius: 4px;
+  font-size: 0.7rem;        /* чуть меньший шрифт */
+}
+
+.tour-header .back-link:hover {
+  background: #777;
+}
+
+@media (max-width: 600px) {
+  .tour-header {
+    padding: 0.25em 0.6em;
+  }
+  .tour-header .tour-title {
+    font-size: 0.9rem;
+  }
+  .tour-header .back-link {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+
+.ui-lang-select { margin-left: auto; }
 
 html, body {
   margin: 0;

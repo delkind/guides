@@ -1,26 +1,144 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset='UTF-8'>
-          <meta name='viewport' content='width=device-width, initial-scale=1'>
-          <title>Аудиогиды</title>
-          <style>
-            body{margin:0;font-family:Arial,Helvetica,sans-serif;
-                 display:flex;flex-direction:column;min-height:100vh;}
-            h1{background:#333;color:#fff;padding:12px;font-size:1.4rem;}
-            ul{list-style:none;margin:0;padding:0;flex:1;overflow-y:auto;}
-            li a{display:block;padding:14px 16px;border-bottom:1px solid #eee;
-                 text-decoration:none;color:#222;font-size:1.1rem;}
-            li a:hover{background:#f0f0f0;}
-            @media(max-width:600px){
-              h1{font-size:1.15rem;padding:10px;}
-              li a{font-size:1rem;padding:12px 14px;}
-            }
-          </style>
-        </head>
-        <body>
-          <h1>Аудиогиды</h1>
-          <ul>
-        <li><a href='krakow_kazimierz/index.html'>Прогулка по еврейскому Казимежу</a></li>
-<li><a href='krakow_old_city/index.html'>Прогулка по Старому городу Кракова</a></li>
-</ul></body></html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="document-title"></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-controls">
+    <!-- Первая строка: заголовок + выбор языка -->
+    <div class="top-header">
+      <h1 id="page-title"></h1>
+      <select id="ui-lang-select"></select>
+    </div>
+
+    <!-- Вторая строка: фильтры по турам -->
+    <div class="filter-row">
+      <select id="filter-country"></select>
+      <select id="filter-city"></select>
+      <select id="filter-lang"></select>
+    </div>
+  </div>
+
+  <table id="tours-table">
+    <thead>
+      <tr>
+        <th id="th-name"></th>
+        <th id="th-count"></th>
+        <th id="th-length"></th>
+        <th id="th-duration"></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const SUPPORTED_UI_LANGS = ["cs", "de", "en", "es", "fr", "it", "ru", "uk"]
+    let strings = {}, tours = [];
+
+    function loadStrings(lang) {
+      return fetch(`locales/${lang}.json`)
+        .then(r => r.json())
+        .then(data => {
+          strings = data;
+          document.documentElement.lang = lang;
+          document.getElementById('document-title').textContent = strings.all_tours;
+          document.title = strings.all_tours;
+        });
+    }
+
+    function loadTours() {
+      return fetch('js/tours.json')
+        .then(r => r.json())
+        .then(data => { tours = data; });
+    }
+
+    function renderInterface() {
+      document.getElementById('page-title').textContent  = strings.all_tours;
+      document.getElementById('th-name').textContent     = strings.tour_name;
+      document.getElementById('th-count').textContent    = strings.stops_count;
+      document.getElementById('th-length').textContent    = strings.length_m;
+      document.getElementById('th-duration').textContent  = strings.duration_min;
+
+      const uiSel = document.getElementById('ui-lang-select');
+      uiSel.innerHTML = SUPPORTED_UI_LANGS
+        .map(l => `<option value="${l}"${l===document.documentElement.lang?' selected':''}>${l}</option>`)
+        .join('');
+    }
+
+    function renderFilters() {
+      const unique = arr => Array.from(new Set(arr)).sort();
+      const countries = unique(tours.map(t=>t.country));
+      const cities    = unique(tours.map(t=>t.city));
+      const langs     = unique(tours.map(t=>t.language));
+
+      function fill(id, label, items) {
+        const sel = document.getElementById(id);
+        sel.innerHTML = `<option value="">${label}</option>` +
+          items.map(v=>`<option value="${v}">${v}</option>`).join('');
+      }
+
+      fill('filter-country', strings.country,  countries);
+      fill('filter-city',    strings.city,     cities);
+      fill('filter-lang',    strings.language, langs);
+    }
+
+    function renderTable() {
+      const fC = document.getElementById('filter-country').value;
+      const fCi= document.getElementById('filter-city').value;
+      const fL = document.getElementById('filter-lang').value;
+      const tbody = document.querySelector('#tours-table tbody');
+      tbody.innerHTML = '';
+
+      tours
+        .filter(t=>!fC  || t.country  === fC)
+        .filter(t=>!fCi || t.city     === fCi)
+        .filter(t=>!fL  || t.language === fL)
+        .forEach(t => {
+          const tr = document.createElement('tr');
+          const tdName = document.createElement('td');
+          const a = document.createElement('a');
+          a.href = `${t.id}/index.html`;
+          a.textContent = t.title;
+          a.title = t.description;
+          tdName.appendChild(a);
+          tr.appendChild(tdName);
+
+          ['stops_count','length','duration'].forEach(key => {
+            const td = document.createElement('td');
+            td.textContent = t[key];
+            tr.appendChild(td);
+          });
+
+          tbody.appendChild(tr);
+        });
+    }
+
+    function refreshAll() {
+      renderInterface();
+      renderFilters();
+      renderTable();
+    }
+
+    window.addEventListener('DOMContentLoaded',()=>{
+      const initLang = localStorage.getItem('uiLang')||'ru';
+      loadStrings(initLang)
+        .then(loadTours)
+        .then(()=>{
+          refreshAll();
+          document.getElementById('ui-lang-select')
+            .addEventListener('change', e=>{
+              localStorage.setItem('uiLang', e.target.value);
+              loadStrings(e.target.value).then(refreshAll);
+            });
+          ['filter-country','filter-city','filter-lang']
+            .forEach(id=>document.getElementById(id)
+              .addEventListener('change', renderTable));
+        })
+        .catch(console.error);
+    });
+  </script>
+</body>
+</html>

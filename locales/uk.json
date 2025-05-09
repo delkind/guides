@@ -1,0 +1,11 @@
+{
+  "all_tours": "Усі тури",
+  "interface_lang": "Мова інтерфейсу",
+  "country": "Країна",
+  "city": "Місто",
+  "language": "Мова",
+  "tour_name": "Назва туру",
+  "length_m": "км",
+  "duration_min": "хв",
+  "stops_count": "Кількість зупинок"
+}
