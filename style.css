@@ -1,5 +1,66 @@
-/* style.css */
-/* Разметка верхней панели: две строки */
+/* ==========================================================================
+   THEME VARIABLES
+   ========================================================================== */
+:root {
+  /* light theme */
+  --bg-page: #fff;
+  --text-page: #000;
+  --bg-header: #000;
+  --bg-header-alt: #333;
+  --bg-button: #222;
+  --bg-button-hover: #333;
+  --bg-table-even: #f9f9f9;
+  --border-table: #ccc;
+  --link-color: #0066cc;
+  --bg-stop-header: #555;
+}
+
+body.dark {
+  /* dark theme */
+  --bg-page: #111;
+  --text-page: #eee;
+  --bg-header: #222;
+  --bg-header-alt: #444;
+  --bg-button: #333;
+  --bg-button-hover: #444;
+  --bg-table-even: #1a1a1a;
+  --border-table: #444;
+  --link-color: #66aaff;
+  --bg-stop-header: #666;
+}
+
+/* override table border color in dark */
+body.dark #tours-table,
+body.dark #tours-table th,
+body.dark #tours-table td {
+  border-color: #555 !important;
+}
+
+/* ==========================================================================
+   GLOBAL RESET
+   ========================================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg-page);
+  color: var(--text-page);
+  font-family: Georgia, serif;
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+}
+
+/* support RTL via dir attribute */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+/* ==========================================================================
+   ROOT INDEX STYLES
+   ========================================================================== */
+/* top panels container */
 .top-controls {
   display: flex;
   flex-direction: column;
@@ -7,230 +68,303 @@
   padding: 0.5em;
 }
 
-/* Верхняя строка (заголовок + язык) на чёрном фоне */
+/* first row: title + theme + language */
 .top-header {
   display: flex;
   align-items: center;
   gap: 1em;
-  background: #000;        /* чёрный фон */
-  color: #fff;             /* белый текст */
-  padding: 0.5em 1em;      /* отступы сверху/снизу и слева/справа */
-}
-
-/* Чтобы все вложенные элементы (h1 и select) тоже были белыми/контрастными */
-.top-header h1,
-.top-header select {
+  background: var(--bg-header);
   color: #fff;
+  padding: 0.5em 1em;
+}
+.top-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
 }
 
-/* Селектор языка */
+/* theme toggle & UI-lang select */
+.top-header #theme-toggle,
 .top-header #ui-lang-select {
-  margin-left: auto;
-  background: #222;        /* чуть светлее, чем фон, чтобы было видно */
-  border: 1px solid #444;
+  background: var(--bg-button);
+  color: #fff;
+  padding: 0.3em;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none !important;
 }
-
-/* При наведении на селект — чуть другой фон */
+.top-header #theme-toggle {
+  margin-inline-start: auto;
+}
+.top-header #theme-toggle:hover,
 .top-header #ui-lang-select:hover {
-  background: #333;
+  background: var(--bg-button-hover);
+}
+/* remove border in light theme */
+body:not(.dark) .top-header #theme-toggle,
+body:not(.dark) .top-header #ui-lang-select {
+  border: none;
 }
 
-
-/* Вторая строка: фильтры по центру */
+/* second row: filters */
 .filter-row {
   display: flex;
   justify-content: center;
   gap: 1em;
+  padding-inline: 1em;
 }
-
-/* Общие стили для селектов */
-.top-controls select {
+.filter-row select {
   padding: 0.3em;
   font-size: 1rem;
   max-width: 30vw;
   box-sizing: border-box;
 }
-
-/* Мобильные уточнения */
-@media (max-width: 600px) {
-  .top-header, .filter-row {
-    flex-wrap: wrap;
-  }
-  .top-controls select {
-    max-width: 45vw;
-    font-size: 0.85rem;
-  }
+body.dark .filter-row select {
+  background: var(--bg-button);
+  color: #fff;
+  border: 1px solid var(--border-table);
 }
 
-/* Главная таблица со списком туров */
+/* tours table */
 #tours-table {
+  table-layout: auto;
   width: 100%;
   border-collapse: collapse;
   margin-top: 1em;
+  text-align: start;
 }
-
 #tours-table th,
 #tours-table td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-table);
   padding: 0.5em;
-  text-align: left;
 }
-
 #tours-table tr:nth-child(even) {
-  background: #f9f9f9;
+  background: var(--bg-table-even);
 }
-
 #tours-table th {
-  background: #333;
+  background: var(--bg-header-alt);
   color: #fff;
 }
-
-/* Сбрасываем границы для таблиц описаний остановок */
-.stop-text {
-  width: auto;            /* можно оставить авто-ширину или убрать вовсе */
-  border: none;
-  border-collapse: separate;
-  margin-top: 0.5em;
+#tours-table a {
+  color: var(--link-color);
 }
 
-.stop-text td {
-  border: none;
-  padding: 0.3em 0;
-  line-height: 1.5;
-}
-
-.tour-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #333;
-  color: #fff;
-  padding: 0.2em 0.8em;      /* уменьшили отступы сверху/снизу и слева/справа */
-  line-height: 1.0;         /* чуть компактнее */
-}
-
-.tour-header .tour-title {
-  margin: 0;
-  font-size: 1rem;          /* сделали мельче (было 1.4rem) */
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.tour-header .back-link {
-  background: #555;
-  color: #fff;
-  text-decoration: none;
-  padding: 4px 8px;         /* поменьше отступы внутри кнопки */
-  border-radius: 4px;
-  font-size: 0.7rem;        /* чуть меньший шрифт */
-}
-
-.tour-header .back-link:hover {
-  background: #777;
-}
-
-@media (max-width: 600px) {
-  .tour-header {
-    padding: 0.25em 0.6em;
-  }
-  .tour-header .tour-title {
-    font-size: 0.9rem;
-  }
-  .tour-header .back-link {
-    font-size: 0.7rem;
-    padding: 3px 6px;
-  }
-}
-
-.ui-lang-select { margin-left: auto; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Georgia, serif;
-  height: 100%;
-  overflow: hidden;
-}
-
+/* ==========================================================================
+   TOUR PAGE STYLES
+   ========================================================================== */
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh,1vh)*100);
 }
 
+/* tour header */
+.tour-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  background: var(--bg-header-alt);
+  color: #fff;
+  padding: 0.2em 0.8em;
+}
+.tour-header .tour-title {
+  margin: 0;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.tour-header #theme-toggle {
+  background: var(--bg-button);
+  color: #fff;
+  padding: 0.2em;
+  cursor: pointer;
+}
+.tour-header #theme-toggle:hover {
+  background: var(--bg-button-hover);
+}
+body:not(.dark) .tour-header #theme-toggle {
+  border: none;
+}
+.tour-header .back-link {
+  background: var(--bg-button);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-inline-start: 1em;
+  white-space: nowrap;
+}
+.tour-header .back-link:hover {
+  background: var(--bg-button-hover);
+}
+
+/* stop header */
+.stop-header {
+  background: var(--bg-stop-header);
+  color: #fff;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 1.2rem;
+}
+
+/* map & info */
 #scrollable {
-  padding-top: 2%;
   flex: 1;
+  padding-top: 2%;
   overflow-y: auto;
 }
-
 #map {
   width: 90%;
   height: 50vh;
   margin: 0 auto;
 }
-
 #info {
   padding: 10px;
-  background: #fafafa;
+  background: var(--bg-page);
+  color: var(--text-page);
+}
+/* stop text */
+.stop-text {
+  margin-top: 0.5em;
+  border: none;
+  border-collapse: separate;
+}
+.stop-text td {
+  padding: 0.3em 0;
+  line-height: 1.5;
+  color: var(--text-page);
 }
 
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* Кнопки навигации — фиксированы снизу */
+/* bottom nav buttons */
 .navbar {
   display: flex;
   justify-content: space-between;
-  background: #333;
+  background: var(--bg-header-alt);
   padding: 10px;
 }
-
 button.nav {
   padding: 10px 12%;
   font-size: 16px;
-  color: white;
-  background: #666;
+  background: var(--bg-button);
+  color: #fff !important;
   border: none;
   border-radius: 6px;
-  max-width: 10px;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+button.nav:hover,
+button.nav:active {
+  background: var(--bg-button-hover);
+}
+button.nav:focus {
+  outline: none;
+  background: var(--bg-button);
 }
 
-button.nav:hover {
-  background: #888;
-}
-
+/* leaflet tooltip */
 .leaflet-tooltip.number-label {
-  background:#d33;
-  color:#fff;
-  font-weight:bold;
-  border-radius:50%;
-  padding:1px 4px;
-  font-size:0.65rem;
+  background: #d33;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 1px 4px;
+  font-size: 0.65rem;
 }
-
-.stop-text {
-  font-family: Georgia, 'Palatino Linotype', serif;
-  font-size: 1.1em;
-  border-spacing: 0.6em 0.3em;
-}
-
-.stop-text td {
-  padding-bottom: 0.5em;
-  line-height: 1.5;
-}
-
 .leaflet-marker-icon.selected {
   filter: hue-rotate(300deg) saturate(2) brightness(1.2);
   z-index: 1000 !important;
 }
 
-h1 {
-  background: #333;
-  color: #fff;
-  padding: 12px;
-  font-size: 1.4rem;
-  margin: 0;
-  font-family:Arial,Helvetica,sans-serif;
+/* ==========================================================================
+   ADAPTIVE
+   ========================================================================== */
+@media (max-width: 600px) {
+  .top-header,
+  .filter-row,
+  .tour-header {
+    flex-wrap: wrap;
+  }
+  .filter-row select,
+  .top-header #ui-lang-select,
+  .tour-header #theme-toggle {
+    max-width: 45vw;
+    font-size: 0.85rem;
+  }
+  .tour-header {
+    flex-wrap: nowrap;
+    gap: 0.5em;
+  }
+}
+
+/* Dark‐mode overrides */
+.plyr--dark .plyr__controls {
+  background: var(--bg-page);    /* your dark header color */
+  color: var(--text-page);             /* usually light text */
+}
+
+/* Buttons & icons */
+.plyr--dark .plyr__control {
+  color: var(--text-page);
+}
+/* Progress bar */
+.plyr--dark .plyr__progress--playing .plyr__progress__filled {
+  background: var(--link-color);
+}
+.plyr--dark .plyr__progress input[type="range"]::-webkit-slider-thumb {
+  background: var(--link-color);
+}
+
+/* Time & volume text */
+.plyr--dark .plyr__time,
+.plyr--dark .plyr__volume input {
+  color: var(--text-page);
+}
+
+/* 1) Make sure the Plyr root sits above the map */
+.plyr {
+  position: relative;    /* establish a new stacking context */
+  z-index: 1000 !important;
+}
+
+/* 2) Allow the controls to escape their box */
+.plyr__controls {
+  overflow: visible !important;
+}
+
+/* 3) Finally, raise the menu itself */
+.plyr__menu,
+.plyr__menu__container {
+  z-index: 1001 !important;
+}
+
+/* Base menu styling */
+.plyr__menu {
+  background: var(--bg-page) !important; /* your header-alt color */
+  color: var(--text-page) !important;
+  border: 1px solid var(--border-table) !important;
+}
+
+/* The list inside the menu */
+.plyr__menu__container,
+.plyr__menu__content {
+  background: var(--bg-page) !important;
+  color: var(--text-page) !important;
+}
+
+/* Individual items */
+.plyr__menu__container .plyr__menu__item {
+  padding: 0.5em 1em;
+}
+
+/* Hover/focus state */
+.plyr__menu__container .plyr__menu__item:hover,
+.plyr__menu__container .plyr__menu__item[aria-selected] {
+  background: var(--bg-page) !important;
+  color: var(--text-page) !important;
+}
+
+/* Separator lines (if any) */
+.plyr__menu__container .plyr__menu__separator {
+  border-color: var(--border-table) !important;
 }

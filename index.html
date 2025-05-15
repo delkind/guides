@@ -1,144 +1,208 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title id="document-title"></title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="document-title"></title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="top-controls">
-    <!-- Первая строка: заголовок + выбор языка -->
+    <!-- Первая строка: заголовок + выбор темы + выбор языка -->
     <div class="top-header">
-      <h1 id="page-title"></h1>
-      <select id="ui-lang-select"></select>
+        <h1 id="page-title"></h1>
+        <!-- Тёмная/светлая тема -->
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+        <!-- Селектор языка интерфейса -->
+        <select id="ui-lang-select"></select>
     </div>
 
     <!-- Вторая строка: фильтры по турам -->
     <div class="filter-row">
-      <select id="filter-country"></select>
-      <select id="filter-city"></select>
-      <select id="filter-lang"></select>
+        <select id="filter-country"></select>
+        <select id="filter-city"></select>
+        <select id="filter-lang"></select>
     </div>
-  </div>
+</div>
 
-  <table id="tours-table">
+<table id="tours-table">
     <thead>
-      <tr>
+    <tr>
+        <th id="th-flag"></th>
         <th id="th-name"></th>
         <th id="th-count"></th>
         <th id="th-length"></th>
         <th id="th-duration"></th>
-      </tr>
+    </tr>
     </thead>
     <tbody></tbody>
-  </table>
+</table>
 
-  <script>
-    const SUPPORTED_UI_LANGS = ["cs", "de", "en", "es", "fr", "it", "ru", "uk"]
-    let strings = {}, tours = [];
+<script>
+    let LANG_FLAGS = {};
+    let SUPPORTED_UI_LANGS = [];
+    let locales = {};
+    let strings = {};
+    let tours = [];
 
-    function loadStrings(lang) {
-      return fetch(`locales/${lang}.json`)
-        .then(r => r.json())
-        .then(data => {
-          strings = data;
-          document.documentElement.lang = lang;
-          document.getElementById('document-title').textContent = strings.all_tours;
-          document.title = strings.all_tours;
+    // 1) Загрузить флаги
+    function loadFlags() {
+        return fetch('js/langFlags.json')
+            .then(r => r.json())
+            .then(data => LANG_FLAGS = data);
+    }
+
+    // 2) Загрузить локали
+    function loadLocales() {
+        return fetch('js/locales.json')
+            .then(r => r.json())
+            .then(data => {
+                locales = data;
+                SUPPORTED_UI_LANGS = Object.keys(locales);
+            });
+    }
+
+    // 3) Инициализация — ждём оба JSON
+    Promise.all([loadFlags(), loadLocales()])
+        .then(() => initInterface())
+        .catch(console.error);
+
+    function initInterface() {
+        initTheme();
+        initThemeToggle();
+
+        const initLang = localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
+        if (!localStorage.getItem('uiLang')){
+            localStorage.setItem('uiLang', SUPPORTED_UI_LANGS[0]);
+        }
+        const uiSel = document.getElementById('ui-lang-select');
+        uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
+            `<option value="${l}"${l === initLang ? ' selected' : ''}>
+         ${LANG_FLAGS[l]} ${l.toLowerCase()}
+       </option>`
+        ).join('');
+
+        uiSel.addEventListener('change', e => {
+            localStorage.setItem('uiLang', e.target.value);
+            applyLanguage(e.target.value);
+        });
+
+        applyLanguage(initLang);
+    }
+
+    function applyLanguage(lang) {
+        strings = locales[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.dir = strings.rtl ? "rtl" : "ltr"
+        document.getElementById('page-title').textContent = strings.all_tours;
+        document.getElementById('document-title').textContent = strings.all_tours;
+        document.title = strings.all_tours;
+
+        loadTours().then(() => {
+            renderInterface();
+            renderFilters(lang);
+
+            // навешиваем фильтры
+            ['filter-country', 'filter-city', 'filter-lang']
+                .forEach(id => document.getElementById(id).addEventListener('change', renderTable));
+
+            renderTable();
         });
     }
 
     function loadTours() {
-      return fetch('js/tours.json')
-        .then(r => r.json())
-        .then(data => { tours = data; });
+        return fetch('js/tours.json')
+            .then(r => r.json())
+            .then(data => tours = data);
     }
 
     function renderInterface() {
-      document.getElementById('page-title').textContent  = strings.all_tours;
-      document.getElementById('th-name').textContent     = strings.tour_name;
-      document.getElementById('th-count').textContent    = strings.stops_count;
-      document.getElementById('th-length').textContent    = strings.length_m;
-      document.getElementById('th-duration').textContent  = strings.duration_min;
-
-      const uiSel = document.getElementById('ui-lang-select');
-      uiSel.innerHTML = SUPPORTED_UI_LANGS
-        .map(l => `<option value="${l}"${l===document.documentElement.lang?' selected':''}>${l}</option>`)
-        .join('');
+        document.getElementById('th-name').textContent = strings.tour_name;
+        document.getElementById('th-count').textContent = strings.stops_count;
+        document.getElementById('th-length').textContent = strings.length_m;
+        document.getElementById('th-duration').textContent = strings.duration_min;
     }
 
-    function renderFilters() {
-      const unique = arr => Array.from(new Set(arr)).sort();
-      const countries = unique(tours.map(t=>t.country));
-      const cities    = unique(tours.map(t=>t.city));
-      const langs     = unique(tours.map(t=>t.language));
+    function renderFilters(lang) {
+        const unique = arr => Array.from(new Set(arr)).sort();
+        const countries = unique(tours.map(t => t.country));
+        const cities = unique(tours.map(t => t.city));
+        const langs = unique(tours.map(t => t.language));
 
-      function fill(id, label, items) {
-        const sel = document.getElementById(id);
-        sel.innerHTML = `<option value="">${label}</option>` +
-          items.map(v=>`<option value="${v}">${v}</option>`).join('');
-      }
+        const fill = (id, label, items) => {
+            document.getElementById(id).innerHTML =
+                `<option value="">${label}</option>` +
+                items.map(v => `<option value="${v}">${v}</option>`).join('');
+        };
 
-      fill('filter-country', strings.country,  countries);
-      fill('filter-city',    strings.city,     cities);
-      fill('filter-lang',    strings.language, langs);
+        fill('filter-country', strings.country, countries);
+        fill('filter-city', strings.city, cities);
+        fill('filter-lang', strings.language, langs);
+
+        const langFilter = document.getElementById('filter-lang');
+        if (langFilter && langs.includes(lang)) {
+            langFilter.value = lang;
+        }
     }
 
     function renderTable() {
-      const fC = document.getElementById('filter-country').value;
-      const fCi= document.getElementById('filter-city').value;
-      const fL = document.getElementById('filter-lang').value;
-      const tbody = document.querySelector('#tours-table tbody');
-      tbody.innerHTML = '';
+        const fC = document.getElementById('filter-country').value;
+        const fCi = document.getElementById('filter-city').value;
+        const fL = document.getElementById('filter-lang').value;
+        const tbody = document.querySelector('#tours-table tbody');
+        tbody.innerHTML = '';
 
-      tours
-        .filter(t=>!fC  || t.country  === fC)
-        .filter(t=>!fCi || t.city     === fCi)
-        .filter(t=>!fL  || t.language === fL)
-        .forEach(t => {
-          const tr = document.createElement('tr');
-          const tdName = document.createElement('td');
-          const a = document.createElement('a');
-          a.href = `${t.id}/index.html`;
-          a.textContent = t.title;
-          a.title = t.description;
-          tdName.appendChild(a);
-          tr.appendChild(tdName);
+        tours
+            .filter(t => !fC || t.country === fC)
+            .filter(t => !fCi || t.city === fCi)
+            .filter(t => !fL || t.language === fL)
+            .forEach(t => {
+                const tr = document.createElement('tr');
 
-          ['stops_count','length','duration'].forEach(key => {
-            const td = document.createElement('td');
-            td.textContent = t[key];
-            tr.appendChild(td);
-          });
+                const flag = LANG_FLAGS[t.language] || '';
+                const td = document.createElement('td');
+                td.textContent = flag;
+                tr.appendChild(td);
 
-          tbody.appendChild(tr);
+                // ячейка с флагом языка + названием
+                const tdName = document.createElement('td');
+                const a = document.createElement('a');
+                a.textContent = t.title;
+                a.href = `${t.id}/index.html`;
+                a.title = t.description;
+                tdName.appendChild(a);
+                tr.appendChild(tdName);
+
+                ['stops_count', 'length', 'duration'].forEach(key => {
+                    const td = document.createElement('td');
+                    td.textContent = t[key];
+                    tr.appendChild(td);
+                });
+
+                tbody.appendChild(tr);
+            });
+    }
+
+    //  Themes  ------------------------------------------------
+    function initTheme() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        applyTheme(theme);
+    }
+
+    function applyTheme(theme) {
+        document.body.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('theme', theme);
+    }
+
+    function initThemeToggle() {
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
-
-    function refreshAll() {
-      renderInterface();
-      renderFilters();
-      renderTable();
-    }
-
-    window.addEventListener('DOMContentLoaded',()=>{
-      const initLang = localStorage.getItem('uiLang')||'ru';
-      loadStrings(initLang)
-        .then(loadTours)
-        .then(()=>{
-          refreshAll();
-          document.getElementById('ui-lang-select')
-            .addEventListener('change', e=>{
-              localStorage.setItem('uiLang', e.target.value);
-              loadStrings(e.target.value).then(refreshAll);
-            });
-          ['filter-country','filter-city','filter-lang']
-            .forEach(id=>document.getElementById(id)
-              .addEventListener('change', renderTable));
-        })
-        .catch(console.error);
-    });
-  </script>
+</script>
 </body>
 </html>

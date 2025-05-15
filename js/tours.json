@@ -1,24 +1,112 @@
 [
   {
-    "id": "krakow_kazimierz",
+    "id": "krakow_old_city_he",
+    "title": "סיור בעיר העתיקה של קרקוב",
+    "description": "מדריך קולי לאטרקציות המרכזיות של העיר העתיקה בקרקוב.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "he",
+    "length": 5,
+    "duration": 157,
+    "stops_count": 36
+  },
+  {
+    "id": "krakow_kazimierz_en",
+    "title": "A walk around Jewish Kazimierz.",
+    "description": "A route through the historical district of Kazimierz in Krakow, covering architectural landmarks and Jewish heritage.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "en",
+    "length": 6,
+    "duration": 171,
+    "stops_count": 33
+  },
+  {
+    "id": "krakow_podgorje_en",
+    "title": "Podgórze Jewish Ghetto Historical Tour",
+    "description": "Comprehensive walking tour through key sites of the Kraków Ghetto and Jewish heritage in Podgórze district.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "en",
+    "length": 4,
+    "duration": 183,
+    "stops_count": 34
+  },
+  {
+    "id": "krakow_kazimierz_ru",
     "title": "Прогулка по еврейскому Казимежу",
     "description": "Маршрут по историческому району Казимеж в Кракове, охватывающий памятники архитектуры и еврейского наследия.",
     "country": "Poland",
     "city": "Krakow",
     "language": "ru",
     "length": 5,
-    "duration": 107,
-    "stops_count": 25
+    "duration": 110,
+    "stops_count": 26
   },
   {
-    "id": "krakow_old_city",
-    "title": "Прогулка по Старому городу Кракова",
-    "description": "Аудиогид по главнейшим достопримечательностям Старого города Кракова",
+    "id": "krakow_podgorje_ru",
+    "title": "Прогулка по Подгужу и Гетто",
+    "description": "Аудиогид по историческим и архитектурным памятникам района Подгурже в Кракове с акцентом на еврейское наследие.",
     "country": "Poland",
     "city": "Krakow",
     "language": "ru",
     "length": 4,
-    "duration": 99,
-    "stops_count": 26
+    "duration": 127,
+    "stops_count": 34
+  },
+  {
+    "id": "wroclaw_old_town_ru",
+    "title": "Прогулка по Старому городу Вроцлава",
+    "description": "Насыщенная пешеходная экскурсия по историческому центру Вроцлава, охватывающая архитектурные и исторические памятники, городские легенды и еврейское наследие.",
+    "country": "Poland",
+    "city": "Wroclaw",
+    "language": "ru",
+    "length": 4,
+    "duration": 111,
+    "stops_count": 27
+  },
+  {
+    "id": "krakow_old_city_en",
+    "title": "A walk around the Old Town of Krakow",
+    "description": "Audio guide to the main attractions of the Old Town of Krakow.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "en",
+    "length": 5,
+    "duration": 174,
+    "stops_count": 36
+  },
+  {
+    "id": "jewish_wroclaw_ru",
+    "title": "Аудиоэкскурсия по еврейскому Вроцлаву",
+    "description": "Маршрут по важнейшим еврейским памятным местам и историческим объектам Вроцлава",
+    "country": "Poland",
+    "city": "Wroclaw",
+    "language": "ru",
+    "length": 13,
+    "duration": 201,
+    "stops_count": 21
+  },
+  {
+    "id": "krakow_old_city_ru",
+    "title": "Прогулка по Старому городу Кракова",
+    "description": "Аудиогид по главным достопримечательностям Старого города Кракова.",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "ru",
+    "length": 5,
+    "duration": 162,
+    "stops_count": 36
+  },
+  {
+    "id": "krakow_nowa_huta_ru",
+    "title": "Прогулка по социалистическому центру Новой Хуты",
+    "description": "Экскурсия по образцам сталинской архитектуры 1949–1956 годов в Новой Хуте",
+    "country": "Poland",
+    "city": "Krakow",
+    "language": "ru",
+    "length": 9,
+    "duration": 124,
+    "stops_count": 13
   }
 ]
