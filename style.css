@@ -45,9 +45,10 @@ html, body {
   height: 100%;
   background: var(--bg-page);
   color: var(--text-page);
-  font-family: Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
 }
+
 a {
   text-decoration: none;
 }
@@ -58,93 +59,126 @@ html[dir="rtl"] {
 }
 
 /* ==========================================================================
-   ROOT INDEX STYLES
+   COMMON FLEX CONTAINERS
    ========================================================================== */
-/* top panels container */
-.top-controls {
+.top-controls,
+.filter-row,
+.tour-header,
+.top-header {
   display: flex;
+  gap: 1em;
+}
+
+.top-controls {
   flex-direction: column;
   gap: 0.5em;
   padding: 0.5em;
 }
 
-/* first row: title + theme + language */
+.filter-row {
+  justify-content: center;
+  padding-inline: 1em;
+}
+
+@media (max-width: 600px) {
+  .top-header,
+  .filter-row,
+  .tour-header {
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================================================
+   HEADER STYLES
+   ========================================================================== */
+/* top-header (first row) */
 .top-header {
-  display: flex;
   align-items: center;
-  gap: 1em;
   background: var(--bg-header);
   color: #fff;
   padding: 0.5em 1em;
 }
+
 .top-header h1 {
   margin: 0;
   font-size: 1.4rem;
 }
 
-/* theme toggle & UI-lang select */
+/* theme toggle & language select in both headers */
 .top-header #theme-toggle,
-.top-header #ui-lang-select {
+.top-header #ui-lang-select,
+.tour-header #theme-toggle {
   background: var(--bg-button);
   color: #fff;
   padding: 0.3em;
   cursor: pointer;
   appearance: none;
-  -webkit-appearance: none;
   box-shadow: none !important;
 }
+
 .top-header #theme-toggle {
   margin-inline-start: auto;
 }
+
 .top-header #theme-toggle:hover,
-.top-header #ui-lang-select:hover {
+.top-header #ui-lang-select:hover,
+.tour-header #theme-toggle:hover {
   background: var(--bg-button-hover);
 }
+
 /* remove border in light theme */
 body:not(.dark) .top-header #theme-toggle,
-body:not(.dark) .top-header #ui-lang-select {
+body:not(.dark) .top-header #ui-lang-select,
+body:not(.dark) .tour-header #theme-toggle {
   border: none;
 }
 
 /* second row: filters */
-.filter-row {
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-  padding-inline: 1em;
-}
 .filter-row select {
   padding: 0.3em;
   font-size: 1rem;
   max-width: 30vw;
   box-sizing: border-box;
 }
+
 body.dark .filter-row select {
   background: var(--bg-button);
   color: #fff;
   border: 1px solid var(--border-table);
 }
 
-/* tours table */
-#tours-table {
-  table-layout: auto;
+/* ==========================================================================
+   TOURS TABLE
+   ========================================================================== */
+.table-wrapper {
+  height: calc(var(--vh, 1vh) * 85);
+  overflow-y: auto;
   width: 100%;
+}
+
+#tours-table {
+  width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   margin-top: 1em;
   text-align: start;
 }
+
 #tours-table th,
 #tours-table td {
   border: 1px solid var(--border-table);
   padding: 0.5em;
 }
+
 #tours-table tr:nth-child(even) {
   background: var(--bg-table-even);
 }
+
 #tours-table th {
   background: var(--bg-header-alt);
   color: #fff;
 }
+
 #tours-table a {
   color: var(--link-color);
 }
@@ -155,37 +189,26 @@ body.dark .filter-row select {
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: calc(var(--vh,1vh)*100);
+  height: calc(var(--vh, 1vh) * 100);
 }
 
-/* tour header */
+/* tour header (first row) */
 .tour-header {
-  display: flex;
   align-items: center;
-  gap: 1em;
   background: var(--bg-header-alt);
   color: #fff;
   padding: 0.2em 0.8em;
+  flex-wrap: nowrap;
 }
+
 .tour-header .tour-title {
   margin: 0;
   font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
   flex: 1 1 auto;
   min-width: 0;
 }
-.tour-header #theme-toggle {
-  background: var(--bg-button);
-  color: #fff;
-  padding: 0.2em;
-  cursor: pointer;
-}
-.tour-header #theme-toggle:hover {
-  background: var(--bg-button-hover);
-}
-body:not(.dark) .tour-header #theme-toggle {
-  border: none;
-}
+
+/* back link button in tour header */
 .tour-header .back-link {
   background: var(--bg-button);
   color: #fff;
@@ -195,6 +218,7 @@ body:not(.dark) .tour-header #theme-toggle {
   margin-inline-start: 1em;
   white-space: nowrap;
 }
+
 .tour-header .back-link:hover {
   background: var(--bg-button-hover);
 }
@@ -214,22 +238,25 @@ body:not(.dark) .tour-header #theme-toggle {
   padding-top: 2%;
   overflow-y: auto;
 }
+
 #map {
   width: 90%;
   height: 50vh;
   margin: 0 auto;
 }
+
 #info {
   padding: 10px;
   background: var(--bg-page);
   color: var(--text-page);
 }
+
 /* stop text */
 .stop-text {
   margin-top: 0.5em;
-  border: none;
   border-collapse: separate;
 }
+
 .stop-text td {
   padding: 0.3em 0;
   line-height: 1.5;
@@ -243,6 +270,7 @@ body:not(.dark) .tour-header #theme-toggle {
   background: var(--bg-header-alt);
   padding: 10px;
 }
+
 button.nav {
   padding: 10px 12%;
   font-size: 16px;
@@ -253,16 +281,20 @@ button.nav {
   transition: background 0.15s ease;
   -webkit-tap-highlight-color: transparent;
 }
+
 button.nav:hover,
 button.nav:active {
   background: var(--bg-button-hover);
 }
+
 button.nav:focus {
   outline: none;
   background: var(--bg-button);
 }
 
-/* leaflet tooltip */
+/* ==========================================================================
+   LEAFLET & TOOLTIP
+   ========================================================================== */
 .leaflet-tooltip.number-label {
   background: #d33;
   color: #fff;
@@ -271,100 +303,87 @@ button.nav:focus {
   padding: 1px 4px;
   font-size: 0.65rem;
 }
+
 .leaflet-marker-icon.selected {
   filter: hue-rotate(300deg) saturate(2) brightness(1.2);
   z-index: 1000 !important;
 }
 
 /* ==========================================================================
-   ADAPTIVE
+   PLYR DARK MODE OVERRIDES
    ========================================================================== */
-@media (max-width: 600px) {
-  .top-header,
-  .filter-row,
-  .tour-header {
-    flex-wrap: wrap;
-  }
-  .filter-row select,
-  .top-header #ui-lang-select,
-  .tour-header #theme-toggle {
-    max-width: 45vw;
-    font-size: 0.85rem;
-  }
-  .tour-header {
-    flex-wrap: nowrap;
-    gap: 0.5em;
-  }
-}
-
-/* Dark‐mode overrides */
-.plyr--dark .plyr__controls {
-  background: var(--bg-page);    /* your dark header color */
-  color: var(--text-page);             /* usually light text */
-}
-
-/* Buttons & icons */
-.plyr--dark .plyr__control {
-  color: var(--text-page);
-}
-/* Progress bar */
-.plyr--dark .plyr__progress--playing .plyr__progress__filled {
-  background: var(--link-color);
-}
-.plyr--dark .plyr__progress input[type="range"]::-webkit-slider-thumb {
-  background: var(--link-color);
-}
-
-/* Time & volume text */
-.plyr--dark .plyr__time,
-.plyr--dark .plyr__volume input {
-  color: var(--text-page);
-}
-
-/* 1) Make sure the Plyr root sits above the map */
 .plyr {
-  position: relative;    /* establish a new stacking context */
+  position: relative;
   z-index: 1000 !important;
 }
 
-/* 2) Allow the controls to escape their box */
-.plyr__controls {
-  overflow: visible !important;
-}
-
-/* 3) Finally, raise the menu itself */
+.plyr__controls,
 .plyr__menu,
-.plyr__menu__container {
-  z-index: 1001 !important;
-}
-
-/* Base menu styling */
-.plyr__menu {
-  background: var(--bg-page) !important; /* your header-alt color */
-  color: var(--text-page) !important;
-  border: 1px solid var(--border-table) !important;
-}
-
-/* The list inside the menu */
 .plyr__menu__container,
 .plyr__menu__content {
   background: var(--bg-page) !important;
   color: var(--text-page) !important;
 }
 
-/* Individual items */
+.plyr--dark .plyr__controls {
+  overflow: visible !important;
+}
+
+.plyr--dark .plyr__control,
+.plyr--dark .plyr__time,
+.plyr--dark .plyr__volume input {
+  color: var(--text-page);
+}
+
+.plyr--dark .plyr__progress--playing .plyr__progress__filled,
+.plyr--dark .plyr__progress input[type="range"]::-webkit-slider-thumb {
+  background: var(--link-color);
+}
+
+.plyr__menu {
+  border: 1px solid var(--border-table) !important;
+}
+
 .plyr__menu__container .plyr__menu__item {
   padding: 0.5em 1em;
 }
 
-/* Hover/focus state */
 .plyr__menu__container .plyr__menu__item:hover,
 .plyr__menu__container .plyr__menu__item[aria-selected] {
   background: var(--bg-page) !important;
-  color: var(--text-page) !important;
 }
 
-/* Separator lines (if any) */
-.plyr__menu__container .plyr__menu__separator {
-  border-color: var(--border-table) !important;
+/* ==========================================================================
+   ADAPTIVE (SMALL SCREENS)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .filter-row select,
+  .top-header #ui-lang-select,
+  .tour-header #theme-toggle {
+    max-width: 45vw;
+    font-size: 0.85rem;
+  }
+
+  .tour-header {
+    gap: 0.5em;
+  }
+}
+
+/* ==========================================================================
+   Remove 3D appearance from theme-toggle in dark mode
+   ========================================================================== */
+body.dark #theme-toggle,
+body.dark .top-header #theme-toggle,
+body.dark .tour-header #theme-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-clip: padding-box; /* ensure no default inner shadows */
+}
+
+body.dark #theme-toggle:focus {
+  outline: none;
+  box-shadow: none;
 }

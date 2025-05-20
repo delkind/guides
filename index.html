@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="document-title"></title>
     <link rel="stylesheet" href="style.css">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="top-controls">
@@ -25,18 +30,23 @@
     </div>
 </div>
 
-<table id="tours-table">
-    <thead>
-    <tr>
-        <th id="th-flag"></th>
-        <th id="th-name"></th>
-        <th id="th-count"></th>
-        <th id="th-length"></th>
-        <th id="th-duration"></th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<div class="table-wrapper">
+    <div id="root-map" style="height: 20vh; width: 80%; margin: 0 auto"></div>
+    <table id="tours-table">
+        <thead>
+        <tr>
+            <th id="th-flag"></th>
+            <th id="th-name"></th>
+            <th id="th-count"></th>
+            <th id="th-length"></th>
+            <th id="th-duration"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- rows… -->
+        </tbody>
+    </table>
+</div>
 
 <script>
     let LANG_FLAGS = {};
@@ -44,6 +54,15 @@
     let locales = {};
     let strings = {};
     let tours = [];
+
+    function fixViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    window.addEventListener('resize', fixViewportHeight);
+    fixViewportHeight();
+
 
     // 1) Загрузить флаги
     function loadFlags() {
@@ -70,9 +89,10 @@
     function initInterface() {
         initTheme();
         initThemeToggle();
+        initRootMap();
 
         const initLang = localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
-        if (!localStorage.getItem('uiLang')){
+        if (!localStorage.getItem('uiLang')) {
             localStorage.setItem('uiLang', SUPPORTED_UI_LANGS[0]);
         }
         const uiSel = document.getElementById('ui-lang-select');
@@ -99,14 +119,19 @@
         document.title = strings.all_tours;
 
         loadTours().then(() => {
+            // On load…
             renderInterface();
             renderFilters(lang);
 
             // навешиваем фильтры
             ['filter-country', 'filter-city', 'filter-lang']
-                .forEach(id => document.getElementById(id).addEventListener('change', renderTable));
+                .forEach(id => document.getElementById(id).addEventListener('change', () => {
+                    renderTable();
+                    updateCityMarkers();
+                }));
 
             renderTable();
+            updateCityMarkers();
         });
     }
 
@@ -181,6 +206,7 @@
 
                 tbody.appendChild(tr);
             });
+
     }
 
     //  Themes  ------------------------------------------------
@@ -202,6 +228,62 @@
             const isDark = document.body.classList.toggle('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
+    }
+
+    let rootMap, cityMarkers = [];
+
+    // 1) Initialize map once
+    function initRootMap() {
+        rootMap = L.map('root-map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(rootMap);
+    }
+
+    // 2) Whenever you renderTable (or after filters change), rebuild the markers:
+    function updateCityMarkers() {
+        // clear old
+        cityMarkers.forEach(m => rootMap.removeLayer(m));
+        cityMarkers = [];
+
+        // group tours by city
+        const fC = document.getElementById('filter-country').value;
+        const fCi = document.getElementById('filter-city').value;
+        const fL = document.getElementById('filter-lang').value;
+
+        // filter tours same as renderTable
+        const filtered = tours
+            .filter(t => !fC || t.country === fC)
+            .filter(t => !fCi || t.city === fCi)
+            .filter(t => !fL || t.language === fL);
+
+        // count per city
+        const counts = {};
+        filtered.forEach(t => {
+            counts[t.city] = (counts[t.city] || 0) + 1;
+        });
+
+        // add a marker for each city
+        Object.entries(counts).forEach(([city, count]) => {
+            const coord = [tours.find(t => t.city === city).city_lat,
+                tours.find(t => t.city === city).city_lon];
+            const marker = L.marker(coord)
+                .addTo(rootMap)
+                .bindPopup(`${city}: ${count} tours`);
+            marker.bindTooltip(String(count), {
+                permanent: true, direction: 'center',
+                className: 'number-label'
+            });
+            cityMarkers.push(marker);
+        });
+
+        // adjust map to fit all markers
+        if (cityMarkers.length > 1) {
+            const group = L.featureGroup(cityMarkers);
+            rootMap.fitBounds(group.getBounds(), {padding: [20, 20]});
+        } else {
+            rootMap.panTo(cityMarkers[0].getLatLng())
+        }
     }
 </script>
 </body>
