@@ -7,12 +7,13 @@ let isDark;
 
 function showStop(i) {
     currentIndex = i;
+    localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
     const s = stops[i];
     document.getElementById('title').innerText = `${s.id}. ${s.title}`;
     const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
     const table = `<table class="stop-text">${paragraphs}</table></p></p></p>`;
     info.innerHTML = `<audio id="audio-player" controls><source src="${s.audio}" type="audio/mpeg" /></audio>` + table;
-    const player = new Plyr('#audio-player', {
+    player = new Plyr('#audio-player', {
         controls: [
             'play',
             'progress',

@@ -40,6 +40,9 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
+<script>
+    const tour_id = 'krakow_old_city_en';
+</script>
 <script src="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.polyfilled.js"></script>
 <script src="js/data.js"></script>
 <script src="../js/map.js"></script>
@@ -108,7 +111,7 @@
                     document.getElementById("next_button").setHTMLUnsafe("&rarr;")
                     document.getElementById("prev_button").setHTMLUnsafe("&larr;")
                 }
-                showStop(0)
+                showStop(localStorage.getItem(`${tour_id}_stop_no`) || 0)
             })
             .catch(console.error);
     });
