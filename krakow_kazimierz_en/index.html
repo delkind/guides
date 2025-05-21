@@ -111,7 +111,7 @@
                     document.getElementById("next_button").setHTMLUnsafe("&rarr;")
                     document.getElementById("prev_button").setHTMLUnsafe("&larr;")
                 }
-                showStop(localStorage.getItem(`${tour_id}_stop_no`) || 0)
+                showStop(Number(localStorage.getItem(`${tour_id}_stop_no`) || 0))
             })
             .catch(console.error);
     });
