@@ -291,7 +291,7 @@
             const group = L.featureGroup(cityMarkers);
             rootMap.fitBounds(group.getBounds(), {padding: [20, 20]});
         } else {
-            rootMap.panTo(cityMarkers[0].getLatLng())
+            rootMap.setView(cityMarkers[0].getLatLng(), 8)
         }
     }
 </script>
