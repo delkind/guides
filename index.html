@@ -246,15 +246,10 @@
         cityMarkers.forEach(m => rootMap.removeLayer(m));
         cityMarkers = [];
 
-        // group tours by city
-        const fC = document.getElementById('filter-country').value;
-        const fCi = document.getElementById('filter-city').value;
         const fL = document.getElementById('filter-lang').value;
 
         // filter tours same as renderTable
         const filtered = tours
-            .filter(t => !fC || t.country === fC)
-            .filter(t => !fCi || t.city === fCi)
             .filter(t => !fL || t.language === fL);
 
         // count per city
@@ -265,15 +260,29 @@
 
         // add a marker for each city
         Object.entries(counts).forEach(([city, count]) => {
-            const coord = [tours.find(t => t.city === city).city_lat,
-                tours.find(t => t.city === city).city_lon];
-            const marker = L.marker(coord)
+            const { city_lat: lat, city_lon: lon } = tours.find(t => t.city === city);
+            const marker = L.marker([lat, lon])
                 .addTo(rootMap)
-                .bindPopup(`${city}: ${count} tours`);
-            marker.bindTooltip(String(count), {
-                permanent: true, direction: 'center',
-                className: 'number-label'
+                .bindPopup(`${city}: ${count} tours`)
+                .bindTooltip(String(count), {
+                    permanent: true, direction: 'center',
+                    className: 'number-label'
+                });
+
+            marker.on('click', () => {
+                // 1) set the dropdown
+                const citySel = document.getElementById('filter-city');
+                citySel.value = city;
+
+                // 2) re–render table and map
+                renderTable();
+                updateCityMarkers();
+
+                // 3) if you want to open the popup with city name & count:
+                marker.openPopup();
+                rootMap.setView([lat, lon], 8)
             });
+
             cityMarkers.push(marker);
         });
 
