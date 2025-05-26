@@ -115,5 +115,18 @@
     "length": 11,
     "duration": 200,
     "stops_count": 13
+  },
+  {
+    "id": "ojcow_national_park_ru",
+    "title": "Аудиогид по Ойцовскому национальному парку",
+    "description": "Аудиогид по основным достопримечательностям Ойцовского национального парка — жемчужины природы и истории Малопольши.",
+    "country": "Poland",
+    "city": "Ojców",
+    "city_lat": 50.2096249,
+    "city_lon": 19.8294802,
+    "language": "ru",
+    "length": 130,
+    "duration": 1996,
+    "stops_count": 21
   }
 ]
