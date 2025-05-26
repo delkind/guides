@@ -9,7 +9,7 @@
     "city_lon": 19.9971534,
     "language": "he",
     "length": 5,
-    "duration": 157,
+    "duration": 73,
     "stops_count": 36
   },
   {
@@ -22,7 +22,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 6,
-    "duration": 168,
+    "duration": 81,
     "stops_count": 33
   },
   {
@@ -35,7 +35,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 6,
-    "duration": 167,
+    "duration": 81,
     "stops_count": 33
   },
   {
@@ -48,7 +48,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 4,
-    "duration": 165,
+    "duration": 60,
     "stops_count": 34
   },
   {
@@ -61,7 +61,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 6,
-    "duration": 197,
+    "duration": 77,
     "stops_count": 36
   },
   {
@@ -74,7 +74,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 5,
-    "duration": 170,
+    "duration": 73,
     "stops_count": 36
   },
   {
@@ -87,7 +87,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 11,
-    "duration": 226,
+    "duration": 159,
     "stops_count": 20
   },
   {
@@ -100,7 +100,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 5,
-    "duration": 162,
+    "duration": 73,
     "stops_count": 36
   },
   {
@@ -113,7 +113,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 11,
-    "duration": 200,
+    "duration": 155,
     "stops_count": 13
   },
   {
@@ -126,7 +126,20 @@
     "city_lon": 19.8294802,
     "language": "ru",
     "length": 10,
-    "duration": 184,
+    "duration": 147,
     "stops_count": 15
+  },
+  {
+    "id": "krakow_kleparz_ru",
+    "title": "Аудиогид по Клепаржу — историческому району Кракова",
+    "description": "Аудиогид по главным достопримечательностям района Клепарж, одного из старейших пригородов Кракова, с уникальной историей, архитектурой и атмосферой.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0469432,
+    "city_lon": 19.9971534,
+    "language": "ru",
+    "length": 11,
+    "duration": 158,
+    "stops_count": 17
   }
 ]
