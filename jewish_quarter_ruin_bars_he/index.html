@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="tour-page-title"></title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.css"/>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="tour-header">
+        <!-- Название тура -->
+        <h1 class="tour-title" id="tour-title"></h1>
+        <!-- Кнопка темы, прижата вправо -->
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+        <!-- Кнопка возврата -->
+        <a href="../index.html" class="back-link">
+            <span id="back-link-text"></span> ↑
+        </a>
+    </div>
+
+    <!-- Заголовок остановки -->
+    <h1 id="title" class="stop-header"></h1>
+
+    <div id="scrollable">
+        
+            <div id="map"></div>
+        <div id="info"></div>
+    </div>
+
+    <div class="navbar">
+        <button class="nav" id="prev_button" onclick="prevStop()">&larr;</button>
+        <button class="nav" onclick="firstStop()">&circledcirc;</button>
+        <button class="nav" id="next_button" onclick="nextStop()">&rarr;</button>
+    </div>
+</div>
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    const tour_id = 'jewish_quarter_ruin_bars_he';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.polyfilled.js"></script>
+<script src="js/data.js"></script>
+<script src="../js/map.js"></script>
+<script>
+    let tour_lang = 'he';
+    let rtl = false;
+
+    // viewport fix
+    function fixViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    window.addEventListener('resize', fixViewportHeight);
+    fixViewportHeight();
+
+    // тема
+    function initTheme() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        isDark = document.body.classList.toggle('dark', theme === 'dark');
+    }
+
+    function initThemeToggle() {
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
+
+    // локализация кнопки возврата и заголовков
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        initThemeToggle();
+
+        const lang = localStorage.getItem('uiLang') || tour_lang;
+
+        fetch(`../js/locales.json`)
+            .then(r => r.json())
+            .then(all => {
+                rtl = (all[tour_lang].rtl)
+                return all[lang];
+            })
+            .then(strings => {
+                document.documentElement.lang = tour_lang;
+                document.documentElement.dir = rtl ? "rtl" : "ltr"
+
+                // кнопка «Все туры»
+                document.getElementById('back-link-text').textContent = strings.all_tours;
+                // заголовки
+                document.getElementById('tour-title').textContent = "מדריך קולי – הרובע היהודי והברים ההרוסים- מורשת, עמידות וחיי לילה";
+                const full = `מדריך קולי – הרובע היהודי והברים ההרוסים- מורשת, עמידות וחיי לילה`;
+                document.getElementById('tour-page-title').textContent = full;
+                document.title = full;
+                document.getElementById('title').textContent = strings.next_stop_announcement || '';
+                if (rtl) {
+                    document.getElementById("next_button").onClick = "prevStop()";
+                    document.getElementById("prev_button").onClick = "nextStop()";
+                    document.getElementById("next_button").setHTMLUnsafe("&larr;")
+                    document.getElementById("prev_button").setHTMLUnsafe("&rarr;")
+                } else {
+                    document.getElementById("next_button").onClick = "nextStop()";
+                    document.getElementById("prev_button").onClick = "prevStop()";
+                    document.getElementById("next_button").setHTMLUnsafe("&rarr;")
+                    document.getElementById("prev_button").setHTMLUnsafe("&larr;")
+                }
+                showStop(Number(localStorage.getItem(`${tour_id}_stop_no`) || 0))
+            })
+            .catch(console.error);
+    });
+</script>
+</body>
+</html>
