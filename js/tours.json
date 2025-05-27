@@ -141,5 +141,18 @@
     "length": 11,
     "duration": 226,
     "stops_count": 20
+  },
+  {
+    "id": "budapest_buda_castle_district_he",
+    "title": "מדריך קולי לרובע טירת בודה",
+    "description": "סיור קולי ברובע טירת בודה המשלב היסטוריה, אגדות ונופים פנורמיים עוצרי נשימה של בודפשט, מהגשר השרשראות ועד סמטאות הטירה.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1460941,
+    "language": "he",
+    "length": 29,
+    "duration": 465,
+    "stops_count": 18
   }
 ]
