@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 /* ==========================================================================
    THEME VARIABLES
    ========================================================================== */
@@ -386,4 +388,28 @@ body.dark .tour-header #theme-toggle {
 body.dark #theme-toggle:focus {
   outline: none;
   box-shadow: none;
+}
+
+html, body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.button, button.nav {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.1s, background 0.2s;
+}
+.button:active, button.nav:active {
+  transform: scale(0.97);
+}
+
+.tour-card {
+  background: var(--bg-page);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 1em 0;
+  padding: 1.2em;
+  transition: box-shadow 0.2s;
+}
+.tour-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
 }
