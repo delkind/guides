@@ -8,8 +8,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 3,
-    "duration": 101,
+    "length": 4,
+    "duration": 46,
     "stops_count": 23
   },
   {
@@ -22,7 +22,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 11,
-    "duration": 200,
+    "duration": 155,
     "stops_count": 13
   },
   {
@@ -34,8 +34,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "he",
-    "length": 5,
-    "duration": 157,
+    "length": 6,
+    "duration": 78,
     "stops_count": 36
   },
   {
@@ -47,8 +47,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 6,
-    "duration": 168,
+    "length": 7,
+    "duration": 99,
     "stops_count": 33
   },
   {
@@ -60,8 +60,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 6,
-    "duration": 167,
+    "length": 7,
+    "duration": 99,
     "stops_count": 33
   },
   {
@@ -73,8 +73,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 4,
-    "duration": 165,
+    "length": 5,
+    "duration": 72,
     "stops_count": 34
   },
   {
@@ -87,7 +87,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 6,
-    "duration": 197,
+    "duration": 84,
     "stops_count": 36
   },
   {
@@ -100,7 +100,7 @@
     "city_lon": 19.8294802,
     "language": "ru",
     "length": 10,
-    "duration": 184,
+    "duration": 149,
     "stops_count": 15
   },
   {
@@ -113,7 +113,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 4,
-    "duration": 108,
+    "duration": 60,
     "stops_count": 23
   },
   {
@@ -125,8 +125,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 5,
-    "duration": 170,
+    "length": 6,
+    "duration": 78,
     "stops_count": 36
   },
   {
@@ -139,7 +139,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 11,
-    "duration": 226,
+    "duration": 161,
     "stops_count": 20
   },
   {
@@ -152,7 +152,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 101,
+    "duration": 57,
     "stops_count": 18
   },
   {
@@ -164,9 +164,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 13,
-    "duration": 235,
-    "stops_count": 23
+    "length": 12,
+    "duration": 173,
+    "stops_count": 20
   },
   {
     "id": "jewish_quarter_ruin_bars_he",
@@ -178,7 +178,20 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 2,
-    "duration": 63,
+    "duration": 30,
     "stops_count": 16
+  },
+  {
+    "id": "danube_promenade_he_he",
+    "title": "טיילת הדנובה – מדריך קולי למונומנטים ונוף העיר בבודפשט",
+    "description": "מדריך קולי לאטרקציות המרכזיות, הפסלים והאתרים ההיסטוריים בטיילת הדנובה, בצד הפשט של בודפשט. הסיור עוקב אחר רצף המונומנטים, הגשרים והנוף לעבר גבעת בודה, עם דגש על זיכרון, תרבות והיסטוריה עירונית.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1460941,
+    "language": "he",
+    "length": 5,
+    "duration": 73,
+    "stops_count": 18
   }
 ]
