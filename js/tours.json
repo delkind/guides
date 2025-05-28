@@ -164,9 +164,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 12,
-    "duration": 172,
-    "stops_count": 18
+    "length": 11,
+    "duration": 163,
+    "stops_count": 17
   },
   {
     "id": "jewish_quarter_ruin_bars_he",
@@ -191,7 +191,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 5,
-    "duration": 68,
-    "stops_count": 18
+    "duration": 65,
+    "stops_count": 19
   }
 ]
