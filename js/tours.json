@@ -9,7 +9,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 4,
-    "duration": 103,
+    "duration": 46,
     "stops_count": 23
   },
   {
@@ -22,7 +22,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 11,
-    "duration": 200,
+    "duration": 155,
     "stops_count": 13
   },
   {
@@ -35,7 +35,7 @@
     "city_lon": 19.9971534,
     "language": "he",
     "length": 5,
-    "duration": 159,
+    "duration": 75,
     "stops_count": 36
   },
   {
@@ -48,7 +48,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 6,
-    "duration": 169,
+    "duration": 82,
     "stops_count": 33
   },
   {
@@ -61,7 +61,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 6,
-    "duration": 168,
+    "duration": 82,
     "stops_count": 33
   },
   {
@@ -74,7 +74,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 5,
-    "duration": 168,
+    "duration": 63,
     "stops_count": 34
   },
   {
@@ -87,7 +87,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 6,
-    "duration": 199,
+    "duration": 79,
     "stops_count": 36
   },
   {
@@ -100,7 +100,7 @@
     "city_lon": 19.8294802,
     "language": "ru",
     "length": 10,
-    "duration": 185,
+    "duration": 147,
     "stops_count": 15
   },
   {
@@ -113,7 +113,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 4,
-    "duration": 109,
+    "duration": 55,
     "stops_count": 23
   },
   {
@@ -126,7 +126,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 5,
-    "duration": 172,
+    "duration": 75,
     "stops_count": 36
   },
   {
@@ -139,7 +139,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 11,
-    "duration": 227,
+    "duration": 160,
     "stops_count": 20
   },
   {
@@ -152,7 +152,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 101,
+    "duration": 58,
     "stops_count": 18
   },
   {
@@ -165,7 +165,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 11,
-    "duration": 200,
+    "duration": 163,
     "stops_count": 17
   },
   {
@@ -178,7 +178,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 2,
-    "duration": 63,
+    "duration": 30,
     "stops_count": 16
   },
   {
@@ -191,7 +191,20 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 5,
-    "duration": 115,
+    "duration": 65,
     "stops_count": 19
+  },
+  {
+    "id": "vienna_center_exploration_he",
+    "title": "סיור רגלי במרכז וינה – מסע היסטורי ואדריכלי",
+    "description": "מדריך קולי לסיור רגלי במרכז ההיסטורי של וינה, בין הארמונות, הכיכרות, בתי הכנסת, המוזיאונים והאתרים היהודיים המרכזיים של העיר.",
+    "country": "Austria",
+    "city": "Vienna",
+    "city_lat": 48.2083537,
+    "city_lon": 16.3725042,
+    "language": "he",
+    "length": 21,
+    "duration": 309,
+    "stops_count": 37
   }
 ]
