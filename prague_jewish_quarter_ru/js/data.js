@@ -156,36 +156,9 @@ const stops = [
     "id": 18,
     "stop_id": "jewish_ceremonial_hall",
     "title": "Еврейский церемониальный зал",
-    "description": "Np\n\nНаша следующая остановка: Госпиталь и церковь Святого Франциска. Старинный госпиталь и барочная церковь с уникальным органом и фресками, основанные рыцарями-крестоносцами, рядом с Карловым мостом.",
-    "audio": "audio/jewish_ceremonial_hall_hospital_st_francis_12a4a9113a83f1706b79de9f442829d7.mp3",
+    "description": "Np",
+    "audio": "audio/jewish_ceremonial_hall_8e8c3fbcf8669ad9e7719b7af696b408.mp3",
     "lat": 50.0899409,
     "lon": 14.4172878
-  },
-  {
-    "id": 19,
-    "stop_id": "hospital_st_francis",
-    "title": "Госпиталь и церковь Святого Франциска",
-    "description": "Np\n\nНаша следующая остановка: Костёл Святого Сальватора. Величественная ренессансно-барочная церковь ордена крестоносцев у Карлова моста, известна органными концертами и богатым интерьером.",
-    "audio": "audio/hospital_st_francis_st_salvator_church_952694fcfbaa4030da6d8a716b89239e.mp3",
-    "lat": 50.0865112,
-    "lon": 14.4139273
-  },
-  {
-    "id": 20,
-    "stop_id": "st_salvator_church",
-    "title": "Костёл Святого Сальватора",
-    "description": "Np\n\nНаша следующая остановка: Конвент Святой Анны (Prague Crossroads). Готическая церковь XIV века, ныне культурный центр и место международных диалогов, основанный по инициативе Вацлава Гавела.",
-    "audio": "audio/st_salvator_church_convent_of_st_anne_19213d07b52011b72504d61e68dd356c.mp3",
-    "lat": 50.0860357,
-    "lon": 14.4140675
-  },
-  {
-    "id": 21,
-    "stop_id": "convent_of_st_anne",
-    "title": "Конвент Святой Анны (Prague Crossroads)",
-    "description": "Np",
-    "audio": "audio/convent_of_st_anne_8e8c3fbcf8669ad9e7719b7af696b408.mp3",
-    "lat": 50.0846809,
-    "lon": 14.4187645
   }
 ];
