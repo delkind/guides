@@ -8,9 +8,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 8,
-    "duration": 111,
-    "stops_count": 23
+    "length": 6,
+    "duration": 84,
+    "stops_count": 22
   },
   {
     "id": "krakow_nowa_huta_ru",
@@ -21,9 +21,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 15,
-    "duration": 223,
-    "stops_count": 13
+    "length": 12,
+    "duration": 169,
+    "stops_count": 12
   },
   {
     "id": "krakow_old_city_he",
@@ -34,9 +34,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "he",
-    "length": 12,
-    "duration": 174,
-    "stops_count": 36
+    "length": 10,
+    "duration": 140,
+    "stops_count": 35
   },
   {
     "id": "krakow_kazimierz_en",
@@ -47,9 +47,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 20,
-    "duration": 294,
-    "stops_count": 33
+    "length": 18,
+    "duration": 258,
+    "stops_count": 32
   },
   {
     "id": "krakow_kazimierz_ru",
@@ -60,9 +60,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 20,
-    "duration": 294,
-    "stops_count": 33
+    "length": 18,
+    "duration": 258,
+    "stops_count": 32
   },
   {
     "id": "krakow_podgorje_ru",
@@ -73,9 +73,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 14,
-    "duration": 197,
-    "stops_count": 34
+    "length": 13,
+    "duration": 182,
+    "stops_count": 33
   },
   {
     "id": "wroclaw_old_town_ru",
@@ -86,9 +86,9 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 12,
-    "duration": 169,
-    "stops_count": 36
+    "length": 11,
+    "duration": 158,
+    "stops_count": 35
   },
   {
     "id": "ojcow_national_park_ru",
@@ -99,9 +99,9 @@
     "city_lat": 50.2096249,
     "city_lon": 19.8294802,
     "language": "ru",
-    "length": 29,
-    "duration": 431,
-    "stops_count": 15
+    "length": 18,
+    "duration": 270,
+    "stops_count": 14
   },
   {
     "id": "krakow_north_old_city_kleparz_ru",
@@ -112,9 +112,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 8,
-    "duration": 119,
-    "stops_count": 23
+    "length": 6,
+    "duration": 85,
+    "stops_count": 22
   },
   {
     "id": "krakow_old_city_en",
@@ -125,9 +125,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 12,
-    "duration": 174,
-    "stops_count": 36
+    "length": 10,
+    "duration": 140,
+    "stops_count": 35
   },
   {
     "id": "jewish_wroclaw_ru",
@@ -138,9 +138,9 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 23,
-    "duration": 340,
-    "stops_count": 20
+    "length": 20,
+    "duration": 287,
+    "stops_count": 19
   },
   {
     "id": "budapest_buda_castle_district_he",
@@ -151,9 +151,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 12,
-    "duration": 170,
-    "stops_count": 18
+    "length": 9,
+    "duration": 132,
+    "stops_count": 17
   },
   {
     "id": "pest_highlights_he",
@@ -165,8 +165,8 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 19,
-    "duration": 284,
-    "stops_count": 17
+    "duration": 277,
+    "stops_count": 16
   },
   {
     "id": "jewish_quarter_ruin_bars_he",
@@ -177,9 +177,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 8,
-    "duration": 113,
-    "stops_count": 16
+    "length": 7,
+    "duration": 97,
+    "stops_count": 15
   },
   {
     "id": "danube_promenade_he_he",
@@ -190,9 +190,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 14,
-    "duration": 202,
-    "stops_count": 19
+    "length": 11,
+    "duration": 159,
+    "stops_count": 18
   },
   {
     "id": "vienna_center_exploration_he",
@@ -203,9 +203,9 @@
     "city_lat": 48.2083537,
     "city_lon": 16.3725042,
     "language": "he",
-    "length": 47,
-    "duration": 700,
-    "stops_count": 37
+    "length": 37,
+    "duration": 551,
+    "stops_count": 36
   },
   {
     "id": "prague_old_town_ru",
@@ -216,9 +216,9 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 17,
-    "duration": 241,
-    "stops_count": 34
+    "length": 15,
+    "duration": 214,
+    "stops_count": 33
   },
   {
     "id": "prague_jewish_quarter_ru",
@@ -230,7 +230,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 4,
-    "duration": 56,
-    "stops_count": 18
+    "duration": 46,
+    "stops_count": 17
   }
 ]
