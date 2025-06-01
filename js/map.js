@@ -77,9 +77,9 @@ if (typeof L !== 'undefined') {
     map = L.map('map');
     const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lon]));
     map.fitBounds(bounds, {padding: [10, 10]});
-    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     attribution: '&copy; OpenStreetMap'
-    // }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
     L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
         maxZoom: 20,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
