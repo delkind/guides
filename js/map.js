@@ -90,6 +90,7 @@ if (typeof L !== 'undefined') {
         })
     };
 
+    layers.Google.addTo(map);
     L.control.layers(layers).addTo(map);
 
     markers = stops.map((s, i) => {
