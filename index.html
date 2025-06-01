@@ -93,7 +93,6 @@
 
         const currentState = getCurrentState();
         const initLang = currentState.uiLang || localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
-        localStorage.setItem('uiLang', initLang);
         const uiSel = document.getElementById('ui-lang-select');
         uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
             `<option value="${l}"${l === initLang ? ' selected' : ''}>
@@ -104,11 +103,11 @@
         uiSel.addEventListener('change', e => {
             localStorage.setItem('uiLang', e.target.value);
             const state = getCurrentState();
-            currentState.uiLang = e.target.value;
-            applyLanguage(state);
+            state.uiLang = e.target.value;
+            applyState(state);
         });
 
-        applyLanguage(currentState);
+        applyState(currentState);
     }
 
     function saveCurrentState(lang) {
@@ -143,14 +142,14 @@
     function getCurrentState() {
         const params = new URLSearchParams(window.location.search);
         return {
-            uiLang: params.get("uiLang") || localStorage.getItem("uiLang"),
+            uiLang: params.get("uiLang"),
             filter_country: params.get("filter-country"),
             filter_city: params.get("filter-city"),
             filter_lang: params.get("filter-lang")
         };
     }
 
-    function applyLanguage(state) {
+    function applyState(state) {
         lang = state.uiLang;
         strings = locales[lang];
 
