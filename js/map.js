@@ -8,7 +8,7 @@ let isDark;
 function updateUrl(stopNo) {
     const params = new URLSearchParams(window.location.search);
     params.set('stop', stopNo);
-    history.replaceState(null, '', '?' + params.toString());
+    history.pushState(null, '', '?' + params.toString());
 }
 
 function getInitialState() {
