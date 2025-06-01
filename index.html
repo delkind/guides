@@ -93,6 +93,7 @@
 
         const currentState = getCurrentState();
         const initLang = currentState.uiLang || localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
+        currentState.uiLang = initLang;
         const uiSel = document.getElementById('ui-lang-select');
         uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
             `<option value="${l}"${l === initLang ? ' selected' : ''}>
