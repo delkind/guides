@@ -13,13 +13,13 @@ function updateUrl(stopNo) {
 
 function getInitialState() {
     const params = new URLSearchParams(window.location.search);
-    return Number(params.get('stop')) || 0;
+    return Number(params.get('stop'));
 }
 
 function showStop(i) {
     currentIndex = i;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
-    updateUrl(currentIndex + 1);
+    updateUrl(currentIndex);
     const s = stops[i];
     document.getElementById('title').innerText = `${s.id}. ${s.title}`;
     const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
