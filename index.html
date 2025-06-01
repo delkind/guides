@@ -91,10 +91,9 @@
         initThemeToggle();
         initRootMap();
 
-        const initLang = localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
-        if (!localStorage.getItem('uiLang')) {
-            localStorage.setItem('uiLang', SUPPORTED_UI_LANGS[0]);
-        }
+        const currentState = getCurrentState();
+        const initLang = currentState.uiLang || localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
+        localStorage.setItem('uiLang', initLang);
         const uiSel = document.getElementById('ui-lang-select');
         uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
             `<option value="${l}"${l === initLang ? ' selected' : ''}>
@@ -104,14 +103,57 @@
 
         uiSel.addEventListener('change', e => {
             localStorage.setItem('uiLang', e.target.value);
-            applyLanguage(e.target.value);
+            const state = getCurrentState();
+            currentState.uiLang = e.target.value;
+            applyLanguage(state);
         });
 
-        applyLanguage(initLang);
+        applyLanguage(currentState);
     }
 
-    function applyLanguage(lang) {
+    function saveCurrentState(lang) {
+        const params = new URLSearchParams();
+
+        // UI Language
+        params.set('uiLang', lang);
+
+        // Filters
+        const countryFilter = document.getElementById('filter-country').value;
+        const cityFilter = document.getElementById('filter-city').value;
+        const langFilter = document.getElementById('filter-lang').value;
+
+        if (countryFilter) {
+            params.set('filter-country', countryFilter);
+            localStorage.setItem('filter-country', countryFilter)
+        }
+
+        if (cityFilter) {
+            params.set('filter-city', cityFilter);
+            localStorage.setItem('filter-city', countryFilter)
+        }
+
+        if (langFilter) {
+            params.set('filter-lang', langFilter);
+            localStorage.setItem('filter-lang', langFilter)
+        }
+
+        history.replaceState(null, '', '?' + params.toString());
+    }
+
+    function getCurrentState() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            uiLang: params.get("uiLang") || localStorage.getItem("uiLang"),
+            filter_country: params.get("filter-country"),
+            filter_city: params.get("filter-city"),
+            filter_lang: params.get("filter-lang")
+        };
+    }
+
+    function applyLanguage(state) {
+        lang = state.uiLang;
         strings = locales[lang];
+
         document.documentElement.lang = lang;
         document.documentElement.dir = strings.rtl ? "rtl" : "ltr"
         document.getElementById('page-title').textContent = strings.all_tours;
@@ -128,6 +170,7 @@
                 .forEach(id => document.getElementById(id).addEventListener('change', () => {
                     renderTable();
                     updateCityMarkers();
+                    saveCurrentState(lang)
                 }));
 
             renderTable();
@@ -141,6 +184,24 @@
             .then(data => tours = data);
     }
 
+    function updateURLParams() {
+        const params = new URLSearchParams();
+
+        // UI Language
+        params.set('uiLang', localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0]);
+
+        // Filters
+        const countryFilter = document.getElementById('filter-country').value;
+        const cityFilter = document.getElementById('filter-city').value;
+        const langFilter = document.getElementById('filter-lang').value;
+
+        if (countryFilter) params.set('country', countryFilter);
+        if (cityFilter) params.set('city', cityFilter);
+        if (langFilter) params.set('lang', langFilter);
+
+        history.replaceState(null, '', '?' + params.toString());
+    }
+
     function renderInterface() {
         document.getElementById('th-name').textContent = strings.tour_name;
         document.getElementById('th-count').textContent = strings.stops_count;
@@ -148,7 +209,8 @@
         document.getElementById('th-duration').textContent = strings.duration_min;
     }
 
-    function renderFilters(lang) {
+    function renderFilters(state) {
+        lang = state.uiLang;
         const unique = arr => Array.from(new Set(arr)).sort();
         const countries = unique(tours.map(t => t.country));
         const cities = unique(tours.map(t => t.city));
@@ -165,8 +227,18 @@
         fill('filter-lang', strings.language, langs);
 
         const langFilter = document.getElementById('filter-lang');
-        if (langFilter && langs.includes(lang)) {
+        if (state.filter_lang in langs) {
+            langFilter.value = state.filter_lang;
+        }  else if (langFilter && langs.includes(lang)) {
             langFilter.value = lang;
+        }
+
+        if (state.filter_country in countries) {
+            document.getElementById('filter-country').value = state.filter_country;
+        }
+
+        if (state.filter_city in cities) {
+            document.getElementById('filter-city').value = state.filter_city;
         }
     }
 
