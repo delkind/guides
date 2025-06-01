@@ -19,7 +19,7 @@ function getInitialState() {
 function showStop(i) {
     currentIndex = i;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
-    updateUrl(currentIndex);
+    updateUrl(currentIndex + 1);
     const s = stops[i];
     document.getElementById('title').innerText = `${s.id}. ${s.title}`;
     const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
