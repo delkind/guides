@@ -9,7 +9,7 @@
     "city_lon": 19.9971534,
     "language": "he",
     "length": 7,
-    "duration": 92,
+    "duration": 173,
     "stops_count": 35
   },
   {
@@ -22,7 +22,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 5,
-    "duration": 68,
+    "duration": 109,
     "stops_count": 17
   },
   {
@@ -35,7 +35,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 8,
-    "duration": 115,
+    "duration": 200,
     "stops_count": 32
   },
   {
@@ -48,7 +48,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 50,
+    "duration": 81,
     "stops_count": 15
   },
   {
@@ -244,6 +244,32 @@
     "language": "ru",
     "length": 9,
     "duration": 128,
+    "stops_count": 26
+  },
+  {
+    "id": "prague_nove_mesto_ru",
+    "title": "Прогулка по Новому городу Праги (Nové Město)",
+    "description": "Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0596288,
+    "city_lon": 14.4464593,
+    "language": "ru",
+    "length": 11,
+    "duration": 259,
+    "stops_count": 33
+  },
+  {
+    "id": "prague_vinohrady_ru",
+    "title": "Пешеходная экскурсия по Виноградам в Праге",
+    "description": "Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0596288,
+    "city_lon": 14.4464593,
+    "language": "ru",
+    "length": 66,
+    "duration": 982,
     "stops_count": 26
   }
 ]

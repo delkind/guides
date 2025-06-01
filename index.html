@@ -151,7 +151,7 @@
     }
 
     function applyState(state) {
-        lang = state.uiLang;
+        const lang = state.uiLang;
         strings = locales[lang];
 
         document.documentElement.lang = lang;
@@ -163,7 +163,7 @@
         loadTours().then(() => {
             // On load…
             renderInterface();
-            renderFilters(lang);
+            renderFilters(state);
 
             // навешиваем фильтры
             ['filter-country', 'filter-city', 'filter-lang']
@@ -228,17 +228,17 @@
         fill('filter-lang', strings.language, langs);
 
         const langFilter = document.getElementById('filter-lang');
-        if (state.filter_lang in langs) {
+        if (state.filter_lang && state.filter_lang in langs) {
             langFilter.value = state.filter_lang;
         }  else if (langFilter && langs.includes(lang)) {
             langFilter.value = lang;
         }
 
-        if (state.filter_country in countries) {
+        if (state.filter_country && state.filter_country in countries) {
             document.getElementById('filter-country').value = state.filter_country;
         }
 
-        if (state.filter_city in cities) {
+        if (state.filter_city || state.filter_city in cities) {
             document.getElementById('filter-city').value = state.filter_city;
         }
     }
