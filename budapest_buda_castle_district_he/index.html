@@ -75,6 +75,11 @@
         });
     }
 
+    window.addEventListener('popstate', () => {
+        const stopNo = getInitialState();
+        showStop(stopNo, false);
+    });
+
     // локализация кнопки возврата и заголовков
     window.addEventListener('DOMContentLoaded', () => {
         initTheme();
