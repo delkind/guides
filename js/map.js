@@ -5,10 +5,14 @@ let markers;   // if you also want your markers array visible outside
 let player;
 let isDark;
 
-function updateUrl(stopNo) {
+function updateUrl(stopNo, pushUrl) {
     const params = new URLSearchParams(window.location.search);
     params.set('stop', stopNo);
-    history.pushState(null, '', '?' + params.toString());
+    if (pushUrl) {
+        history.pushState(null, '', '?' + params.toString());
+    } else {
+        history.replaceState(null, '', '');
+    }
 }
 
 function getInitialState() {
@@ -16,12 +20,10 @@ function getInitialState() {
     return params.get("stop") ? Number(params.get('stop')) : undefined;
 }
 
-function showStop(i, urlUpdate = true) {
+function showStop(i, pushUrl = true) {
     currentIndex = i;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
-    if (urlUpdate) {
-        updateUrl(currentIndex);
-    }
+    updateUrl(currentIndex, pushUrl);
     const s = stops[i];
     document.getElementById('title').innerText = `${s.id}. ${s.title}`;
     const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
