@@ -10,7 +10,7 @@
     "language": "he",
     "length": 7,
     "duration": 92,
-    "stops_count": 37
+    "stops_count": 35
   },
   {
     "id": "budapest_buda_castle_district_he",
@@ -23,7 +23,7 @@
     "language": "he",
     "length": 5,
     "duration": 68,
-    "stops_count": 19
+    "stops_count": 17
   },
   {
     "id": "krakow_kazimierz_en",
@@ -36,7 +36,7 @@
     "language": "en",
     "length": 8,
     "duration": 115,
-    "stops_count": 33
+    "stops_count": 32
   },
   {
     "id": "jewish_quarter_ruin_bars_he",
@@ -49,7 +49,7 @@
     "language": "he",
     "length": 4,
     "duration": 50,
-    "stops_count": 19
+    "stops_count": 15
   },
   {
     "id": "krakow_kazimierz_ru",
@@ -62,7 +62,7 @@
     "language": "ru",
     "length": 8,
     "duration": 115,
-    "stops_count": 33
+    "stops_count": 32
   },
   {
     "id": "krakow_podgorje_ru",
@@ -75,7 +75,7 @@
     "language": "ru",
     "length": 7,
     "duration": 101,
-    "stops_count": 34
+    "stops_count": 33
   },
   {
     "id": "wroclaw_old_town_ru",
@@ -88,7 +88,7 @@
     "language": "ru",
     "length": 7,
     "duration": 92,
-    "stops_count": 42
+    "stops_count": 35
   },
   {
     "id": "danube_promenade_he_he",
@@ -101,7 +101,7 @@
     "language": "he",
     "length": 7,
     "duration": 95,
-    "stops_count": 19
+    "stops_count": 18
   },
   {
     "id": "ojcow_national_park_ru",
@@ -114,7 +114,7 @@
     "language": "ru",
     "length": 15,
     "duration": 221,
-    "stops_count": 18
+    "stops_count": 14
   },
   {
     "id": "vienna_center_exploration_he",
@@ -127,7 +127,7 @@
     "language": "he",
     "length": 30,
     "duration": 441,
-    "stops_count": 37
+    "stops_count": 36
   },
   {
     "id": "krakow_north_old_city_kleparz_ru",
@@ -140,7 +140,7 @@
     "language": "ru",
     "length": 6,
     "duration": 76,
-    "stops_count": 24
+    "stops_count": 22
   },
   {
     "id": "krakow_old_city_en",
@@ -153,7 +153,7 @@
     "language": "en",
     "length": 7,
     "duration": 92,
-    "stops_count": 37
+    "stops_count": 35
   },
   {
     "id": "pest_highlights_he",
@@ -166,7 +166,7 @@
     "language": "he",
     "length": 15,
     "duration": 219,
-    "stops_count": 17
+    "stops_count": 16
   },
   {
     "id": "jewish_wroclaw_ru",
@@ -179,7 +179,7 @@
     "language": "ru",
     "length": 14,
     "duration": 208,
-    "stops_count": 24
+    "stops_count": 19
   },
   {
     "id": "prague_jewish_quarter_ru",
@@ -192,7 +192,7 @@
     "language": "ru",
     "length": 2,
     "duration": 26,
-    "stops_count": 18
+    "stops_count": 17
   },
   {
     "id": "prague_old_town_ru",
@@ -205,7 +205,7 @@
     "language": "ru",
     "length": 7,
     "duration": 102,
-    "stops_count": 37
+    "stops_count": 33
   },
   {
     "id": "krakow_south_old_city_ru",
@@ -218,7 +218,7 @@
     "language": "ru",
     "length": 5,
     "duration": 62,
-    "stops_count": 23
+    "stops_count": 22
   },
   {
     "id": "krakow_nowa_huta_ru",
@@ -231,7 +231,7 @@
     "language": "ru",
     "length": 14,
     "duration": 203,
-    "stops_count": 14
+    "stops_count": 12
   },
   {
     "id": "prague_mala_strana_ru",
@@ -244,6 +244,6 @@
     "language": "ru",
     "length": 9,
     "duration": 121,
-    "stops_count": 27
+    "stops_count": 26
   }
 ]
