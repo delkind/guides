@@ -8,9 +8,6 @@ let isDark;
 function updateUrl(stopNo) {
     const params = new URLSearchParams(window.location.search);
     params.set('stop', stopNo);
-    if (filters) {
-        params.set('filters', filters.join(',')); // assuming filters is an array
-    }
     history.replaceState(null, '', '?' + params.toString());
 }
 
