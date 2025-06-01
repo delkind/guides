@@ -235,8 +235,9 @@
     // 1) Initialize map once
     function initRootMap() {
         rootMap = L.map('root-map').setView([0, 0], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
+        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(rootMap);
     }
 
@@ -260,7 +261,7 @@
 
         // add a marker for each city
         Object.entries(counts).forEach(([city, count]) => {
-            const { city_lat: lat, city_lon: lon } = tours.find(t => t.city === city);
+            const {city_lat: lat, city_lon: lon} = tours.find(t => t.city === city);
             const marker = L.marker([lat, lon])
                 .addTo(rootMap)
                 .bindPopup(`${city}: ${count} tours`)
