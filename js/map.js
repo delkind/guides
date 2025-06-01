@@ -11,7 +11,7 @@ function updateUrl(stopNo, pushUrl) {
     if (pushUrl) {
         history.pushState(null, '', '?' + params.toString());
     } else {
-        history.replaceState(null, '', '');
+        history.replaceState(null, '', '?' + params.toString());
     }
 }
 
