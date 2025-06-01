@@ -13,7 +13,7 @@ function updateUrl(stopNo) {
 
 function getInitialState() {
     const params = new URLSearchParams(window.location.search);
-    return Number(params.get('stop'));
+    return params.get("stop") ? Number(params.get('stop')) : undefined;
 }
 
 function showStop(i) {
