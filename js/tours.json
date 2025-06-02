@@ -61,7 +61,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 8,
-    "duration": 115,
+    "duration": 200,
     "stops_count": 32
   },
   {
@@ -74,7 +74,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 7,
-    "duration": 101,
+    "duration": 203,
     "stops_count": 33
   },
   {
@@ -87,7 +87,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 7,
-    "duration": 92,
+    "duration": 209,
     "stops_count": 35
   },
   {
@@ -100,7 +100,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 7,
-    "duration": 95,
+    "duration": 142,
     "stops_count": 18
   },
   {
@@ -113,7 +113,7 @@
     "city_lon": 19.8294802,
     "language": "ru",
     "length": 15,
-    "duration": 221,
+    "duration": 257,
     "stops_count": 14
   },
   {
@@ -126,7 +126,7 @@
     "city_lon": 16.3725042,
     "language": "he",
     "length": 30,
-    "duration": 441,
+    "duration": 517,
     "stops_count": 36
   },
   {
@@ -139,7 +139,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 6,
-    "duration": 76,
+    "duration": 126,
     "stops_count": 22
   },
   {
@@ -152,7 +152,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 7,
-    "duration": 92,
+    "duration": 186,
     "stops_count": 35
   },
   {
@@ -165,7 +165,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 15,
-    "duration": 219,
+    "duration": 254,
     "stops_count": 16
   },
   {
@@ -178,7 +178,7 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 14,
-    "duration": 208,
+    "duration": 272,
     "stops_count": 19
   },
   {
@@ -191,7 +191,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 2,
-    "duration": 26,
+    "duration": 66,
     "stops_count": 17
   },
   {
@@ -204,7 +204,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 7,
-    "duration": 102,
+    "duration": 188,
     "stops_count": 33
   },
   {
@@ -217,7 +217,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 5,
-    "duration": 62,
+    "duration": 117,
     "stops_count": 22
   },
   {
@@ -230,7 +230,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 14,
-    "duration": 203,
+    "duration": 244,
     "stops_count": 12
   },
   {
@@ -243,7 +243,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 9,
-    "duration": 128,
+    "duration": 216,
     "stops_count": 26
   },
   {
@@ -269,7 +269,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 66,
-    "duration": 982,
+    "duration": 1054,
     "stops_count": 26
   }
 ]
