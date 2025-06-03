@@ -8,9 +8,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "he",
-    "length": 7,
-    "duration": 173,
-    "stops_count": 35
+    "length": 9,
+    "duration": 212,
+    "stops_count": 36
   },
   {
     "id": "budapest_buda_castle_district_he",
@@ -21,9 +21,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 5,
-    "duration": 109,
-    "stops_count": 17
+    "length": 6,
+    "duration": 122,
+    "stops_count": 18
   },
   {
     "id": "krakow_kazimierz_en",
@@ -34,9 +34,22 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 8,
-    "duration": 200,
-    "stops_count": 32
+    "length": 9,
+    "duration": 219,
+    "stops_count": 33
+  },
+  {
+    "id": "prague_nove_mesto_ru",
+    "title": "Прогулка по Новому городу Праги (Nové Město)",
+    "description": "Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0596288,
+    "city_lon": 14.4464593,
+    "language": "ru",
+    "length": 15,
+    "duration": 313,
+    "stops_count": 34
   },
   {
     "id": "jewish_quarter_ruin_bars_he",
@@ -48,8 +61,8 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 81,
-    "stops_count": 15
+    "duration": 83,
+    "stops_count": 16
   },
   {
     "id": "krakow_kazimierz_ru",
@@ -60,9 +73,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 8,
-    "duration": 200,
-    "stops_count": 32
+    "length": 6,
+    "duration": 166,
+    "stops_count": 29
   },
   {
     "id": "krakow_podgorje_ru",
@@ -74,8 +87,8 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 7,
-    "duration": 203,
-    "stops_count": 33
+    "duration": 197,
+    "stops_count": 34
   },
   {
     "id": "wroclaw_old_town_ru",
@@ -86,9 +99,22 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 7,
-    "duration": 209,
-    "stops_count": 35
+    "length": 8,
+    "duration": 230,
+    "stops_count": 36
+  },
+  {
+    "id": "prague_vinohrady_ru",
+    "title": "Пешеходная экскурсия по Виноградам в Праге",
+    "description": "Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0596288,
+    "city_lon": 14.4464593,
+    "language": "ru",
+    "length": 11,
+    "duration": 231,
+    "stops_count": 23
   },
   {
     "id": "danube_promenade_he_he",
@@ -100,8 +126,8 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 7,
-    "duration": 142,
-    "stops_count": 18
+    "duration": 146,
+    "stops_count": 19
   },
   {
     "id": "ojcow_national_park_ru",
@@ -113,8 +139,21 @@
     "city_lon": 19.8294802,
     "language": "ru",
     "length": 15,
-    "duration": 257,
-    "stops_count": 14
+    "duration": 249,
+    "stops_count": 15
+  },
+  {
+    "id": "prague_mala_strana_ru",
+    "title": "Пешая экскурсия по Мала Стране и Пражскому Граду",
+    "description": "Аудиогид по самым интересным и знаковым местам Мала Страны и Пражского Града — от Карлова моста до Петршинской башни, с историческими памятниками, садами, музеями и легендами старой Праги.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0596288,
+    "city_lon": 14.4464593,
+    "language": "ru",
+    "length": 8,
+    "duration": 207,
+    "stops_count": 27
   },
   {
     "id": "vienna_center_exploration_he",
@@ -125,9 +164,9 @@
     "city_lat": 48.2083537,
     "city_lon": 16.3725042,
     "language": "he",
-    "length": 30,
-    "duration": 517,
-    "stops_count": 36
+    "length": 28,
+    "duration": 484,
+    "stops_count": 37
   },
   {
     "id": "krakow_north_old_city_kleparz_ru",
@@ -138,9 +177,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 6,
-    "duration": 126,
-    "stops_count": 22
+    "length": 7,
+    "duration": 146,
+    "stops_count": 23
   },
   {
     "id": "krakow_old_city_en",
@@ -151,9 +190,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 7,
-    "duration": 186,
-    "stops_count": 35
+    "length": 9,
+    "duration": 225,
+    "stops_count": 36
   },
   {
     "id": "pest_highlights_he",
@@ -164,9 +203,9 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 15,
-    "duration": 254,
-    "stops_count": 16
+    "length": 14,
+    "duration": 240,
+    "stops_count": 17
   },
   {
     "id": "jewish_wroclaw_ru",
@@ -178,8 +217,8 @@
     "city_lon": 17.0326689,
     "language": "ru",
     "length": 14,
-    "duration": 272,
-    "stops_count": 19
+    "duration": 268,
+    "stops_count": 20
   },
   {
     "id": "prague_jewish_quarter_ru",
@@ -191,8 +230,8 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 2,
-    "duration": 66,
-    "stops_count": 17
+    "duration": 71,
+    "stops_count": 18
   },
   {
     "id": "prague_old_town_ru",
@@ -203,9 +242,9 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 7,
-    "duration": 188,
-    "stops_count": 33
+    "length": 8,
+    "duration": 206,
+    "stops_count": 34
   },
   {
     "id": "krakow_south_old_city_ru",
@@ -216,9 +255,9 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 5,
-    "duration": 117,
-    "stops_count": 22
+    "length": 6,
+    "duration": 148,
+    "stops_count": 25
   },
   {
     "id": "krakow_nowa_huta_ru",
@@ -229,47 +268,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 14,
-    "duration": 244,
-    "stops_count": 12
-  },
-  {
-    "id": "prague_mala_strana_ru",
-    "title": "Пешая экскурсия по Мала Стране и Пражскому Граду",
-    "description": "Аудиогид по самым интересным и знаковым местам Мала Страны и Пражского Града — от Карлова моста до Петршинской башни, с историческими памятниками, садами, музеями и легендами старой Праги.",
-    "country": "Czechia",
-    "city": "Prague",
-    "city_lat": 50.0596288,
-    "city_lon": 14.4464593,
-    "language": "ru",
-    "length": 9,
-    "duration": 216,
-    "stops_count": 26
-  },
-  {
-    "id": "prague_nove_mesto_ru",
-    "title": "Прогулка по Новому городу Праги (Nové Město)",
-    "description": "Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.",
-    "country": "Czechia",
-    "city": "Prague",
-    "city_lat": 50.0596288,
-    "city_lon": 14.4464593,
-    "language": "ru",
-    "length": 11,
-    "duration": 259,
-    "stops_count": 33
-  },
-  {
-    "id": "prague_vinohrady_ru",
-    "title": "Пешеходная экскурсия по Виноградам в Праге",
-    "description": "Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.",
-    "country": "Czechia",
-    "city": "Prague",
-    "city_lat": 50.0596288,
-    "city_lon": 14.4464593,
-    "language": "ru",
-    "length": 66,
-    "duration": 1054,
-    "stops_count": 26
+    "length": 13,
+    "duration": 235,
+    "stops_count": 13
   }
 ]
