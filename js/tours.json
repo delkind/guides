@@ -8,8 +8,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "he",
-    "length": 9,
-    "duration": 212,
+    "length": 8,
+    "duration": 200,
     "stops_count": 36
   },
   {
@@ -21,8 +21,8 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 6,
-    "duration": 122,
+    "length": 5,
+    "duration": 118,
     "stops_count": 18
   },
   {
@@ -35,7 +35,7 @@
     "city_lon": 19.9971534,
     "language": "en",
     "length": 9,
-    "duration": 219,
+    "duration": 221,
     "stops_count": 33
   },
   {
@@ -47,8 +47,8 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 15,
-    "duration": 313,
+    "length": 11,
+    "duration": 259,
     "stops_count": 34
   },
   {
@@ -61,7 +61,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 83,
+    "duration": 82,
     "stops_count": 16
   },
   {
@@ -74,7 +74,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 6,
-    "duration": 166,
+    "duration": 162,
     "stops_count": 29
   },
   {
@@ -86,8 +86,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "ru",
-    "length": 7,
-    "duration": 197,
+    "length": 6,
+    "duration": 191,
     "stops_count": 34
   },
   {
@@ -99,8 +99,8 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 8,
-    "duration": 230,
+    "length": 7,
+    "duration": 222,
     "stops_count": 36
   },
   {
@@ -112,8 +112,8 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 11,
-    "duration": 231,
+    "length": 10,
+    "duration": 214,
     "stops_count": 23
   },
   {
@@ -126,7 +126,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 7,
-    "duration": 146,
+    "duration": 144,
     "stops_count": 19
   },
   {
@@ -151,8 +151,8 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 8,
-    "duration": 207,
+    "length": 9,
+    "duration": 215,
     "stops_count": 27
   },
   {
@@ -164,8 +164,8 @@
     "city_lat": 48.2083537,
     "city_lon": 16.3725042,
     "language": "he",
-    "length": 28,
-    "duration": 484,
+    "length": 27,
+    "duration": 482,
     "stops_count": 37
   },
   {
@@ -178,7 +178,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 7,
-    "duration": 146,
+    "duration": 145,
     "stops_count": 23
   },
   {
@@ -190,8 +190,8 @@
     "city_lat": 50.0469432,
     "city_lon": 19.9971534,
     "language": "en",
-    "length": 9,
-    "duration": 225,
+    "length": 8,
+    "duration": 213,
     "stops_count": 36
   },
   {
@@ -203,8 +203,8 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 14,
-    "duration": 240,
+    "length": 15,
+    "duration": 260,
     "stops_count": 17
   },
   {
@@ -216,8 +216,8 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 14,
-    "duration": 268,
+    "length": 13,
+    "duration": 259,
     "stops_count": 20
   },
   {
@@ -230,7 +230,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 2,
-    "duration": 71,
+    "duration": 69,
     "stops_count": 18
   },
   {
@@ -256,7 +256,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 6,
-    "duration": 148,
+    "duration": 147,
     "stops_count": 25
   },
   {
@@ -269,7 +269,7 @@
     "city_lon": 19.9971534,
     "language": "ru",
     "length": 13,
-    "duration": 235,
+    "duration": 229,
     "stops_count": 13
   }
 ]
