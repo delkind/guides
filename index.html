@@ -92,8 +92,10 @@
         initRootMap();
 
         const currentState = getCurrentState();
-        const initLang = currentState.uiLang || localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
-        currentState.uiLang = initLang;
+        const initLang = localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0];
+        if (!localStorage.getItem('uiLang')) {
+            localStorage.setItem('uiLang', SUPPORTED_UI_LANGS[0]);
+        }
         const uiSel = document.getElementById('ui-lang-select');
         uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
             `<option value="${l}"${l === initLang ? ' selected' : ''}>
@@ -104,18 +106,14 @@
         uiSel.addEventListener('change', e => {
             localStorage.setItem('uiLang', e.target.value);
             const state = getCurrentState();
-            state.uiLang = e.target.value;
-            applyState(state);
+            applyState(state, e.target.value, true);
         });
 
-        applyState(currentState);
+        applyState(currentState, initLang);
     }
 
-    function saveCurrentState(lang) {
+    function saveCurrentState() {
         const params = new URLSearchParams();
-
-        // UI Language
-        params.set('uiLang', lang);
 
         // Filters
         const countryFilter = document.getElementById('filter-country').value;
@@ -143,15 +141,14 @@
     function getCurrentState() {
         const params = new URLSearchParams(window.location.search);
         return {
-            uiLang: params.get("uiLang"),
             filter_country: params.get("filter-country"),
             filter_city: params.get("filter-city"),
             filter_lang: params.get("filter-lang")
         };
     }
 
-    function applyState(state) {
-        const lang = state.uiLang;
+    function applyState(state, uiLang, ignoreLangFilter = false) {
+        const lang = uiLang;
         strings = locales[lang];
 
         document.documentElement.lang = lang;
@@ -163,19 +160,19 @@
         loadTours().then(() => {
             // On load…
             renderInterface();
-            renderFilters(state);
+            renderFilters(state, lang, ignoreLangFilter);
 
             // навешиваем фильтры
             ['filter-country', 'filter-city', 'filter-lang']
                 .forEach(id => document.getElementById(id).addEventListener('change', () => {
                     renderTable();
                     updateCityMarkers();
-                    saveCurrentState(lang)
+                    saveCurrentState()
                 }));
 
             renderTable();
             updateCityMarkers();
-            saveCurrentState(lang);
+            saveCurrentState();
         });
     }
 
@@ -210,8 +207,7 @@
         document.getElementById('th-duration').textContent = strings.duration_min;
     }
 
-    function renderFilters(state) {
-        lang = state.uiLang;
+    function renderFilters(state, uiLang, ignoreLangFilter = false) {
         const unique = arr => Array.from(new Set(arr)).sort();
         const countries = unique(tours.map(t => t.country));
         const cities = unique(tours.map(t => t.city));
@@ -228,10 +224,10 @@
         fill('filter-lang', strings.language, langs);
 
         const langFilter = document.getElementById('filter-lang');
-        if (state.filter_lang && state.filter_lang in langs) {
+        if (state.filter_lang && state.filter_lang in langs && !ignoreLangFilter) {
             langFilter.value = state.filter_lang;
-        }  else if (langFilter && langs.includes(lang)) {
-            langFilter.value = lang;
+        }  else if (langFilter && langs.includes(uiLang)) {
+            langFilter.value = uiLang;
         }
 
         if (state.filter_country && state.filter_country in countries) {
@@ -350,6 +346,7 @@
                 // 2) re–render table and map
                 renderTable();
                 updateCityMarkers();
+                saveCurrentState();
 
                 // 3) if you want to open the popup with city name & count:
                 marker.openPopup();
