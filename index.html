@@ -308,9 +308,8 @@
     // 1) Initialize map once
     function initRootMap() {
         rootMap = L.map('root-map').setView([0, 0], 2);
-        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
         }).addTo(rootMap);
     }
 

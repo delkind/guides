@@ -4,6 +4,8 @@ let map;       // <-- declare in outer scope
 let markers;   // if you also want your markers array visible outside
 let player;
 let isDark;
+var locMarker = undefined;
+var currentPath = undefined;
 
 function updateUrl(stopNo, pushUrl) {
     const params = new URLSearchParams(window.location.search);
@@ -23,7 +25,6 @@ function getInitialState() {
 function showStop(i, pushUrl = true) {
     currentIndex = i;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
-    updateUrl(currentIndex, pushUrl);
     const s = stops[i];
     document.getElementById('title').innerText = `${s.id}. ${s.title}`;
     const paragraphs = s.description.trim().split(/\n\n+/).map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`).join("");
@@ -68,6 +69,20 @@ function showStop(i, pushUrl = true) {
                 }
             }
         });
+    }
+
+    if (currentPath) {
+        map.removeLayer(currentPath);
+        currentPath = undefined;
+    }
+
+    if (s.geometry) {
+        currentPath = directPolyline = L.polyline(s.geometry,
+            {   color: 'green',
+                weight: 3,
+                dashArray: '20, 5',
+                dashOffset: '20'
+            }).addTo(map);
     }
 
     // Прокрутить контейнер наверх при смене остановки
@@ -147,8 +162,12 @@ if (typeof L !== 'undefined') {
 
 // 3) Listen for location events (if you haven't already)
     map.on('locationfound', e => {
-        L.circleMarker(e.latlng, {
-            radius: 4,
+        if (locMarker) {
+            map.removeLayer(locMarker);
+        }
+
+        locMarker = L.circleMarker(e.latlng, {
+            radius: 10,
             fillColor: '#e74c3c',   // any CSS color
             color: '#c0392b',       // stroke color
             weight: 2,
