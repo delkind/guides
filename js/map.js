@@ -1,192 +1,197 @@
+// ─── Global State ───────────────────────────────────────────────────────────────
 let currentIndex = 0;
-const info = document.getElementById('info');
-let map;       // <-- declare in outer scope
-let markers;   // if you also want your markers array visible outside
-let player;
-let isDark;
-var locMarker = undefined;
-var pulseCircle = null;
-var pulseInterval = null;
-var pulseGrowing = true;
-let following = false;
-var currentPath = undefined;
-var intervalId = undefined;
 
-function updateUrl(stopNo, pushUrl) {
+// Cache DOM elements
+const infoEl = document.getElementById('info');
+const titleEl = document.getElementById('title');
+const scrollableEl = document.getElementById('scrollable');
+
+let map;
+let markers = [];
+let player;
+let isDark = false;
+
+let locMarker = null;
+let blinkInterval = null;
+let following = false;
+
+let currentPath = null;
+let dashAnimationId = null;
+
+let pulseCircle = null;
+let pulseInterval = null;
+
+
+// ─── URL STATE HELPERS ────────────────────────────────────────────────────────────
+function updateUrl(stopNo, pushUrl = true) {
     const params = new URLSearchParams(window.location.search);
     params.set('stop', stopNo);
+    const newUrl = `?${params.toString()}`;
     if (pushUrl) {
-        history.pushState(null, '', '?' + params.toString());
+        history.pushState(null, '', newUrl);
     } else {
-        history.replaceState(null, '', '?' + params.toString());
+        history.replaceState(null, '', newUrl);
     }
 }
 
-function getInitialState() {
+function getInitialStopIndex() {
     const params = new URLSearchParams(window.location.search);
-    return params.get("stop") ? Number(params.get('stop')) : undefined;
+    return params.has('stop') ? Number(params.get('stop')) : undefined;
 }
 
-function animateDashedLine(polyline) {
-    // Получаем SVG-элемент (<path d="…">) у Leaflet-линии
-    const pathEl = polyline.getElement();
 
+// ─── DASHED LINE ANIMATION ───────────────────────────────────────────────────────
+function animateDashedLine(polyline) {
+    const pathEl = polyline.getElement();
     if (!pathEl) {
         console.warn('Polyline SVG element not found.');
         return null;
     }
-
     let offset = 0;
-    // Скорость «движения» штриха (px за шаг). Можно подбирать под желаемую скорость.
-    const delta = 2;
+    const delta = 2;         // px per tick
+    const dashLength = 20;
+    const gapLength = 5;
+    const total = dashLength + gapLength;
 
-    // Запускаем таймер, который каждые 50 мс смещает штрих
-    const intervalId = setInterval(() => {
-        offset = (offset - delta) % 25; // 25 = dashLength + gapLength (20 + 5)
+    return setInterval(() => {
+        offset = (offset - delta) % total;
         pathEl.setAttribute('stroke-dashoffset', offset);
     }, 50);
-
-    return intervalId;
 }
 
-function stopAnimation(intervalId) {
-    if (intervalId) {
-        clearInterval(intervalId);
+function stopDashAnimation() {
+    if (dashAnimationId !== null) {
+        clearInterval(dashAnimationId);
+        dashAnimationId = null;
     }
 }
 
-let pulsatingCircle = null;
-let pulsatingInterval = null;
 
+// ─── PULSATING CIRCLE (REUSED) ──────────────────────────────────────────────────
 /**
- * Добавляет на карту пульсирующий зелёный круг в заданных координатах.
- * @param {number} lat — широта.
- * @param {number} lng — долгота.
+ * Create a pulsating circle at the given lat/lng. If one exists, remove it first.
+ * @param {number} lat
+ * @param {number} lng
+ * @param {object} [options] — optional style overrides
  */
-function addPulsatingCircle(lat, lng) {
-    // Если уже есть активный круг — удалим его перед созданием нового
+function addPulsatingCircle(lat, lng, options = {}) {
     removePulsatingCircle();
 
-    // Параметры радиусов (в метрах)
-    const minRadius = 5;
-    const maxRadius = 20;
+    const {
+        minRadius = 5,
+        maxRadius = 20,
+        color = '#28a745',
+        weight = 2,
+        fillOpacity = 0.4,
+        intervalMs = 100,
+        step = 2
+    } = options;
+
     let currentRadius = minRadius;
     let growing = true;
 
-    // Создаём круг с начальным радиусом и зелёным стилем
-    pulsatingCircle = L.circle([lat, lng], {
+    pulseCircle = L.circle([lat, lng], {
         radius: currentRadius,
-        color: '#28a745',       // зелёная обводка
-        weight: 2,
-        fillColor: '#28a745',   // заливка того же цвета
-        fillOpacity: 0.4
+        color,
+        weight,
+        fillColor: color,
+        fillOpacity
     }).addTo(map);
 
-    // Запускаем интервал: изменяем radius каждые 100 мс
-    pulsatingInterval = setInterval(() => {
+    pulseInterval = setInterval(() => {
         if (growing) {
-            currentRadius += 2;
-            if (currentRadius >= maxRadius) {
-                currentRadius = maxRadius;
-                growing = false;
-            }
+            currentRadius = Math.min(currentRadius + step, maxRadius);
+            if (currentRadius >= maxRadius) growing = false;
         } else {
-            currentRadius -= 2;
-            if (currentRadius <= minRadius) {
-                currentRadius = minRadius;
-                growing = true;
-            }
+            currentRadius = Math.max(currentRadius - step, minRadius);
+            if (currentRadius <= minRadius) growing = true;
         }
-        pulsatingCircle.setRadius(currentRadius);
-    }, 100);
+        pulseCircle.setRadius(currentRadius);
+    }, intervalMs);
 }
 
-/**
- * Удаляет пульсирующий круг, если он есть.
- */
 function removePulsatingCircle() {
-    if (pulsatingInterval) {
-        clearInterval(pulsatingInterval);
-        pulsatingInterval = null;
+    if (pulseInterval !== null) {
+        clearInterval(pulseInterval);
+        pulseInterval = null;
     }
-    if (pulsatingCircle) {
-        map.removeLayer(pulsatingCircle);
-        pulsatingCircle = null;
+    if (pulseCircle) {
+        map.removeLayer(pulseCircle);
+        pulseCircle = null;
     }
 }
 
-function showStop(i, pushUrl = true) {
-    currentIndex = i;
+
+// ─── SHOW A SPECIFIC STOP ────────────────────────────────────────────────────────
+function showStop(index, pushUrl = true) {
+    currentIndex = index;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
     updateUrl(currentIndex, pushUrl);
-    const s = stops[i];
-    document.getElementById('title').innerText = `${s.id}. ${s.title}`;
-    const paragraphs = s.description
+
+    const stopData = stops[index];
+
+    // Update title
+    titleEl.innerText = `${stopData.id}. ${stopData.title}`;
+
+    // Build description HTML (paragraphs from double-newline splits)
+    const paragraphs = stopData.description
         .trim()
         .split(/\n\n+/)
         .map(p => `<tr><td>${p.replace(/\n/g, '<br>')}</td></tr>`)
-        .join("");
-    const table = `<table class="stop-text">${paragraphs}</table>`;
-    info.innerHTML =
-        `<audio id="audio-player" controls>
-       <source src="${s.audio}" type="audio/mpeg" />
-     </audio>` + table;
+        .join('');
+    infoEl.innerHTML = `
+    <audio id="audio-player" controls>
+      <source src="${stopData.audio}" type="audio/mpeg">
+    </audio>
+    <table class="stop-text">${paragraphs}</table>
+  `;
 
+    // Initialize Plyr
     player = new Plyr('#audio-player', {
         controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings'],
         settings: ['speed', 'quality', 'loop'],
-        speed: {
-            selected: 1,
-            options: [0.5, 0.75, 1, 1.25, 1.5, 2]
-        }
+        speed: {selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2]}
     });
     player.elements.container.classList.toggle('plyr--dark', isDark);
 
-    map.panTo([s.lat, s.lon]);
-    if (typeof markers !== 'undefined') {
-        markers.forEach((m, j) => {
-            const isSel = j === i;
-            // переключаем класс на маркере
-            m.getElement().classList.toggle('selected', isSel);
+    // Pan map to the stop’s coordinates
+    map.panTo([stopData.lat, stopData.lon]);
 
-            if (isSel) {
-                // и тултип
-                const tip = m.getTooltip && m.getTooltip();
-                if (tip && tip.bringToFront) {
-                    tip.bringToFront();
-                } else if (tip && tip.getElement) {
-                    // fallback: повысим z-index у DOM-элемента тултипа
-                    tip.getElement().style.zIndex = 10000;
-                }
-            }
-        });
-    }
+    // Highlight selected marker
+    markers.forEach((m, idx) => {
+        const sel = idx === index;
+        m.getElement().classList.toggle('selected', sel);
 
+        if (sel) {
+            const tip = m.getTooltip && m.getTooltip();
+            if (tip && tip.bringToFront) tip.bringToFront();
+            else if (tip && tip.getElement) tip.getElement().style.zIndex = 10000;
+        }
+    });
+
+    // Remove existing path and stop its animation
     if (currentPath) {
         map.removeLayer(currentPath);
-        currentPath = undefined;
-        stopAnimation(intervalId);
-        intervalId = undefined;
+        currentPath = null;
+        stopDashAnimation();
     }
 
-    if (s.geometry) {
+    // If geometry exists, draw a dashed polyline; otherwise pulsate on stop location
+    if (stopData.geometry) {
         removePulsatingCircle();
-        currentPath = L.polyline(s.geometry, {
+        currentPath = L.polyline(stopData.geometry, {
             color: 'green',
             weight: 3,
-            dashArray: '20, 5',
+            dashArray: '20,5',
             dashOffset: '20'
         }).addTo(map);
-        intervalId = animateDashedLine(currentPath);
+        dashAnimationId = animateDashedLine(currentPath);
     } else {
-        addPulsatingCircle(s.lat, s.lon)
+        addPulsatingCircle(stopData.lat, stopData.lon);
     }
 
-    // Прокрутить контейнер наверх при смене остановки
-    const scrollable = document.getElementById('scrollable');
-    if (scrollable) {
-        scrollable.scrollTop = 0;
-    }
+    // Scroll content to top
+    if (scrollableEl) scrollableEl.scrollTop = 0;
 }
 
 function nextStop() {
@@ -201,102 +206,104 @@ function firstStop() {
     showStop(0);
 }
 
-// ─── Пульсирующий индикатор (grow/shrink) вместо мигания ────────────────────────
-function startPulsePlaceholder() {
-    if (pulseCircle) return; // уже запущен
 
-    // Создаем круг в центре карты с минимальным радиусом
+// ─── PLACEHOLDER PULSE ───────────────────────────────────────────────────────────
+function startPlaceholderPulse() {
     const center = map.getCenter();
-    const minRadius = 20;
-    const maxRadius = 50;
-    pulseCircle = L.circle(center, {
-        radius: minRadius,
+    addPulsatingCircle(center.lat, center.lng, {
+        minRadius: 20,
+        maxRadius: 50,
         color: '#136AEC',
-        weight: 2,
-        fillColor: '#136AEC',
-        fillOpacity: 0.3
-    }).addTo(map);
-
-    pulseGrowing = true;
-    let currentRadius = minRadius;
-
-    pulseInterval = setInterval(() => {
-        if (pulseGrowing) {
-            currentRadius += 2;
-            if (currentRadius >= maxRadius) {
-                currentRadius = maxRadius;
-                pulseGrowing = false;
-            }
-        } else {
-            currentRadius -= 2;
-            if (currentRadius <= minRadius) {
-                currentRadius = minRadius;
-                pulseGrowing = true;
-            }
-        }
-        pulseCircle.setRadius(currentRadius);
-    }, 100);
+        fillOpacity: 0.3,
+        step: 2,
+        intervalMs: 100
+    });
 }
 
-function stopPulsePlaceholder() {
-    if (pulseInterval) {
-        clearInterval(pulseInterval);
-        pulseInterval = null;
+function stopPlaceholderPulse() {
+    removePulsatingCircle();
+}
+
+
+// ─── LOCATION BLINKING HELPERS ──────────────────────────────────────────────────
+function startBlinkingCircle(marker, options = {}) {
+    const {
+        blinkMs = 500,
+        visibleOpacity = marker.options.fillOpacity ?? 0.3,
+        hiddenOpacity = 0
+    } = options;
+
+    if (blinkInterval) return;
+
+    let showing = true;
+    blinkInterval = setInterval(() => {
+        showing = !showing;
+        marker.setStyle({fillOpacity: showing ? visibleOpacity : hiddenOpacity});
+    }, blinkMs);
+}
+
+function stopBlinkingCircle() {
+    if (blinkInterval) {
+        clearInterval(blinkInterval);
+        blinkInterval = null;
     }
-    if (pulseCircle) {
-        map.removeLayer(pulseCircle);
-        pulseCircle = null;
+    if (locMarker) {
+        locMarker.setStyle({fillOpacity: locMarker.options.fillOpacity ?? 0.3});
     }
 }
 
+
+// ─── INITIALIZE MAP AND CONTROLS ─────────────────────────────────────────────────
 if (typeof L !== 'undefined') {
+    // Initialize map
     map = L.map('map');
     const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lon]));
     map.fitBounds(bounds, {padding: [10, 10]});
 
+    // Base layers
     const layers = {
-        "Map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        Map: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap'
         }),
-        "Satellite": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        Satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri'
-        }),
+        })
     };
-
     layers.Map.addTo(map);
     L.control.layers(layers).addTo(map);
 
+    // Scale control
     L.control.scale({
-        position: 'bottomleft',  // по умолчанию 'bottomleft'; можно 'bottomright', 'topleft' или 'topright'
-        metric: true,            // показывать метрический масштаб (км/м). По умолчанию true.
-        imperial: false,         // показывать имперский (мили/футы). По умолчанию false.
-        maxWidth: 100            // максимальная ширина шкалы в пикселях (по умолчанию 100)
+        position: 'bottomleft',
+        metric: true,
+        imperial: false,
+        maxWidth: 100
     }).addTo(map);
 
-    markers = stops.map((s, i) => {
-        const m = L.marker([s.lat, s.lon]).addTo(map);
-        m.bindTooltip(String(s.id), {
+    // Create and bind markers
+    markers = stops.map((stopData, idx) => {
+        const m = L.marker([stopData.lat, stopData.lon]).addTo(map);
+        m.bindTooltip(String(stopData.id), {
             permanent: true,
             direction: 'center',
             className: 'number-label'
         });
-        m.on('click', () => showStop(i));
+        m.on('click', () => showStop(idx));
         return m;
     });
 
-    // Обработка события успешного определения местоположения
+    // Handle “locationfound” (start blinking if following)
     map.on('locationfound', e => {
-        // Остановим пульсацию
-        stopPulsePlaceholder();
+        stopBlinkingCircle();
+        stopPlaceholderPulse();
 
-        // Удалим предыдущий маркер, если есть
         if (locMarker) {
             map.removeLayer(locMarker);
+            locMarker = null;
         }
 
-        // Добавим настоящий круг по полученным координатам и точности
         locMarker = L.circle([e.latlng.lat, e.latlng.lng], {
-            radius: e.accuracy,
+            radius: e.accuracy * (map.getMaxZoom() - map.getZoom()) ,
             color: '#136AEC',
             weight: 2,
             fillColor: '#136AEC',
@@ -304,63 +311,58 @@ if (typeof L !== 'undefined') {
         }).addTo(map);
 
         if (following) {
-            // Если мы в режиме «следования», центрируем карту
             map.setView([e.latlng.lat, e.latlng.lng]);
+            startBlinkingCircle(locMarker, {blinkMs: 500, visibleOpacity: 0.3, hiddenOpacity: 0});
         }
     });
 
     map.on('locationerror', e => {
         console.warn("Couldn't get your location: " + e.message);
-        stopPulsePlaceholder();
+        stopBlinkingCircle();
+        stopPlaceholderPulse();
     });
 
-// ─── Контрол «Follow My Location» с тултипом ───────────────────────────────────
+    // Follow‐my‐location control
     const FollowControl = L.Control.extend({
         options: {position: 'topleft'},
-
-        onAdd: function (map) {
+        onAdd: function () {
             const container = L.DomUtil.create('div', 'leaflet-bar');
             const btn = L.DomUtil.create('a', '', container);
 
-            // Размер и flex-центровка
-            btn.style.display = 'flex';
-            btn.style.alignItems = 'center';
-            btn.style.justifyContent = 'center';
-            btn.style.width = '30px';
-            btn.style.height = '30px';
+            Object.assign(btn.style, {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '30px',
+                height: '30px'
+            });
 
-            // Начальное состояние: disabled (lightgray/up, darkgray/down)
             btn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="18" height="18" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"
-                fill="none" stroke="black" stroke-width="2"/>
-        <polygon id="up-triangle"   points="12,4 8,12 16,12" fill="#D3D3D3"/>
-        <polygon id="down-triangle" points="12,20 8,12 16,12" fill="#A9A9A9"/>
-      </svg>
-    `;
-
-            // Устанавливаем тултип для кнопки
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="black" stroke-width="2"/>
+          <polygon id="up-triangle"   points="12,4 8,12 16,12" fill="#D3D3D3"/>
+          <polygon id="down-triangle" points="12,20 8,12 16,12" fill="#A9A9A9"/>
+        </svg>
+      `;
             btn.title = 'Follow My Location';
 
             L.DomEvent.disableClickPropagation(container);
-
             L.DomEvent.on(btn, 'click', e => {
                 L.DomEvent.stop(e);
-
                 const upTri = btn.querySelector('#up-triangle');
                 const downTri = btn.querySelector('#down-triangle');
 
+                if (locMarker) {
+                    map.removeLayer(locMarker);
+                    locMarker = null;
+                }
+
                 if (!following) {
-                    // Включаем «Follow»
                     following = true;
-                    upTri.setAttribute('fill', '#136AEC');   // blue
-                    downTri.setAttribute('fill', '#E74C3C'); // red
-
-                    // Меняем тултип
+                    upTri.setAttribute('fill', '#136AEC');
+                    downTri.setAttribute('fill', '#E74C3C');
                     btn.title = 'Stop Following';
-
-                    startPulsePlaceholder();
+                    startPlaceholderPulse();
                     map.locate({
                         watch: true,
                         setView: false,
@@ -368,16 +370,13 @@ if (typeof L !== 'undefined') {
                         enableHighAccuracy: true
                     });
                 } else {
-                    // Выключаем «Follow»
                     following = false;
-                    upTri.setAttribute('fill', '#D3D3D3');   // lightgray
-                    downTri.setAttribute('fill', '#A9A9A9'); // darkgray
-
-                    // Возвращаем тултип
+                    upTri.setAttribute('fill', '#D3D3D3');
+                    downTri.setAttribute('fill', '#A9A9A9');
                     btn.title = 'Follow My Location';
-
                     map.stopLocate();
-                    stopPulsePlaceholder();
+                    stopBlinkingCircle();
+                    stopPlaceholderPulse();
                 }
             });
 
@@ -386,46 +385,42 @@ if (typeof L !== 'undefined') {
     });
     map.addControl(new FollowControl());
 
-
-// ─── Контрол «Center on My Location» с тултипом ────────────────────────────────
+    // Center‐on‐my‐location control
     const CenterControl = L.Control.extend({
         options: {position: 'topleft'},
-
-        onAdd: function (map) {
+        onAdd: function () {
             const container = L.DomUtil.create('div', 'leaflet-bar');
             const btn = L.DomUtil.create('a', '', container);
 
-            // Сделаем кнопку flex-контейнером для центрирования SVG
-            btn.style.display = 'flex';
-            btn.style.alignItems = 'center';
-            btn.style.justifyContent = 'center';
-            btn.style.width = '30px';
-            btn.style.height = '30px';
+            Object.assign(btn.style, {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '30px',
+                height: '30px'
+            });
 
-            // SVG-мишень
             btn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="18" height="18" viewBox="0 0 24 24"
-           fill="none" stroke="black" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="22" y1="12" x2="18" y2="12"></line>
-        <line x1="6" y1="12"  x2="2" y2="12"></line>
-        <line x1="12" y1="6"  x2="12" y2="2"></line>
-        <line x1="12" y1="22" x2="12" y2="18"></line>
-      </svg>
-    `;
-
-            // Устанавливаем тултип
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+             fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="22" y1="12" x2="18" y2="12"></line>
+          <line x1="6" y1="12"  x2="2" y2="12"></line>
+          <line x1="12" y1="6"  x2="12" y2="2"></line>
+          <line x1="12" y1="22" x2="12" y2="18"></line>
+        </svg>
+      `;
             btn.title = 'Center on My Location';
-
             btn.href = '#';
 
             L.DomEvent.disableClickPropagation(container);
-
             L.DomEvent.on(btn, 'click', e => {
                 L.DomEvent.stop(e);
-                startPulsePlaceholder();
+                if (locMarker) {
+                    map.removeLayer(locMarker);
+                    locMarker = null;
+                }
+                startPlaceholderPulse();
                 map.locate({
                     watch: false,
                     setView: true,
@@ -438,4 +433,42 @@ if (typeof L !== 'undefined') {
         }
     });
     map.addControl(new CenterControl());
+
+    // ─── Center‐on‐Current‐Stop control ─────────────────────────────────────────────
+    const StopCenterControl = L.Control.extend({
+        options: {position: 'topleft'},
+        onAdd: function () {
+            const container = L.DomUtil.create('div', 'leaflet-bar');
+            const btn = L.DomUtil.create('a', '', container);
+
+            Object.assign(btn.style, {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '30px',
+                height: '30px'
+            });
+
+            // Simple “target” icon: circle with a dot
+            btn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="black" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="black"/>
+        </svg>
+      `;
+            btn.title = 'Center on Current Stop';
+
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.on(btn, 'click', e => {
+                L.DomEvent.stop(e);
+                const stopData = stops[currentIndex];
+                if (stopData) {
+                    showStop(currentIndex, false);
+                }
+            });
+
+            return container;
+        }
+    });
+    map.addControl(new StopCenterControl());
 }
