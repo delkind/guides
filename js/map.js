@@ -41,7 +41,7 @@ function getInitialStopIndex() {
 
 
 // ─── DASHED LINE ANIMATION ───────────────────────────────────────────────────────
-function animateDashedLine(polyline) {
+function animateDashedLine(polyline, direction) {
     const pathEl = polyline.getElement();
     if (!pathEl) {
         console.warn('Polyline SVG element not found.');
@@ -54,7 +54,7 @@ function animateDashedLine(polyline) {
     const total = dashLength + gapLength;
 
     return setInterval(() => {
-        offset = (offset - delta) % total;
+        offset = (offset - delta * direction) % total;
         pathEl.setAttribute('stroke-dashoffset', offset);
     }, 50);
 }
@@ -123,7 +123,7 @@ function removePulsatingCircle() {
 
 
 // ─── SHOW A SPECIFIC STOP ────────────────────────────────────────────────────────
-function showStop(index, pushUrl = true) {
+function showStop(index, pushUrl = true, direction = 0) {
     currentIndex = index;
     localStorage.setItem(`${tour_id}_stop_no`, currentIndex);
     updateUrl(currentIndex, pushUrl);
@@ -177,15 +177,16 @@ function showStop(index, pushUrl = true) {
     }
 
     // If geometry exists, draw a dashed polyline; otherwise pulsate on stop location
-    if (stopData.geometry) {
+    const geometry = direction > 0 ? stopData.geometry : stops[(index + 1) % stops.length].geometry;
+    if (geometry && Number(direction) !== 0) {
         removePulsatingCircle();
-        currentPath = L.polyline(stopData.geometry, {
+        currentPath = L.polyline(geometry, {
             color: 'green',
             weight: 3,
             dashArray: '20,5',
             dashOffset: '20'
         }).addTo(map);
-        dashAnimationId = animateDashedLine(currentPath);
+        dashAnimationId = animateDashedLine(currentPath, Math.sign(direction));
     } else {
         addPulsatingCircle(stopData.lat, stopData.lon);
     }
@@ -195,11 +196,11 @@ function showStop(index, pushUrl = true) {
 }
 
 function nextStop() {
-    showStop((currentIndex + 1) % stops.length);
+    showStop((currentIndex + 1) % stops.length, true, 1);
 }
 
 function prevStop() {
-    showStop((currentIndex - 1 + stops.length) % stops.length);
+    showStop((currentIndex - 1 + stops.length) % stops.length, true, -1);
 }
 
 function firstStop() {
