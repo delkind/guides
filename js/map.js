@@ -495,15 +495,12 @@ if (typeof L !== 'undefined') {
                                 // Convert [lng, lat] to [lat, lng]
                                 const latlngs = routeGeoJSON.coordinates.map(coord => [coord[1], coord[0]]);
 
-                                if (!following) {
-                                    addPulsatingCircle(userLat, userLng,
-                                        {
-                                            maxRadius: position.accuracy,
-                                            color: '#136AEC',
-                                            fillOpacity: 0.3
-                                        });
-
+                                if (currentPath) {
+                                    map.removeLayer(currentPath);
+                                    currentPath = null;
+                                    stopDashAnimation();
                                 }
+
                                 // Draw the walking path in blue
                                 currentPath = L.polyline(latlngs, {
                                     color: 'green',
@@ -513,16 +510,26 @@ if (typeof L !== 'undefined') {
                                 }).addTo(map);
                                 dashAnimationId = animateDashedLine(currentPath);
 
+                                if (!following) {
+                                    addPulsatingCircle(userLat, userLng,
+                                        {
+                                            maxRadius: position.accuracy,
+                                            color: '#136AEC',
+                                            fillOpacity: 0.3
+                                        });
+
+                                }
+
                                 // Zoom/center the map to fit the route
                                 const bounds = currentPath.getBounds();
                                 map.fitBounds(bounds, {padding: [20, 20]});
                             })
                             .catch(err => {
-                                showTemporaryBubble('Error fetching route from OSRM:', err);
+                                showTemporaryBubble(`Error fetching route from OSRM: ${err}`);
                             });
                     },
                     err => {
-                        showTemporaryBubble('Could not get current position:', err);
+                        showTemporaryBubble(`Could not get current position: ${err}`);
                     },
                     {
                         enableHighAccuracy: true,

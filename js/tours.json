@@ -271,5 +271,18 @@
     "length": 10,
     "duration": 163,
     "stops_count": 13
+  },
+  {
+    "id": "jerusalem_downtown_ru",
+    "title": "Пешеходная экскурсия по центру Иерусалима",
+    "description": "Пешеходная экскурсия по современному центру Иерусалима: оживлённые улицы, исторические районы, правительственные здания, музеи и кампус Гиват Рам.",
+    "country": "Israel",
+    "city": "Jerusalem",
+    "city_lat": 31.7788242,
+    "city_lon": 35.2257626,
+    "language": "ru",
+    "length": 11,
+    "duration": 198,
+    "stops_count": 18
   }
 ]
