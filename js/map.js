@@ -303,7 +303,7 @@ if (typeof L !== 'undefined') {
         }
 
         locMarker = L.circle([e.latlng.lat, e.latlng.lng], {
-            radius: e.accuracy * (map.getMaxZoom() - map.getZoom()) ,
+            radius: e.accuracy * 2,
             color: '#136AEC',
             weight: 2,
             fillColor: '#136AEC',
@@ -385,7 +385,7 @@ if (typeof L !== 'undefined') {
     });
     map.addControl(new FollowControl());
 
-    // Center‐on‐my‐location control
+    // ─── MODIFIED: Center‐on‐my‐location control (now draws walking path) ─────────────────────────────────────────────────────────────
     const CenterControl = L.Control.extend({
         options: {position: 'topleft'},
         onAdd: function () {
@@ -410,29 +410,108 @@ if (typeof L !== 'undefined') {
           <line x1="12" y1="22" x2="12" y2="18"></line>
         </svg>
       `;
-            btn.title = 'Center on My Location';
+            btn.title = 'Show Walking Path to Current Stop';
             btn.href = '#';
 
             L.DomEvent.disableClickPropagation(container);
             L.DomEvent.on(btn, 'click', e => {
                 L.DomEvent.stop(e);
+
+                // Remove any existing marker or placeholder pulse
                 if (locMarker) {
                     map.removeLayer(locMarker);
                     locMarker = null;
                 }
-                startPlaceholderPulse();
-                map.locate({
-                    watch: false,
-                    setView: true,
-                    maxZoom: 16,
-                    enableHighAccuracy: true
-                });
+                stopPlaceholderPulse();
+
+                // Get current stop’s coordinates
+                const stopData = stops[currentIndex];
+                if (!stopData) {
+                    console.warn('No current stop data available.');
+                    return;
+                }
+
+                // Use Geolocation API to get user’s current position
+                if (!navigator.geolocation) {
+                    console.warn('Geolocation is not supported by your browser.');
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const userLat = position.coords.latitude;
+                        const userLng = position.coords.longitude;
+                        const destLat = stopData.lat;
+                        const destLng = stopData.lon;
+
+                        // Build OSRM request URL for walking profile
+                        const osrmUrl = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
+                            `${userLng},${userLat};${destLng},${destLat}` + `?overview=full&geometries=geojson&steps=false&alternatives=false`;
+
+                        fetch(osrmUrl)
+                            .then(response => {
+                                if (!response.ok) {
+                                    return {};
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (!data.routes || data.routes.length === 0) {
+                                    console.warn('No route found.');
+                                    return;
+                                }
+                                // Remove any existing marker or placeholder pulse
+                                if (locMarker) {
+                                    map.removeLayer(locMarker);
+                                    locMarker = null;
+                                }
+                                stopPlaceholderPulse();
+
+                                const routeGeoJSON = data.routes[0].geometry;
+                                // Convert [lng, lat] to [lat, lng]
+                                const latlngs = routeGeoJSON.coordinates.map(coord => [coord[1], coord[0]]);
+
+                                if (!following) {
+                                    addPulsatingCircle(userLat, userLng,
+                                        {
+                                            maxRadius: position.accuracy,
+                                            color: '#136AEC',
+                                            fillOpacity: 0.3
+                                        });
+
+                                }
+                                // Draw the walking path in blue
+                                currentPath = L.polyline(latlngs, {
+                                    color: 'green',
+                                    weight: 3,
+                                    dashArray: '20,5',
+                                    dashOffset: '20'
+                                }).addTo(map);
+                                dashAnimationId = animateDashedLine(currentPath);
+
+                                // Zoom/center the map to fit the route
+                                const bounds = currentPath.getBounds();
+                                map.fitBounds(bounds, {padding: [20, 20]});
+                            })
+                            .catch(err => {
+                                console.error('Error fetching route from OSRM:', err);
+                            });
+                    },
+                    err => {
+                        console.warn('Could not get current position:', err);
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000
+                    }
+                );
             });
 
             return container;
         }
     });
     map.addControl(new CenterControl());
+
 
     // ─── Center‐on‐Current‐Stop control ─────────────────────────────────────────────
     const StopCenterControl = L.Control.extend({
