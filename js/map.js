@@ -509,7 +509,7 @@ if (typeof L !== 'undefined') {
                                     dashArray: '20,5',
                                     dashOffset: '20'
                                 }).addTo(map);
-                                dashAnimationId = animateDashedLine(currentPath);
+                                dashAnimationId = animateDashedLine(currentPath, 1);
 
                                 if (!following) {
                                     addPulsatingCircle(userLat, userLng,
