@@ -252,6 +252,29 @@ function stopBlinkingCircle() {
     }
 }
 
+/**
+ * Show a temporary text bubble (Leaflet popup) at the given lat/lng or at the map center.
+ * The popup auto‐closes after 3 seconds.
+ * @param {string} message
+ * @param {[number, number]} [latlng]  Array [lat, lng]. If omitted, uses map.getCenter().
+ */
+function showTemporaryBubble(message, latlng) {
+    const position = map.getCenter();
+    const popup = L.popup({
+        closeButton: false,
+        autoClose: true,
+        closeOnClick: true,
+        className: 'temporary-bubble'
+    })
+        .setLatLng(position)
+        .setContent(`<div style="padding: 6px; font-size: 14px;">${message}</div>`)
+        .addTo(map);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        map.removeLayer(popup);
+    }, 3000);
+}
 
 // ─── INITIALIZE MAP AND CONTROLS ─────────────────────────────────────────────────
 if (typeof L !== 'undefined') {
@@ -317,7 +340,7 @@ if (typeof L !== 'undefined') {
     });
 
     map.on('locationerror', e => {
-        console.warn("Couldn't get your location: " + e.message);
+        showTemporaryBubble("Couldn't get your location: " + e.message);
         stopBlinkingCircle();
         stopPlaceholderPulse();
     });
@@ -427,13 +450,13 @@ if (typeof L !== 'undefined') {
                 // Get current stop’s coordinates
                 const stopData = stops[currentIndex];
                 if (!stopData) {
-                    console.warn('No current stop data available.');
+                    showTemporaryBubble('No current stop data available.');
                     return;
                 }
 
                 // Use Geolocation API to get user’s current position
                 if (!navigator.geolocation) {
-                    console.warn('Geolocation is not supported by your browser.');
+                    showTemporaryBubble('Geolocation is not supported by your browser.');
                     return;
                 }
 
@@ -451,6 +474,7 @@ if (typeof L !== 'undefined') {
                         fetch(osrmUrl)
                             .then(response => {
                                 if (!response.ok) {
+                                    showTemporaryBubble(`Failed to calculate path`);
                                     return {};
                                 }
                                 return response.json();
@@ -494,11 +518,11 @@ if (typeof L !== 'undefined') {
                                 map.fitBounds(bounds, {padding: [20, 20]});
                             })
                             .catch(err => {
-                                console.error('Error fetching route from OSRM:', err);
+                                showTemporaryBubble('Error fetching route from OSRM:', err);
                             });
                     },
                     err => {
-                        console.warn('Could not get current position:', err);
+                        showTemporaryBubble('Could not get current position:', err);
                     },
                     {
                         enableHighAccuracy: true,

@@ -424,3 +424,8 @@ body.dark {
   --bg-header: #23272a;
   --bg-header-alt: #2c2f33;
 }
+
+.leaflet-popup.temporary-bubble .leaflet-popup-tip,
+.leaflet-popup.temporary-bubble .leaflet-popup-tip-container {
+  display: none;
+}
