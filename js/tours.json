@@ -1,5 +1,18 @@
 [
   {
+    "id": "jerusalem_downtown_ru",
+    "title": "Пешеходная экскурсия по центру Иерусалима",
+    "description": "Пешеходная экскурсия по современному центру Иерусалима: оживлённые улицы, исторические районы, правительственные здания, музеи и кампус Гиват Рам.",
+    "country": "Israel",
+    "city": "Jerusalem",
+    "city_lat": 31.7788242,
+    "city_lon": 35.2257626,
+    "language": "ru",
+    "length": 11,
+    "duration": 198,
+    "stops_count": 18
+  },
+  {
     "id": "krakow_old_city_he",
     "title": "סיור בעיר העתיקה של קרקוב",
     "description": "מדריך קולי לאטרקציות המרכזיות של העיר העתיקה בקרקוב.",
@@ -11,6 +24,19 @@
     "length": 5,
     "duration": 136,
     "stops_count": 36
+  },
+  {
+    "id": "budapest_pest_highlights_en",
+    "title": "Audio Guide – Pest Gems: Boulevards, Culture, and Urban Life",
+    "description": "Audio tour through the streets of Pest, the lively side of Budapest, along grand boulevards, cultural sites, historic squares, and urban tales. The route passes architectural highlights, elegant cafés, cultural institutions, and symbols of modern urban life.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1460941,
+    "language": "en",
+    "length": 13,
+    "duration": 147,
+    "stops_count": 17
   },
   {
     "id": "budapest_buda_castle_district_he",
@@ -52,7 +78,20 @@
     "stops_count": 34
   },
   {
-    "id": "jewish_quarter_ruin_bars_he",
+    "id": "danube_promenade_en_en",
+    "title": "Danube Promenade – Audio Guide to Monuments and City Views in Budapest",
+    "description": "Audio guide to the main attractions, statues, and historical sites along the Danube Promenade, on the Pest side of Budapest. The tour follows the sequence of monuments, bridges, and views toward Buda Hill, with an emphasis on memory, culture, and urban history.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1460941,
+    "language": "en",
+    "length": 6,
+    "duration": 65,
+    "stops_count": 19
+  },
+  {
+    "id": "budapest_jewish_quarter_he",
     "title": "מדריך קולי – הרובע היהודי והברים ההרוסים- מורשת, עמידות וחיי לילה",
     "description": "מסע קולי בין סמטאות הרובע היהודי של בודפשט, דרך בתי כנסת מפוארים, אתרי זיכרון, שווקים ססגוניים ותחנות חיים יהודיים – ועד לבר ההרוס הראשון ולסצנת חיי הלילה האלטרנטיבית שכבשה את העיר. הסיור משלב היסטוריה, תרבות, זיכרון, התחדשות ואווירה שאין דומה לה בעולם.",
     "country": "Hungary",
@@ -117,7 +156,7 @@
     "stops_count": 23
   },
   {
-    "id": "danube_promenade_he_he",
+    "id": "budapest_danube_promenade_he",
     "title": "טיילת הדנובה – מדריך קולי למונומנטים ונוף העיר בבודפשט",
     "description": "מדריך קולי לאטרקציות המרכזיות, הפסלים והאתרים ההיסטוריים בטיילת הדנובה, בצד הפשט של בודפשט. הסיור עוקב אחר רצף המונומנטים, הגשרים והנוף לעבר גבעת בודה, עם דגש על זיכרון, תרבות והיסטוריה עירונית.",
     "country": "Hungary",
@@ -169,6 +208,19 @@
     "stops_count": 37
   },
   {
+    "id": "budapest_jewish_quarter_en",
+    "title": "Audio Guide – The Jewish Quarter and Ruin Bars: Heritage, Resilience, and Nightlife",
+    "description": "An audio journey through the alleys of Budapest's Jewish Quarter, from magnificent synagogues, memorial sites, vibrant markets, and Jewish life stations – to the first ruin bar and the alternative nightlife scene that has taken over the city. The tour blends history, culture, memory, renewal, and an atmosphere unlike anywhere else in the world.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1460941,
+    "language": "en",
+    "length": 4,
+    "duration": 37,
+    "stops_count": 16
+  },
+  {
     "id": "krakow_north_old_city_kleparz_ru",
     "title": "Клепарж и северная  часть Старого города Кракова",
     "description": "Аудиогид по главным достопримечательностям Клепаржа и северной части Старого города Кракова — от Флорианских ворот и Барбакана до университетских зданий и рыночных площадей.",
@@ -195,7 +247,7 @@
     "stops_count": 36
   },
   {
-    "id": "pest_highlights_he",
+    "id": "budapest_pest_highlights_he",
     "title": "מדריך קולי - פניני פשט- שדרות, תרבות וחיים עירוניים",
     "description": "סיור קולי ברחובות פשט, הצד התוסס של בודפשט, דרך שדרות מפוארות, אתרי תרבות, כיכרות היסטוריות וסיפורים אורבניים. המסלול עובר בין נקודות השיא הארכיטקטוניות, בתי קפה מפוארים, מוסדות תרבות וסמלים של החיים העירוניים המודרניים.",
     "country": "Hungary",
@@ -271,18 +323,5 @@
     "length": 10,
     "duration": 163,
     "stops_count": 13
-  },
-  {
-    "id": "jerusalem_downtown_ru",
-    "title": "Пешеходная экскурсия по центру Иерусалима",
-    "description": "Пешеходная экскурсия по современному центру Иерусалима: оживлённые улицы, исторические районы, правительственные здания, музеи и кампус Гиват Рам.",
-    "country": "Israel",
-    "city": "Jerusalem",
-    "city_lat": 31.7788242,
-    "city_lon": 35.2257626,
-    "language": "ru",
-    "length": 11,
-    "duration": 198,
-    "stops_count": 18
   }
 ]
