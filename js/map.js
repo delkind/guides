@@ -296,6 +296,8 @@ if (typeof L !== 'undefined') {
     layers.Map.addTo(map);
     L.control.layers(layers).addTo(map);
 
+    map.addControl(new L.Control.Compass());
+
     // Scale control
     L.control.scale({
         position: 'bottomleft',
