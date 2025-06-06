@@ -297,7 +297,6 @@ if (typeof L !== 'undefined') {
             //touchZoom: true
         }
     );
-    console.info("Here is the map");
     const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lon]));
     map.fitBounds(bounds, {padding: [10, 10]});
 
@@ -609,8 +608,11 @@ if (typeof L !== 'undefined') {
                   <polygon points="12,22 13,18 11,18" fill="#2196f3"/>
                   <polygon points="2,12 6,13 6,11" fill="#2196f3"/>
                   <polygon points="22,12 18,13 18,11" fill="#2196f3"/>
-                  <!-- Central stop dot -->
-                  <circle cx="12" cy="12" r="3" fill="#f44336" stroke="#b71c1c" stroke-width="1"/>
+                  <!-- Central red location pin, shifted higher -->
+                  <path
+                    d="M12 6.5a4 4 0 0 1 4 4c0 2.5-4 7-4 7s-4-4.5-4-7a4 4 0 0 1 4-4z"
+                    fill="#f44336" stroke="#b71c1c" stroke-width="1"/>
+                  <circle cx="12" cy="10.5" r="1.2" fill="#fff"/>
                 </svg>
           `;
             btn.title = 'Center on Current Stop';
