@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="tour-page-title"></title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.css"/>
+    <link rel="stylesheet" href="https://opengeo.tech/maps/leaflet-compass/src/leaflet-compass.css"/>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -38,20 +41,19 @@
 </div>
 
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://raw.githubusercontent.com/mapbox/polyline/refs/heads/master/src/polyline.js"></script>
-    <!-- Leaflet Compass CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-compass@1.5.6/dist/leaflet-compass.css"/>
-    <!-- Leaflet Compass JS -->
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-compass@1.5.6/dist/leaflet-compass.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     <!-- Polyline decoder for Radar's polyline6 format -->
+    <script src="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.polyfilled.js"></script>
+    <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate-src.js"></script>
+    <script src="https://opengeo.tech/maps/leaflet-compass/dist/leaflet-compass.min.js"></script>
 
 <script>
     const tour_id = 'prague_mala_strana_ru';
 </script>
-<script src="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.polyfilled.js"></script>
 <script src="js/data.js"></script>
-<script src="../js/map.js?hash=cc83099352276e3c0f201b9d062a4e27e08ada54d95cdb65431fb9a79ebe01bd"></script>
+<script src="../js/map.js?hash=cc72c3c15a1d3c870bcef74f812a27a3868e17755e4ac737cd25827ebc670623"></script>
 <script>
     let tour_lang = 'ru';
     let rtl = false;

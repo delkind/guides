@@ -280,7 +280,24 @@ function showTemporaryBubble(message, latlng) {
 // ─── INITIALIZE MAP AND CONTROLS ─────────────────────────────────────────────────
 if (typeof L !== 'undefined') {
     // Initialize map
-    map = L.map('map');
+    map = L.map('map',
+        {
+            rotate: true,
+            rotateControl: {
+                closeOnZeroBearing: false,
+                position: 'bottomleft',
+            },
+            // attributionControl: false,
+            // zoomControl: false,
+            // compassBearing: false,
+            // trackContainerMutation: false,
+            // shiftKeyRotate: false,
+            // touchGestures: true,
+            touchRotate: true,
+            //touchZoom: true
+        }
+    );
+    console.info("Here is the map");
     const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lon]));
     map.fitBounds(bounds, {padding: [10, 10]});
 
@@ -295,12 +312,6 @@ if (typeof L !== 'undefined') {
     };
     layers.Map.addTo(map);
     L.control.layers(layers).addTo(map);
-
-    map.addControl(new L.Control.Compass({
-        autoActive: true,
-        showDigit: false,
-        position: 'bottomright'
-    }));
 
     // Scale control
     L.control.scale({
@@ -322,234 +333,256 @@ if (typeof L !== 'undefined') {
         return m;
     });
 
-    // Handle “locationfound” (start blinking if following)
-    map.on('locationfound', e => {
-        stopBlinkingCircle();
-        stopPlaceholderPulse();
+    const comp = new L.Control.Compass({autoActive: true, showDigit: false});
+    map.addControl(comp);
 
-        if (locMarker) {
-            map.removeLayer(locMarker);
-            locMarker = null;
-        }
+    if (navigator.geolocation) {
+        // Handle “locationfound” (start blinking if following)
+        map.on('locationfound', e => {
+            stopBlinkingCircle();
+            stopPlaceholderPulse();
 
-        locMarker = L.circle([e.latlng.lat, e.latlng.lng], {
-            radius: e.accuracy * 2,
-            color: '#136AEC',
-            weight: 2,
-            fillColor: '#136AEC',
-            fillOpacity: 0.3
-        }).addTo(map);
+            if (locMarker) {
+                map.removeLayer(locMarker);
+                locMarker = null;
+            }
 
-        if (following) {
-            map.setView([e.latlng.lat, e.latlng.lng]);
-            startBlinkingCircle(locMarker, {blinkMs: 500, visibleOpacity: 0.3, hiddenOpacity: 0});
-        }
-    });
+            locMarker = L.circle([e.latlng.lat, e.latlng.lng], {
+                radius: e.accuracy * 2,
+                color: '#136AEC',
+                weight: 2,
+                fillColor: '#136AEC',
+                fillOpacity: 0.3
+            }).addTo(map);
 
-    map.on('locationerror', e => {
-        showTemporaryBubble("Couldn't get your location: " + e.message);
-        stopBlinkingCircle();
-        stopPlaceholderPulse();
-    });
+            if (following) {
+                map.setView([e.latlng.lat, e.latlng.lng]);
+                startBlinkingCircle(locMarker, {blinkMs: 500, visibleOpacity: 0.3, hiddenOpacity: 0});
+            }
+        });
 
-    // Follow‐my‐location control
-    const FollowControl = L.Control.extend({
-        options: {position: 'topleft'},
-        onAdd: function () {
-            const container = L.DomUtil.create('div', 'leaflet-bar');
-            const btn = L.DomUtil.create('a', '', container);
+        map.on('locationerror', e => {
+            showTemporaryBubble("Couldn't get your location: " + e.message);
+            stopBlinkingCircle();
+            stopPlaceholderPulse();
+        });
 
-            Object.assign(btn.style, {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '30px',
-                height: '30px'
-            });
+        // Follow‐my‐location control
+        const FollowControl = L.Control.extend({
+            options: {position: 'topleft'},
+            onAdd: function () {
+                const container = L.DomUtil.create('div', 'leaflet-bar');
+                const btn = L.DomUtil.create('a', '', container);
 
-            btn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" fill="none" stroke="black" stroke-width="2"/>
-          <polygon id="up-triangle"   points="12,4 8,12 16,12" fill="#D3D3D3"/>
-          <polygon id="down-triangle" points="12,20 8,12 16,12" fill="#A9A9A9"/>
-        </svg>
-      `;
-            btn.title = 'Follow My Location';
+                Object.assign(btn.style, {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '30px',
+                    height: '30px'
+                });
 
-            L.DomEvent.disableClickPropagation(container);
-            L.DomEvent.on(btn, 'click', e => {
-                L.DomEvent.stop(e);
-                const upTri = btn.querySelector('#up-triangle');
-                const downTri = btn.querySelector('#down-triangle');
+                btn.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <!-- Outer circle for pin background -->
+                  <circle id="outerCircle" cx="12" cy="12" r="10" stroke="#212121" stroke-width="2" fill="#d7d7d7"/>
+                  <!-- Location pin shape -->
+                  <path id="pin" d="M12 7a4 4 0 1 1 0 8a4 4 0 0 1 0-8z" fill="#212121" opacity="0.7"/>
+                  <!-- Compass arrow (needle) -->
+                  <polygon id="arrow" points="12,4 14,12 12,10 10,12" fill="#d7d7d7"/>
+                  <!-- Center dot -->
+                  <circle id="center" cx="12" cy="12" r="2" fill="#212121"/>
+                </svg>      
+            `;
+                btn.title = 'Follow My Location';
 
-                if (locMarker) {
-                    map.removeLayer(locMarker);
-                    locMarker = null;
-                }
+                L.DomEvent.disableClickPropagation(container);
+                L.DomEvent.on(btn, 'click', e => {
+                    L.DomEvent.stop(e);
 
-                if (!following) {
-                    following = true;
-                    upTri.setAttribute('fill', '#136AEC');
-                    downTri.setAttribute('fill', '#E74C3C');
-                    btn.title = 'Stop Following';
-                    startPlaceholderPulse();
-                    map.locate({
-                        watch: true,
-                        setView: false,
-                        maxZoom: 16,
-                        enableHighAccuracy: true
-                    });
-                } else {
-                    following = false;
-                    upTri.setAttribute('fill', '#D3D3D3');
-                    downTri.setAttribute('fill', '#A9A9A9');
-                    btn.title = 'Follow My Location';
-                    map.stopLocate();
-                    stopBlinkingCircle();
-                    stopPlaceholderPulse();
-                }
-            });
-
-            return container;
-        }
-    });
-    map.addControl(new FollowControl());
-
-    // ─── MODIFIED: Center‐on‐my‐location control (now draws walking path) ─────────────────────────────────────────────────────────────
-    const CenterControl = L.Control.extend({
-        options: {position: 'topleft'},
-        onAdd: function () {
-            const container = L.DomUtil.create('div', 'leaflet-bar');
-            const btn = L.DomUtil.create('a', '', container);
-
-            Object.assign(btn.style, {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '30px',
-                height: '30px'
-            });
-
-            btn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-             fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="22" y1="12" x2="18" y2="12"></line>
-          <line x1="6" y1="12"  x2="2" y2="12"></line>
-          <line x1="12" y1="6"  x2="12" y2="2"></line>
-          <line x1="12" y1="22" x2="12" y2="18"></line>
-        </svg>
-      `;
-            btn.title = 'Show Walking Path to Current Stop';
-            btn.href = '#';
-
-            L.DomEvent.disableClickPropagation(container);
-            L.DomEvent.on(btn, 'click', e => {
-                L.DomEvent.stop(e);
-
-                // Remove any existing marker or placeholder pulse
-                if (locMarker) {
-                    map.removeLayer(locMarker);
-                    locMarker = null;
-                }
-                stopPlaceholderPulse();
-
-                // Get current stop’s coordinates
-                const stopData = stops[currentIndex];
-                if (!stopData) {
-                    showTemporaryBubble('No current stop data available.');
-                    return;
-                }
-
-                // Use Geolocation API to get user’s current position
-                if (!navigator.geolocation) {
-                    showTemporaryBubble('Geolocation is not supported by your browser.');
-                    return;
-                }
-
-                navigator.geolocation.getCurrentPosition(
-                    position => {
-                        const userLat = position.coords.latitude;
-                        const userLng = position.coords.longitude;
-                        const destLat = stopData.lat;
-                        const destLng = stopData.lon;
-
-                        // Build OSRM request URL for walking profile
-                        const osrmUrl = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
-                            `${userLng},${userLat};${destLng},${destLat}` + `?overview=full&geometries=geojson&steps=false&alternatives=false`;
-
-                        fetch(osrmUrl)
-                            .then(response => {
-                                if (!response.ok) {
-                                    showTemporaryBubble(`Failed to calculate path`);
-                                    return {};
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (!data.routes || data.routes.length === 0) {
-                                    console.warn('No route found.');
-                                    return;
-                                }
-                                // Remove any existing marker or placeholder pulse
-                                if (locMarker) {
-                                    map.removeLayer(locMarker);
-                                    locMarker = null;
-                                }
-                                stopPlaceholderPulse();
-
-                                const routeGeoJSON = data.routes[0].geometry;
-                                // Convert [lng, lat] to [lat, lng]
-                                const latlngs = routeGeoJSON.coordinates.map(coord => [coord[1], coord[0]]);
-
-                                if (currentPath) {
-                                    map.removeLayer(currentPath);
-                                    currentPath = null;
-                                    stopDashAnimation();
-                                }
-
-                                // Draw the walking path in blue
-                                currentPath = L.polyline(latlngs, {
-                                    color: 'green',
-                                    weight: 3,
-                                    dashArray: '20,5',
-                                    dashOffset: '20'
-                                }).addTo(map);
-                                dashAnimationId = animateDashedLine(currentPath, 1);
-
-                                if (!following) {
-                                    addPulsatingCircle(userLat, userLng,
-                                        {
-                                            maxRadius: position.accuracy,
-                                            color: '#136AEC',
-                                            fillOpacity: 0.3
-                                        });
-
-                                }
-
-                                // Zoom/center the map to fit the route
-                                const bounds = currentPath.getBounds();
-                                map.fitBounds(bounds, {padding: [20, 20]});
-                            })
-                            .catch(err => {
-                                showTemporaryBubble(`Error fetching route from OSRM: ${err}`);
-                            });
-                    },
-                    err => {
-                        showTemporaryBubble(`Could not get current position: ${err}`);
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000
+                    if (locMarker) {
+                        map.removeLayer(locMarker);
+                        locMarker = null;
                     }
-                );
-            });
 
-            return container;
-        }
-    });
-    map.addControl(new CenterControl());
+                    const circle = btn.querySelector('#outerCircle');
+                    const pin = btn.querySelector('#pin');
+                    const arrow = btn.querySelector('#arrow');
+                    const center = btn.querySelector('#center');
 
+                    if (!following) {
+                        following = true;
+                        circle.setAttribute('fill', '#d7ecfc');
+                        circle.setAttribute('stroke', '#2196f3')
+                        pin.setAttribute('fill', '#2196f3')
+                        arrow.setAttribute('fill', '#f44336')
+                        center.setAttribute('fill', '#2196f3')
+                        btn.title = 'Stop Following';
+                        startPlaceholderPulse();
+                        map.locate({
+                            watch: true,
+                            setView: false,
+                            maxZoom: 16,
+                            enableHighAccuracy: true
+                        });
+                    } else {
+                        following = false;
+                        circle.setAttribute('fill', '#d7d7d7');
+                        circle.setAttribute('stroke', '#212121')
+                        pin.setAttribute('fill', '#212121')
+                        arrow.setAttribute('fill', '#d7d7d7')
+                        center.setAttribute('fill', '#212121')
+                        map.stopLocate();
+                        stopBlinkingCircle();
+                        stopPlaceholderPulse();
+                    }
+                });
+
+                return container;
+            }
+        });
+        map.addControl(new FollowControl());
+
+        // ─── MODIFIED: Center‐on‐my‐location control (now draws walking path) ─────────────────────────────────────────────────────────────
+        const CenterControl = L.Control.extend({
+            options: {position: 'topleft'},
+            onAdd: function () {
+                const container = L.DomUtil.create('div', 'leaflet-bar');
+                const btn = L.DomUtil.create('a', '', container);
+
+                Object.assign(btn.style, {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '30px',
+                    height: '30px'
+                });
+
+                btn.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <!-- My location: blue dot at bottom center -->
+                  <circle cx="12" cy="20" r="2.2" fill="#2196f3" stroke="#1565c0" stroke-width="1"/>
+                  <!-- Zigzag curved dashed path -->
+                  <path 
+                    d="M12 18
+                       Q14 16, 12 14
+                       Q10 12, 12 10
+                       Q14 8, 12 6"
+                    stroke="#2196f3"
+                    stroke-width="1.5"
+                    fill="none"
+                    stroke-dasharray="2,2"
+                  />
+                  <!-- Current stop: red marker at top center -->
+                  <path d="M12 4a2.2 2.2 0 0 1 2.2 2.2c0 1.7-2.2 4-2.2 4s-2.2-2.3-2.2-4A2.2 2.2 0 0 1 12 4z" fill="#f44336" stroke="#b71c1c" stroke-width="1"/>
+                  <circle cx="12" cy="6.2" r="0.8" fill="#fff"/>
+                </svg>
+            `;
+                btn.title = 'Show Walking Path to Current Stop';
+                btn.href = '#';
+
+                L.DomEvent.disableClickPropagation(container);
+                L.DomEvent.on(btn, 'click', e => {
+                    L.DomEvent.stop(e);
+
+                    // Remove any existing marker or placeholder pulse
+                    if (locMarker) {
+                        map.removeLayer(locMarker);
+                        locMarker = null;
+                    }
+                    stopPlaceholderPulse();
+
+                    // Get current stop’s coordinates
+                    const stopData = stops[currentIndex];
+                    if (!stopData) {
+                        showTemporaryBubble('No current stop data available.');
+                        return;
+                    }
+
+                    navigator.geolocation.getCurrentPosition(
+                        position => {
+                            const userLat = position.coords.latitude;
+                            const userLng = position.coords.longitude;
+                            const destLat = stopData.lat;
+                            const destLng = stopData.lon;
+
+                            // Build OSRM request URL for walking profile
+                            const osrmUrl = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
+                                `${userLng},${userLat};${destLng},${destLat}` + `?overview=full&geometries=geojson&steps=false&alternatives=false`;
+
+                            fetch(osrmUrl)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        response.text()
+                                            .then(text => showTemporaryBubble(`Failed to calculate path ${text}`))
+                                        return {};
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    if (!data.routes || data.routes.length === 0) {
+                                        console.warn('No route found.');
+                                        return;
+                                    }
+                                    // Remove any existing marker or placeholder pulse
+                                    if (locMarker) {
+                                        map.removeLayer(locMarker);
+                                        locMarker = null;
+                                    }
+                                    stopPlaceholderPulse();
+
+                                    const routeGeoJSON = data.routes[0].geometry;
+                                    // Convert [lng, lat] to [lat, lng]
+                                    const latlngs = routeGeoJSON.coordinates.map(coord => [coord[1], coord[0]]);
+
+                                    if (currentPath) {
+                                        map.removeLayer(currentPath);
+                                        currentPath = null;
+                                        stopDashAnimation();
+                                    }
+
+                                    // Draw the walking path in blue
+                                    currentPath = L.polyline(latlngs, {
+                                        color: 'green',
+                                        weight: 3,
+                                        dashArray: '20,5',
+                                        dashOffset: '20'
+                                    }).addTo(map);
+                                    dashAnimationId = animateDashedLine(currentPath, 1);
+
+                                    if (!following) {
+                                        addPulsatingCircle(userLat, userLng,
+                                            {
+                                                maxRadius: position.accuracy,
+                                                color: '#136AEC',
+                                                fillOpacity: 0.3
+                                            });
+
+                                    }
+
+                                    // Zoom/center the map to fit the route
+                                    const bounds = currentPath.getBounds();
+                                    map.fitBounds(bounds, {padding: [20, 20]});
+                                })
+                                .catch(err => {
+                                    showTemporaryBubble(`Error fetching route from OSRM: ${err.message}`);
+                                });
+                        },
+                        err => {
+                            showTemporaryBubble(`Could not get current position: ${err.message}`);
+                        },
+                        {
+                            enableHighAccuracy: true,
+                            timeout: 10000
+                        }
+                    );
+                });
+
+                return container;
+            }
+        });
+        map.addControl(new CenterControl());
+    }
 
     // ─── Center‐on‐Current‐Stop control ─────────────────────────────────────────────
     const StopCenterControl = L.Control.extend({
@@ -568,11 +601,18 @@ if (typeof L !== 'undefined') {
 
             // Simple “target” icon: circle with a dot
             btn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" fill="none" stroke="black" stroke-width="2"/>
-          <circle cx="12" cy="12" r="3" fill="black"/>
-        </svg>
-      `;
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <!-- Faint map/grid outline -->
+                  <rect x="4" y="4" width="16" height="16" rx="3" stroke="#90caf9" stroke-width="1.2" fill="#e3f2fd"/>
+                  <!-- Four arrows pointing to center -->
+                  <polygon points="12,2 13,6 11,6" fill="#2196f3"/>
+                  <polygon points="12,22 13,18 11,18" fill="#2196f3"/>
+                  <polygon points="2,12 6,13 6,11" fill="#2196f3"/>
+                  <polygon points="22,12 18,13 18,11" fill="#2196f3"/>
+                  <!-- Central stop dot -->
+                  <circle cx="12" cy="12" r="3" fill="#f44336" stroke="#b71c1c" stroke-width="1"/>
+                </svg>
+          `;
             btn.title = 'Center on Current Stop';
 
             L.DomEvent.disableClickPropagation(container);
