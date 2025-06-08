@@ -208,6 +208,19 @@
     "stops_count": 37
   },
   {
+    "id": "szczecin_city_trail_ru",
+    "title": "Красный маршрут по Щецину",
+    "description": "Аудиогид по официальному маршруту Щецина, соединяющему 42 главных памятника и достопримечательности города.",
+    "country": "Poland",
+    "city": "Szczecin",
+    "city_lat": 53.4296809,
+    "city_lon": 14.5929127,
+    "language": "ru",
+    "length": 12,
+    "duration": 288,
+    "stops_count": 53
+  },
+  {
     "id": "budapest_jewish_quarter_en",
     "title": "Audio Guide – The Jewish Quarter and Ruin Bars: Heritage, Resilience, and Nightlife",
     "description": "An audio journey through the alleys of Budapest's Jewish Quarter, from magnificent synagogues, memorial sites, vibrant markets, and Jewish life stations – to the first ruin bar and the alternative nightlife scene that has taken over the city. The tour blends history, culture, memory, renewal, and an atmosphere unlike anywhere else in the world.",
