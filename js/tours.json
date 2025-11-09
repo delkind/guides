@@ -5,11 +5,11 @@
     "description": "Пешеходная экскурсия по современному центру Иерусалима: оживлённые улицы, исторические районы, правительственные здания, музеи и кампус Гиват Рам.",
     "country": "Israel",
     "city": "Jerusalem",
-    "city_lat": 31.7788242,
-    "city_lon": 35.2257626,
+    "city_lat": 31.7788472,
+    "city_lon": 35.2257856,
     "language": "ru",
-    "length": 11,
-    "duration": 198,
+    "length": 13,
+    "duration": 216,
     "stops_count": 18
   },
   {
@@ -18,11 +18,11 @@
     "description": "מדריך קולי לאטרקציות המרכזיות של העיר העתיקה בקרקוב.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "he",
-    "length": 5,
-    "duration": 136,
+    "length": 6,
+    "duration": 147,
     "stops_count": 36
   },
   {
@@ -35,7 +35,7 @@
     "city_lon": 19.1460941,
     "language": "en",
     "length": 13,
-    "duration": 185,
+    "duration": 183,
     "stops_count": 17
   },
   {
@@ -48,7 +48,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 4,
-    "duration": 86,
+    "duration": 85,
     "stops_count": 18
   },
   {
@@ -57,8 +57,8 @@
     "description": "A route through the historical district of Kazimierz in Krakow, covering architectural landmarks and Jewish heritage.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "en",
     "length": 8,
     "duration": 173,
@@ -74,7 +74,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 10,
-    "duration": 213,
+    "duration": 218,
     "stops_count": 34
   },
   {
@@ -87,7 +87,7 @@
     "city_lon": 19.1460941,
     "language": "en",
     "length": 6,
-    "duration": 116,
+    "duration": 119,
     "stops_count": 19
   },
   {
@@ -99,8 +99,8 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "he",
-    "length": 4,
-    "duration": 71,
+    "length": 15,
+    "duration": 204,
     "stops_count": 16
   },
   {
@@ -109,8 +109,8 @@
     "description": "Маршрут по историческому району Казимеж в Кракове, охватывающий архитектурные памятники и еврейское наследие",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "ru",
     "length": 4,
     "duration": 123,
@@ -122,11 +122,11 @@
     "description": "Подробная пешеходная экскурсия по ключевым местам Краковского гетто и еврейского наследия в районе Подгуже.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "ru",
-    "length": 5,
-    "duration": 164,
+    "length": 6,
+    "duration": 167,
     "stops_count": 34
   },
   {
@@ -138,8 +138,8 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 6,
-    "duration": 187,
+    "length": 8,
+    "duration": 209,
     "stops_count": 36
   },
   {
@@ -151,8 +151,8 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 8,
-    "duration": 160,
+    "length": 9,
+    "duration": 172,
     "stops_count": 23
   },
   {
@@ -165,7 +165,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 6,
-    "duration": 114,
+    "duration": 117,
     "stops_count": 19
   },
   {
@@ -203,8 +203,8 @@
     "city_lat": 48.2083537,
     "city_lon": 16.3725042,
     "language": "he",
-    "length": 22,
-    "duration": 335,
+    "length": 20,
+    "duration": 317,
     "stops_count": 37
   },
   {
@@ -229,8 +229,8 @@
     "city_lat": 47.4813896,
     "city_lon": 19.1460941,
     "language": "en",
-    "length": 4,
-    "duration": 71,
+    "length": 15,
+    "duration": 204,
     "stops_count": 16
   },
   {
@@ -239,11 +239,11 @@
     "description": "Аудиогид по главным достопримечательностям Клепаржа и северной части Старого города Кракова — от Флорианских ворот и Барбакана до университетских зданий и рыночных площадей.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "ru",
-    "length": 4,
-    "duration": 95,
+    "length": 6,
+    "duration": 114,
     "stops_count": 23
   },
   {
@@ -252,11 +252,11 @@
     "description": "Audio guide to the main attractions of the Old Town of Krakow.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "en",
-    "length": 5,
-    "duration": 150,
+    "length": 6,
+    "duration": 160,
     "stops_count": 36
   },
   {
@@ -269,7 +269,7 @@
     "city_lon": 19.1460941,
     "language": "he",
     "length": 13,
-    "duration": 184,
+    "duration": 183,
     "stops_count": 17
   },
   {
@@ -281,8 +281,8 @@
     "city_lat": 51.1089776,
     "city_lon": 17.0326689,
     "language": "ru",
-    "length": 10,
-    "duration": 186,
+    "length": 12,
+    "duration": 207,
     "stops_count": 20
   },
   {
@@ -295,7 +295,7 @@
     "city_lon": 14.4464593,
     "language": "ru",
     "length": 2,
-    "duration": 59,
+    "duration": 58,
     "stops_count": 18
   },
   {
@@ -307,8 +307,8 @@
     "city_lat": 50.0596288,
     "city_lon": 14.4464593,
     "language": "ru",
-    "length": 7,
-    "duration": 163,
+    "length": 6,
+    "duration": 156,
     "stops_count": 34
   },
   {
@@ -317,8 +317,8 @@
     "description": "Аудиогид по главным достопримечательностям южной части Старого города Кракова — от Главной площади до Вавеля",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "ru",
     "length": 4,
     "duration": 101,
@@ -330,11 +330,11 @@
     "description": "Аудиогид по главным достопримечательностям района Нова-Хута в Кракове, с акцентом на архитектуру социалистического реализма, градостроительство и социальную историю этого образцового социалистического города Польши.",
     "country": "Poland",
     "city": "Krakow",
-    "city_lat": 50.0469432,
-    "city_lon": 19.9971534,
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
     "language": "ru",
     "length": 10,
-    "duration": 163,
+    "duration": 159,
     "stops_count": 13
   },
   {

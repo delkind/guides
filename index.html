@@ -6,47 +6,46 @@
     <title id="document-title"></title>
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet/dist/leaflet.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-<div class="top-controls">
-    <!-- Первая строка: заголовок + выбор темы + выбор языка -->
-    <div class="top-header">
-        <h1 id="page-title"></h1>
-        <!-- Тёмная/светлая тема -->
-        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
-        <!-- Селектор языка интерфейса -->
-        <select id="ui-lang-select"></select>
-    </div>
+<div class="page-container">
+    <!-- Hero Header with Glassmorphism -->
+    <header class="hero-header">
+        <div class="glass-card header-content">
+            <h1 id="page-title" class="title-gradient"></h1>
+            <div class="header-controls">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                    <span class="theme-icon">🌓</span>
+                </button>
+                <select id="ui-lang-select" class="glass-select"></select>
+            </div>
+        </div>
+    </header>
 
-    <!-- Вторая строка: фильтры по турам -->
-    <div class="filter-row">
-        <select id="filter-country"></select>
-        <select id="filter-city"></select>
-        <select id="filter-lang"></select>
-    </div>
-</div>
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="glass-card filter-container">
+            <select id="filter-country" class="glass-select filter-item"></select>
+            <select id="filter-city" class="glass-select filter-item"></select>
+            <select id="filter-lang" class="glass-select filter-item"></select>
+        </div>
+    </section>
 
-<div class="table-wrapper">
-    <div id="root-map" style="height: 20vh; width: 80%; margin: 0 auto"></div>
-    <table id="tours-table">
-        <thead>
-        <tr>
-            <th id="th-flag"></th>
-            <th id="th-name"></th>
-            <th id="th-count"></th>
-            <th id="th-length"></th>
-            <th id="th-duration"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- rows… -->
-        </tbody>
-    </table>
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="glass-card map-container">
+            <div id="root-map"></div>
+        </div>
+    </section>
+
+    <!-- Tours Grid -->
+    <section class="tours-section">
+        <div class="tours-grid" id="tours-grid">
+            <!-- Tour cards will be dynamically inserted here -->
+        </div>
+    </section>
 </div>
 
 <script>
@@ -55,6 +54,9 @@
     let locales = {};
     let strings = {};
     let tours = [];
+    let rootMap = null;
+    let cityMarkers = [];
+    let mapInitialized = false;
 
     function fixViewportHeight() {
         const vh = window.innerHeight * 0.01;
@@ -64,15 +66,12 @@
     window.addEventListener('resize', fixViewportHeight);
     fixViewportHeight();
 
-
-    // 1) Загрузить флаги
     function loadFlags() {
         return fetch('js/langFlags.json')
             .then(r => r.json())
             .then(data => LANG_FLAGS = data);
     }
 
-    // 2) Загрузить локали
     function loadLocales() {
         return fetch('js/locales.json')
             .then(r => r.json())
@@ -82,7 +81,6 @@
             });
     }
 
-    // 3) Инициализация — ждём оба JSON
     Promise.all([loadFlags(), loadLocales()])
         .then(() => initInterface())
         .catch(console.error);
@@ -97,11 +95,12 @@
         if (!localStorage.getItem('uiLang')) {
             localStorage.setItem('uiLang', SUPPORTED_UI_LANGS[0]);
         }
+
         const uiSel = document.getElementById('ui-lang-select');
         uiSel.innerHTML = SUPPORTED_UI_LANGS.map(l =>
             `<option value="${l}"${l === initLang ? ' selected' : ''}>
-         ${LANG_FLAGS[l]} ${l.toLowerCase()}
-       </option>`
+     ${LANG_FLAGS[l]} ${l.toUpperCase()}
+   </option>`
         ).join('');
 
         uiSel.addEventListener('change', e => {
@@ -115,25 +114,21 @@
 
     function saveCurrentState() {
         const params = new URLSearchParams();
-
-        // Filters
         const countryFilter = document.getElementById('filter-country').value;
         const cityFilter = document.getElementById('filter-city').value;
         const langFilter = document.getElementById('filter-lang').value;
 
         if (countryFilter) {
             params.set('filter-country', countryFilter);
-            localStorage.setItem('filter-country', countryFilter)
+            localStorage.setItem('filter-country', countryFilter);
         }
-
         if (cityFilter) {
             params.set('filter-city', cityFilter);
-            localStorage.setItem('filter-city', countryFilter)
+            localStorage.setItem('filter-city', cityFilter);
         }
-
         if (langFilter) {
             params.set('filter-lang', langFilter);
-            localStorage.setItem('filter-lang', langFilter)
+            localStorage.setItem('filter-lang', langFilter);
         }
 
         history.replaceState(null, '', '?' + params.toString());
@@ -149,30 +144,39 @@
     }
 
     function applyState(state, uiLang, ignoreLangFilter = false) {
-        const lang = uiLang;
-        strings = locales[lang];
-
-        document.documentElement.lang = lang;
-        document.documentElement.dir = strings.rtl ? "rtl" : "ltr"
+        strings = locales[uiLang];
+        document.documentElement.lang = uiLang;
+        document.documentElement.dir = strings.rtl ? "rtl" : "ltr";
         document.getElementById('page-title').textContent = strings.all_tours;
         document.getElementById('document-title').textContent = strings.all_tours;
         document.title = strings.all_tours;
 
         loadTours().then(() => {
-            // On load…
-            renderInterface();
-            renderFilters(state, lang, ignoreLangFilter);
+            renderFilters(state, uiLang, ignoreLangFilter);
 
-            // навешиваем фильтры
-            ['filter-country', 'filter-city', 'filter-lang']
-                .forEach(id => document.getElementById(id).addEventListener('change', () => {
-                    renderTable();
+            ['filter-country', 'filter-city', 'filter-lang'].forEach(id => {
+                const el = document.getElementById(id);
+                el.replaceWith(el.cloneNode(true));
+                document.getElementById(id).addEventListener('change', () => {
+                    renderTourCards();
                     updateCityMarkers();
-                    saveCurrentState()
-                }));
+                    saveCurrentState();
+                });
+            });
 
-            renderTable();
-            updateCityMarkers();
+            renderTourCards();
+
+            if (mapInitialized && rootMap) {
+                updateCityMarkers();
+            } else {
+                const checkMapReady = setInterval(() => {
+                    if (mapInitialized && rootMap) {
+                        clearInterval(checkMapReady);
+                        updateCityMarkers();
+                    }
+                }, 100);
+            }
+
             saveCurrentState();
         });
     }
@@ -180,32 +184,10 @@
     function loadTours() {
         return fetch('js/tours.json')
             .then(r => r.json())
-            .then(data => tours = data);
-    }
-
-    function updateURLParams() {
-        const params = new URLSearchParams();
-
-        // UI Language
-        params.set('uiLang', localStorage.getItem('uiLang') || SUPPORTED_UI_LANGS[0]);
-
-        // Filters
-        const countryFilter = document.getElementById('filter-country').value;
-        const cityFilter = document.getElementById('filter-city').value;
-        const langFilter = document.getElementById('filter-lang').value;
-
-        if (countryFilter) params.set('country', countryFilter);
-        if (cityFilter) params.set('city', cityFilter);
-        if (langFilter) params.set('lang', langFilter);
-
-        history.replaceState(null, '', '?' + params.toString());
-    }
-
-    function renderInterface() {
-        document.getElementById('th-name').textContent = strings.tour_name;
-        document.getElementById('th-count').textContent = strings.stops_count;
-        document.getElementById('th-length').textContent = strings.length_m;
-        document.getElementById('th-duration').textContent = strings.duration_min;
+            .then(data => {
+                tours = data;
+                console.log(`Loaded ${tours.length} tours`);
+            });
     }
 
     function renderFilters(state, uiLang, ignoreLangFilter = false) {
@@ -225,61 +207,72 @@
         fill('filter-lang', strings.language, langs);
 
         const langFilter = document.getElementById('filter-lang');
-        if (state.filter_lang && state.filter_lang in langs && !ignoreLangFilter) {
+        if (state.filter_lang && langs.includes(state.filter_lang) && !ignoreLangFilter) {
             langFilter.value = state.filter_lang;
-        }  else if (langFilter && langs.includes(uiLang)) {
+        } else if (langFilter && langs.includes(uiLang)) {
             langFilter.value = uiLang;
         }
 
-        if (state.filter_country && state.filter_country in countries) {
+        if (state.filter_country && countries.includes(state.filter_country)) {
             document.getElementById('filter-country').value = state.filter_country;
         }
 
-        if (state.filter_city || state.filter_city in cities) {
+        if (state.filter_city && cities.includes(state.filter_city)) {
             document.getElementById('filter-city').value = state.filter_city;
         }
     }
 
-    function renderTable() {
+    function renderTourCards() {
         const fC = document.getElementById('filter-country').value;
         const fCi = document.getElementById('filter-city').value;
         const fL = document.getElementById('filter-lang').value;
-        const tbody = document.querySelector('#tours-table tbody');
-        tbody.innerHTML = '';
+        const grid = document.getElementById('tours-grid');
+        grid.innerHTML = '';
 
-        tours
+        const filtered = tours
             .filter(t => !fC || t.country === fC)
             .filter(t => !fCi || t.city === fCi)
-            .filter(t => !fL || t.language === fL)
-            .forEach(t => {
-                const tr = document.createElement('tr');
+            .filter(t => !fL || t.language === fL);
 
-                const flag = LANG_FLAGS[t.language] || '';
-                const td = document.createElement('td');
-                td.textContent = flag;
-                tr.appendChild(td);
+        filtered.forEach((t, idx) => {
+            const card = document.createElement('div');
+            card.className = 'tour-card glass-card';
+            card.style.animationDelay = `${idx * 0.05}s`;
 
-                // ячейка с флагом языка + названием
-                const tdName = document.createElement('td');
-                const a = document.createElement('a');
-                a.textContent = t.title;
-                a.href = `${t.id}/index.html`;
-                a.title = t.description;
-                tdName.appendChild(a);
-                tr.appendChild(tdName);
+            const flag = LANG_FLAGS[t.language] || '';
+            card.innerHTML = `
+            <div class="tour-card-header">
+                <span class="tour-flag">${flag}</span>
+                <span class="tour-language">${t.language.toUpperCase()}</span>
+            </div>
+            <h3 class="tour-title"><a href="${t.id}/index.html">${t.title}</a></h3>
+            <p class="tour-description">${t.description}</p>
+            <div class="tour-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">📍</span>
+                    <span class="stat-value">${t.stops_count}</span>
+                    <span class="stat-label">${strings.stops_count || 'Stops'}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">📏</span>
+                    <span class="stat-value">${t.length}m</span>
+                    <span class="stat-label">${strings.length_m || 'Length'}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⏱️</span>
+                    <span class="stat-value">${t.duration}min</span>
+                    <span class="stat-label">${strings.duration_min || 'Duration'}</span>
+                </div>
+            </div>
+        `;
+            grid.appendChild(card);
+        });
 
-                ['stops_count', 'length', 'duration'].forEach(key => {
-                    const td = document.createElement('td');
-                    td.textContent = t[key];
-                    tr.appendChild(td);
-                });
-
-                tbody.appendChild(tr);
-            });
-
+        if (filtered.length === 0) {
+            grid.innerHTML = '<div class="no-results">No tours found</div>';
+        }
     }
 
-    //  Themes  ------------------------------------------------
     function initTheme() {
         const saved = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
@@ -294,75 +287,187 @@
 
     function initThemeToggle() {
         const btn = document.getElementById('theme-toggle');
-        btn.addEventListener('click', () => {
+        if (!btn) return;
+
+        let touching = false;
+
+        const toggleTheme = () => {
             const isDark = document.body.classList.toggle('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        };
+
+        const resetButton = () => {
+            btn.blur();
+            btn.style.transform = '';
+            touching = false;
+        };
+
+        btn.addEventListener('click', (e) => {
+            if (!touching) {
+                toggleTheme();
+                setTimeout(resetButton, 150);
+            }
+        });
+
+        btn.addEventListener('touchstart', (e) => {
+            touching = true;
+            e.preventDefault();
+        }, {passive: false});
+
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleTheme();
+            setTimeout(resetButton, 100);
+        }, {passive: false});
+
+        btn.addEventListener('touchcancel', resetButton);
+    }
+
+    function initRootMap() {
+        const mapEl = document.getElementById('root-map');
+        if (!mapEl) {
+            console.error('Root map container not found');
+            return;
+        }
+
+        mapEl.style.width = '100%';
+        mapEl.style.height = '400px';
+        mapEl.style.minHeight = '400px';
+
+        setTimeout(() => {
+            const rect = mapEl.getBoundingClientRect();
+            console.log('Root map dimensions:', rect.width, 'x', rect.height);
+
+            if (rect.width === 0 || rect.height === 0) {
+                console.error('Map container still has no dimensions, retrying...');
+                setTimeout(initRootMap, 200);
+                return;
+            }
+
+            try {
+                rootMap = L.map('root-map', {
+                    zoomControl: true,
+                    attributionControl: true,
+                    trackResize: true
+                }).setView([0, 0], 2);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    maxZoom: 19,
+                    keepBuffer: 2
+                }).addTo(rootMap);
+
+                setTimeout(() => rootMap.invalidateSize(true), 100);
+                setTimeout(() => rootMap.invalidateSize(true), 300);
+                setTimeout(() => {
+                    rootMap.invalidateSize(true);
+                    mapInitialized = true;
+                    console.log('Root map initialized successfully');
+                }, 500);
+
+            } catch (error) {
+                console.error('Error initializing root map:', error);
+            }
+        }, 100);
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (rootMap) {
+                    rootMap.invalidateSize(true);
+                    console.log('Root map resized');
+                }
+            }, 200);
         });
     }
 
-    let rootMap, cityMarkers = [];
-
-    // 1) Initialize map once
-    function initRootMap() {
-        rootMap = L.map('root-map').setView([0, 0], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
-        }).addTo(rootMap);
-    }
-
-    // 2) Whenever you renderTable (or after filters change), rebuild the markers:
     function updateCityMarkers() {
-        // clear old
-        cityMarkers.forEach(m => rootMap.removeLayer(m));
+        if (!rootMap || !mapInitialized) {
+            console.warn('Root map not initialized yet, skipping marker update');
+            return;
+        }
+
+        if (!tours || tours.length === 0) {
+            console.warn('No tours loaded yet');
+            return;
+        }
+
+        cityMarkers.forEach(m => {
+            try {
+                rootMap.removeLayer(m);
+            } catch (e) {
+                console.warn('Error removing marker:', e);
+            }
+        });
         cityMarkers = [];
 
+        const fC = document.getElementById('filter-country').value;
+        const fCi = document.getElementById('filter-city').value;
         const fL = document.getElementById('filter-lang').value;
 
-        // filter tours same as renderTable
         const filtered = tours
+            .filter(t => !fC || t.country === fC)
+            .filter(t => !fCi || t.city === fCi)
             .filter(t => !fL || t.language === fL);
 
-        // count per city
+        console.log(`Showing ${filtered.length} filtered tours on map`);
+
         const counts = {};
         filtered.forEach(t => {
-            counts[t.city] = (counts[t.city] || 0) + 1;
+            if (t.city) {
+                counts[t.city] = (counts[t.city] || 0) + 1;
+            }
         });
 
-        // add a marker for each city
         Object.entries(counts).forEach(([city, count]) => {
-            const {city_lat: lat, city_lon: lon} = tours.find(t => t.city === city);
-            const marker = L.marker([lat, lon])
-                .addTo(rootMap)
-                .bindPopup(`${city}: ${count} tours`)
-                .bindTooltip(String(count), {
-                    permanent: true, direction: 'center',
-                    className: 'number-label'
+            const tour = tours.find(t => t.city === city);
+            if (!tour || !tour.city_lat || !tour.city_lon) {
+                console.warn(`Missing coordinates for city: ${city}`);
+                return;
+            }
+
+            const {city_lat: lat, city_lon: lon} = tour;
+
+            try {
+                const marker = L.marker([lat, lon])
+                    .addTo(rootMap)
+                    .bindPopup(`<strong>${city}</strong><br>${count} tour${count > 1 ? 's' : ''}`)
+                    .bindTooltip(String(count), {
+                        permanent: true,
+                        direction: 'center',
+                        className: 'number-label'
+                    });
+
+                marker.on('click', () => {
+                    document.getElementById('filter-city').value = city;
+                    renderTourCards();
+                    updateCityMarkers();
+                    saveCurrentState();
+                    marker.openPopup();
+                    rootMap.setView([lat, lon], 10, {animate: true, duration: 0.5});
                 });
 
-            marker.on('click', () => {
-                // 1) set the dropdown
-                const citySel = document.getElementById('filter-city');
-                citySel.value = city;
-
-                // 2) re–render table and map
-                renderTable();
-                updateCityMarkers();
-                saveCurrentState();
-
-                // 3) if you want to open the popup with city name & count:
-                marker.openPopup();
-                rootMap.setView([lat, lon], 8)
-            });
-
-            cityMarkers.push(marker);
+                cityMarkers.push(marker);
+                console.log(`Added marker for ${city} with ${count} tours`);
+            } catch (error) {
+                console.error(`Error creating marker for ${city}:`, error);
+            }
         });
 
-        // adjust map to fit all markers
         if (cityMarkers.length > 1) {
-            const group = L.featureGroup(cityMarkers);
-            rootMap.fitBounds(group.getBounds(), {padding: [20, 20]});
+            try {
+                const group = L.featureGroup(cityMarkers);
+                rootMap.fitBounds(group.getBounds(), {padding: [50, 50], animate: true});
+            } catch (error) {
+                console.error('Error fitting bounds:', error);
+            }
+        } else if (cityMarkers.length === 1) {
+            const pos = cityMarkers[0].getLatLng();
+            rootMap.setView(pos, 10, {animate: true});
         } else {
-            rootMap.setView(cityMarkers[0].getLatLng(), 8)
+            console.log('No markers to display');
+            rootMap.setView([0, 0], 2);
         }
     }
 </script>

@@ -183,6 +183,10 @@ const stops = [
         19.935662
       ],
       [
+        50.050522,
+        19.936132
+      ],
+      [
         50.049997,
         19.936445
       ],
@@ -511,7 +515,7 @@ const stops = [
     "title": "Nowy Square (Plac Nowy)",
     "description": "Welcome to Plac Nowy, the beating heart of Kazimierz! This square has been a central meeting place for locals for over a century. Originally laid out in the late 19th century as part of the modernization of Kazimierz, Plac Nowy quickly became a hub for trade and social gatherings, especially for the Jewish community that once thrived here.\n\nThe square is dominated by the iconic round market hall, known as the Okrąglak or Rotunda, built in 1900 as a kosher poultry slaughterhouse. Architecturally, the Rotunda is a rare example of early 20th-century market design, with its brickwork and distinctive circular shape standing out among the surrounding tenements, which themselves showcase a mix of late 19th-century and early 20th-century urban styles.\n\nPlac Nowy has made appearances in literature and film, most notably in \"Schindler’s List,\" where its atmospheric streets and courtyards served as authentic backdrops. Over the years, the square has witnessed everything from bustling market days to wartime hardship and post-communist revival.\n\nToday, it’s famous for its zapiekanki stalls-Polish-style baguette pizzas-and lively flea markets, drawing both locals and visitors. There’s a local legend that the square is haunted by the ghost of a market vendor who supposedly returns at night in search of his lost coins. Whether you believe the stories or not, Plac Nowy remains a place where the past and present meet, and where every corner has a tale to tell.\n\nDon’t forget to try a zapiekanka-some say it’s the best in Kraków! The square is also a nightlife hotspot, surrounded by legendary bars like Singer and Alchemia, and hosts a variety of markets, fairs, and festivals throughout the year. Despite plans for future renovation, Plac Nowy’s unique bohemian atmosphere and sense of community continue to define Kazimierz today.\n\nOur next stop: Rotunda on Nowy Square. The iconic round red-brick rotunda at the center of Plac Nowy, once a ritual Jewish slaughterhouse, now a legendary street food hub and symbol of Kazimierz’s vibrant life.",
     "audio": "audio/plac_nowy_plac_nowy_rotunda_5fda75a26a63ef94bc0fc552a17aeec7.mp3",
-    "lat": 50.0517373,
+    "lat": 50.0517374,
     "lon": 19.9446185,
     "geometry": [
       [
@@ -550,7 +554,7 @@ const stops = [
     "title": "Rotunda on Nowy Square",
     "description": "At the very center of Plac Nowy stands the Okrąglak, or Rotunda-a distinctive red-brick, circular market pavilion that has become one of Kazimierz’s most recognizable landmarks. Built in 1900, the Rotunda was originally designed as a market hall, but in 1927 it was leased to the Jewish community and transformed into a ritual poultry slaughterhouse, serving the dietary needs of the local Jewish population. This function continued right up until the Nazi occupation during World War II, when the slaughterhouse was liquidated. After the war, the Rotunda returned to its role as a market hall, but its purpose gradually shifted as Kazimierz itself evolved.\nArchitecturally, the Rotunda is a rare example of early 20th-century commercial design in Kraków. Its sturdy brickwork and utilitarian circular form stand out among the surrounding tenements, which date mostly from the late 19th and early 20th centuries. Over the years, the Rotunda has earned a special place in the hearts of locals-not just for its history, but for its role in daily life.\nToday, the Rotunda is best known for the dozen or so food hatches that ring its exterior, serving Kraków’s legendary zapiekanki-open-faced baguette pizzas loaded with mushrooms, cheese, and a variety of toppings. Locals, students, and visitors alike queue late into the night for this iconic street food, and it’s said that not trying a zapiekanka here is like visiting Dublin and skipping the Guinness. The Rotunda is also a stage for cultural life: concerts from the Kraków Jewish Festival are sometimes performed on its roof, and the building itself was entered into the register of Kraków’s historical monuments in 2008.\nThe square around the Rotunda is always alive with activity. From early morning, merchant stalls offer everything from fresh produce to antiques, and on Saturdays, a famous flea market attracts collectors from all over Poland. Sundays bring a bustling clothing market, while Thursdays are reserved for the bird market-where live birds are still bought and sold. The Rotunda and its square are surrounded by lively bars and cafes, capturing the bohemian spirit of Kazimierz, and making it a must-see for anyone wanting to experience the district’s unique blend of history, tradition, and contemporary culture.\nWhether you come for the food, the markets, or the atmosphere, the Rotunda on Plac Nowy is a living symbol of Kazimierz’s resilience and creativity-where the past and present meet in the heart of Kraków’s Jewish quarter.\n\nOur next stop: Tempel Synagogue. Completed in 1862, the Tempel Synagogue is a Moorish and Renaissance Revival masterpiece in Kazimierz, renowned for its lavish interiors and role as both a Reform Jewish house of worship and a vibrant center of Jewish culture and music.",
     "audio": "audio/plac_nowy_rotunda_tempel_synagogue_108748e7af79ad965998f9f44e145373.mp3",
-    "lat": 50.0517373,
+    "lat": 50.0517374,
     "lon": 19.9446185
   },
   {

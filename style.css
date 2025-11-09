@@ -1,431 +1,1249 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ==========================================================================
-   THEME VARIABLES
-   ========================================================================== */
+/* ========================================================================== */
+/* CSS VARIABLES & THEME */
+/* ========================================================================== */
 :root {
-  /* light theme */
-  --bg-page: #fff;
-  --text-page: #000;
-  --bg-header: #000;
-  --bg-header-alt: #333;
-  --bg-button: #222;
-  --bg-button-hover: #333;
-  --bg-table-even: #f9f9f9;
-  --border-table: #ccc;
-  --link-color: #0066cc;
-  --bg-stop-header: #555;
+  /* Light Theme */
+  --bg-gradient-start: #667eea;
+  --bg-gradient-end: #764ba2;
+  --bg-page: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-overlay: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-accent: #667eea;
+  --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --card-hover-shadow: 0 12px 48px rgba(31, 38, 135, 0.25);
+  --input-bg: rgba(255, 255, 255, 0.25);
+  --input-border: rgba(255, 255, 255, 0.3);
 }
 
 body.dark {
-  /* dark theme */
-  --bg-page: #111;
-  --text-page: #eee;
-  --bg-header: #222;
-  --bg-header-alt: #444;
-  --bg-button: #333;
-  --bg-button-hover: #444;
-  --bg-table-even: #1a1a1a;
-  --border-table: #444;
-  --link-color: #66aaff;
-  --bg-stop-header: #666;
+  /* Dark Theme */
+  --bg-gradient-start: #0f2027;
+  --bg-gradient-end: #2c5364;
+  --bg-page: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+  --bg-overlay: rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f7fafc;
+  --text-secondary: #cbd5e0;
+  --text-accent: #90cdf4;
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --input-border: rgba(255, 255, 255, 0.15);
 }
 
-/* override table border color in dark */
-body.dark #tours-table,
-body.dark #tours-table th,
-body.dark #tours-table td {
-  border-color: #555 !important;
-}
-
-/* ==========================================================================
-   GLOBAL RESET
-   ========================================================================== */
-html, body {
+/* ========================================================================== */
+/* GLOBAL STYLES */
+/* ========================================================================== */
+* {
   margin: 0;
   padding: 0;
-  height: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg-page);
-  color: var(--text-page);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.4s ease;
 }
 
-a {
-  text-decoration: none;
-}
-
-/* support RTL via dir attribute */
 html[dir="rtl"] {
   direction: rtl;
 }
 
-/* ==========================================================================
-   COMMON FLEX CONTAINERS
-   ========================================================================== */
-.top-controls,
-.filter-row,
-.tour-header,
-.top-header {
-  display: flex;
-  gap: 1em;
+a {
+  text-decoration: none;
+  color: var(--text-accent);
+  transition: color 0.3s ease;
 }
 
-.top-controls {
-  flex-direction: column;
-  gap: 0.5em;
-  padding: 0.5em;
+a:hover {
+  color: var(--text-primary);
 }
 
-.filter-row {
-  justify-content: center;
-  padding-inline: 1em;
+/* ========================================================================== */
+/* GLASSMORPHISM COMPONENTS */
+/* ========================================================================== */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 600px) {
-  .top-header,
-  .filter-row,
-  .tour-header {
-    flex-wrap: wrap;
-  }
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
 }
 
-/* ==========================================================================
-   HEADER STYLES
-   ========================================================================== */
-/* top-header (first row) */
-.top-header {
-  align-items: center;
-  background: var(--bg-header);
-  color: #fff;
-  padding: 0.5em 1em;
-}
-
-.top-header h1 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-/* theme toggle & language select in both headers */
-.top-header #theme-toggle,
-.top-header #ui-lang-select,
-.tour-header #theme-toggle {
-  background: var(--bg-button);
-  color: #fff;
-  padding: 0.3em;
+.glass-select {
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
   appearance: none;
-  box-shadow: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
 }
 
-.top-header #theme-toggle {
-  margin-inline-start: auto;
+.glass-select:hover {
+  border-color: var(--text-accent);
+  transform: translateY(-2px);
 }
 
-.top-header #theme-toggle:hover,
-.top-header #ui-lang-select:hover,
-.tour-header #theme-toggle:hover {
-  background: var(--bg-button-hover);
+.glass-select:focus {
+  border-color: var(--text-accent);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* remove border in light theme */
-body:not(.dark) .top-header #theme-toggle,
-body:not(.dark) .top-header #ui-lang-select,
-body:not(.dark) .tour-header #theme-toggle {
-  border: none;
+.glass-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
 }
 
-/* second row: filters */
-.filter-row select {
-  padding: 0.3em;
-  font-size: 1rem;
-  max-width: 30vw;
-  box-sizing: border-box;
+.glass-btn:hover {
+  background: var(--input-bg);
+  border-color: var(--text-accent);
 }
 
-body.dark .filter-row select {
-  background: var(--bg-button);
-  color: #fff;
-  border: 1px solid var(--border-table);
-}
-
-/* ==========================================================================
-   TOURS TABLE
-   ========================================================================== */
-.table-wrapper {
-  height: calc(var(--vh, 1vh) * 85);
-  overflow-y: auto;
-  width: 100%;
-}
-
-#tours-table {
-  width: 100%;
-  table-layout: auto;
-  border-collapse: collapse;
-  margin-top: 1em;
-  text-align: start;
-}
-
-#tours-table th,
-#tours-table td {
-  border: 1px solid var(--border-table);
-  padding: 0.5em;
-}
-
-#tours-table tr:nth-child(even) {
-  background: var(--bg-table-even);
-}
-
-#tours-table th {
-  background: var(--bg-header-alt);
-  color: #fff;
-}
-
-#tours-table a {
-  color: var(--link-color);
-}
-
-/* ==========================================================================
-   TOUR PAGE STYLES
-   ========================================================================== */
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: calc(var(--vh, 1vh) * 100);
-}
-
-/* tour header (first row) */
-.tour-header {
-  align-items: center;
-  background: var(--bg-header-alt);
-  color: #fff;
-  padding: 0.2em 0.8em;
-  flex-wrap: nowrap;
-}
-
-.tour-header .tour-title {
-  margin: 0;
-  font-size: 1rem;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-/* back link button in tour header */
-.tour-header .back-link {
-  background: var(--bg-button);
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  margin-inline-start: 1em;
-  white-space: nowrap;
-}
-
-.tour-header .back-link:hover {
-  background: var(--bg-button-hover);
-}
-
-/* stop header */
-.stop-header {
-  background: var(--bg-stop-header);
-  color: #fff;
-  margin: 0;
-  padding: 0.5em 1em;
-  font-size: 1.2rem;
-}
-
-/* map & info */
-#scrollable {
-  flex: 1;
-  padding-top: 2%;
-  overflow-y: auto;
-}
-
-#map {
-  width: 90%;
-  height: 60vh;
+/* ========================================================================== */
+/* ROOT PAGE LAYOUT */
+/* ========================================================================== */
+.page-container {
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 2rem 1.5rem;
+  animation: fadeIn 0.6s ease;
 }
 
-#info {
-  padding: 10px;
-  background: var(--bg-page);
-  color: var(--text-page);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* stop text */
-.stop-text {
-  margin-top: 0.5em;
-  border-collapse: separate;
+/* ========================================================================== */
+/* ROOT PAGE HEADER */
+/* ========================================================================== */
+.hero-header {
+  margin-bottom: 2rem;
 }
 
-.stop-text td {
-  padding: 0.3em 0;
-  line-height: 1.5;
-  color: var(--text-page);
-}
-
-/* bottom nav buttons */
-.navbar {
+.header-content {
   display: flex;
   justify-content: space-between;
-  background: var(--bg-header-alt);
-  padding: 10px;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-button.nav {
-  padding: 10px 12%;
-  font-size: 16px;
-  background: var(--bg-button);
-  color: #fff !important;
-  border: none;
-  border-radius: 6px;
-  transition: background 0.15s ease;
+.title-gradient {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  outline: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-button.nav:hover,
-button.nav:active {
-  background: var(--bg-button-hover);
+.icon-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+  border-color: var(--text-accent);
 }
 
-button.nav:focus {
+.icon-btn:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+.icon-btn:focus {
   outline: none;
-  background: var(--bg-button);
 }
 
-/* ==========================================================================
-   LEAFLET & TOOLTIP
-   ========================================================================== */
-.leaflet-tooltip.number-label {
-  background: #d33;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 1px 4px;
-  font-size: 0.65rem;
+.icon-btn:focus:not(:focus-visible) {
+  outline: none;
 }
 
-.leaflet-marker-icon.selected {
-  filter: hue-rotate(300deg) saturate(2) brightness(1.2);
-  z-index: 1000 !important;
+/* Mobile-specific button behavior */
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn:hover {
+    transform: none;
+  }
+
+  .icon-btn:active {
+    transform: scale(0.95);
+  }
+
+  .icon-btn:not(:active) {
+    transform: scale(1) !important;
+    transition: transform 0.15s ease;
+  }
 }
 
-/* ==========================================================================
-   PLYR DARK MODE OVERRIDES
-   ========================================================================== */
-.plyr {
+/* ========================================================================== */
+/* FILTER SECTION */
+/* ========================================================================== */
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-item {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+/* ========================================================================== */
+/* MAP SECTION - ROOT PAGE */
+/* ========================================================================== */
+.map-section {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.map-container {
+  padding: 1rem;
+  overflow: visible;
+  min-height: 450px;
+}
+
+#root-map {
+  width: 100%;
+  height: 400px;
+  min-height: 400px;
+  border-radius: 16px;
   position: relative;
-  z-index: 1000 !important;
+  z-index: 1;
+  background: #dfe4e8;
 }
 
-.plyr__controls,
-.plyr__menu,
-.plyr__menu__container,
-.plyr__menu__content {
-  background: var(--bg-page) !important;
-  color: var(--text-page) !important;
+body.dark #root-map {
+  background: #2c3540;
 }
 
-.plyr--dark .plyr__controls {
-  overflow: visible !important;
+#root-map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 16px;
 }
 
-.plyr--dark .plyr__control,
-.plyr--dark .plyr__time,
-.plyr--dark .plyr__volume input {
-  color: var(--text-page);
+/* ========================================================================== */
+/* TOURS GRID - ROOT PAGE */
+/* ========================================================================== */
+.tours-section {
+  margin-bottom: 3rem;
 }
 
-.plyr--dark .plyr__progress--playing .plyr__progress__filled,
-.plyr--dark .plyr__progress input[type="range"]::-webkit-slider-thumb {
-  background: var(--link-color);
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  animation: slideUp 0.6s ease;
 }
 
-.plyr__menu {
-  border: 1px solid var(--border-table) !important;
-}
-
-.plyr__menu__container .plyr__menu__item {
-  padding: 0.5em 1em;
-}
-
-.plyr__menu__container .plyr__menu__item:hover,
-.plyr__menu__container .plyr__menu__item[aria-selected] {
-  background: var(--bg-page) !important;
-}
-
-/* ==========================================================================
-   ADAPTIVE (SMALL SCREENS)
-   ========================================================================== */
-@media (max-width: 600px) {
-  .filter-row select,
-  .top-header #ui-lang-select,
-  .tour-header #theme-toggle {
-    max-width: 45vw;
-    font-size: 0.85rem;
-  }
-
-  .tour-header {
-    gap: 0.5em;
-  }
-}
-
-/* ==========================================================================
-   Remove 3D appearance from theme-toggle in dark mode
-   ========================================================================== */
-body.dark #theme-toggle,
-body.dark .top-header #theme-toggle,
-body.dark .tour-header #theme-toggle {
-  appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  background-clip: padding-box; /* ensure no default inner shadows */
-}
-
-body.dark #theme-toggle:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-html, body {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-}
-
-.button, button.nav {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.1s, background 0.2s;
-}
-.button:active, button.nav:active {
-  transform: scale(0.97);
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .tour-card {
-  background: var(--bg-page);
+  padding: 1.75rem;
+  animation: cardAppear 0.5s ease backwards;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.tour-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--text-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tour-card:hover::before {
+  opacity: 1;
+}
+
+.tour-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tour-flag {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.tour-language {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  background: var(--input-bg);
+  border-radius: 20px;
+}
+
+.tour-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.tour-title a {
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.tour-title a:hover {
+  color: var(--text-accent);
+}
+
+.tour-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tour-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.stat-icon {
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* ========================================================================== */
+/* LEAFLET CUSTOMIZATION - ROOT PAGE */
+/* ========================================================================== */
+.leaflet-tooltip.number-label {
+  background: var(--text-accent);
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+}
+
+.leaflet-popup-tip {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+}
+
+/* ========================================================================== */
+/* TOUR PAGE SPECIFIC STYLES */
+/* ========================================================================== */
+
+.tour-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease;
+  padding-bottom: 6rem;
+}
+
+/* ========================================================================== */
+/* TOUR HERO HEADER */
+/* ========================================================================== */
+
+.tour-hero-header {
+  padding: 1rem 1.5rem;
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--input-border);
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  margin: 1em 0;
-  padding: 1.2em;
-  transition: box-shadow 0.2s;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.tour-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+
+.back-btn:hover {
+  transform: translateX(-3px);
+  border-color: var(--text-accent);
+  background: var(--glass-bg);
 }
+
+.back-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover .back-icon {
+  transform: translateX(-2px);
+}
+
+.tour-page-title {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========================================================================== */
+/* STOP BANNER */
+/* ========================================================================== */
+
+.stop-banner {
+  padding: 1.25rem 1.5rem;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stop-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.stop-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.stop-title {
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ========================================================================== */
+/* MAIN CONTENT */
+/* ========================================================================== */
+
+.tour-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: fadeInUp 0.6s ease 0.2s backwards;
+  min-height: 0;
+  padding-bottom: 1rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================================== */
+/* MAP SECTION - TOUR PAGE */
+/* ========================================================================== */
+
+.map-section-tour {
+  width: 100%;
+  position: relative;
+}
+
+.map-container-wrapper {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: #dfe4e8;
+  border: 1px solid var(--glass-border);
+}
+
+body.dark .map-container-wrapper {
+  background: #2c3540;
+}
+
+#map {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent;
+  border-radius: 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+
+.leaflet-tile-pane {
+  z-index: 2;
+}
+
+.leaflet-tile {
+  max-width: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.leaflet-tile-container {
+  visibility: visible !important;
+}
+
+.leaflet-map-pane,
+.leaflet-tile-pane,
+.leaflet-overlay-pane {
+  z-index: auto;
+}
+
+.leaflet-marker-pane {
+  z-index: 600;
+}
+
+.leaflet-popup-pane {
+  z-index: 700;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 500;
+  position: absolute;
+}
+
+.leaflet-control {
+  margin: 10px;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.leaflet-bar a {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--glass-border);
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+}
+
+.leaflet-bar a:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.leaflet-bar a:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom: none;
+}
+
+.leaflet-bar a:hover {
+  background: var(--input-bg);
+}
+
+/* ========================================================================== */
+/* INFO SECTION */
+/* ========================================================================== */
+
+.info-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.info-content {
+  padding: 1.75rem;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.info-content h2,
+.info-content h3 {
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.info-content h2 {
+  font-size: 1.4rem;
+}
+
+.info-content h3 {
+  font-size: 1.2rem;
+}
+
+.info-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.info-content a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.3s ease;
+}
+
+.info-content a:hover {
+  text-decoration-thickness: 2px;
+  color: var(--text-primary);
+}
+
+.info-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.audio-player-wrapper {
+  margin-bottom: 1.75rem;
+}
+
+.stop-description p {
+  margin-bottom: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* ========================================================================== */
+/* TOUR NAVIGATION */
+/* ========================================================================== */
+
+.tour-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background: linear-gradient(to top, var(--bg-gradient-start) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.nav-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0.875rem;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: var(--input-bg);
+  border-color: var(--text-accent);
+}
+
+.nav-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.nav-prev:hover .nav-icon {
+  transform: translateX(-3px);
+}
+
+.nav-next:hover .nav-icon {
+  transform: translateX(3px);
+}
+
+.nav-home {
+  flex: 0.9;
+}
+
+.nav-home .nav-icon {
+  font-size: 1.5rem;
+}
+
+.nav-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+body.dark .tour-navigation {
+  background: linear-gradient(to top, var(--bg-gradient-start) 0%, transparent 100%);
+}
+
+body.dark .nav-btn {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+}
+
+body.dark .nav-btn:hover {
+  background: var(--input-bg);
+}
+
+/* ========================================================================== */
+/* PLYR AUDIO PLAYER CUSTOMIZATION */
+/* ========================================================================== */
 
 .plyr {
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.plyr__controls {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+  padding: 1rem;
+}
+
+.plyr__control,
+.plyr__time {
+  color: var(--text-primary);
+}
+
+.plyr__control:hover {
+  background: var(--input-bg);
+}
+
+.plyr__progress__buffer,
+.plyr__progress input[type="range"] {
+  color: var(--text-accent);
+}
+
+.plyr__menu {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.09);
 }
 
-body.dark {
-  --bg-page: #181a1b;
-  --bg-header: #23272a;
-  --bg-header-alt: #2c2f33;
+.plyr__menu__container .plyr__menu__item {
+  color: var(--text-primary);
 }
 
-.leaflet-popup.temporary-bubble .leaflet-popup-tip,
-.leaflet-popup.temporary-bubble .leaflet-popup-tip-container {
+.plyr__menu__container .plyr__menu__item:hover {
+  background: var(--input-bg);
+}
+
+/* ========================================================================== */
+/* RESPONSIVE DESIGN - ROOT PAGE */
+/* ========================================================================== */
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-item {
+    max-width: 100%;
+  }
+
+  .tours-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .map-container {
+    padding: 0.75rem;
+    min-height: 350px;
+  }
+
+  #root-map {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .tour-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stat-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tours-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================================================== */
+/* RESPONSIVE DESIGN - TOUR PAGE */
+/* ========================================================================== */
+
+@media (max-width: 768px) {
+  .tour-page-container {
+    padding: 0.75rem;
+    padding-bottom: 5.5rem;
+    gap: 0.75rem;
+  }
+
+  .tour-hero-header {
+    padding: 0.875rem 1rem;
+  }
+
+  .tour-header-content {
+    gap: 0.75rem;
+  }
+
+  .back-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .back-icon {
+    font-size: 1rem;
+  }
+
+  .tour-page-title {
+    font-size: 1rem;
+  }
+
+  .stop-banner {
+    padding: 1rem 1.25rem;
+  }
+
+  .stop-title {
+    font-size: 1.15rem;
+  }
+
+  .map-container-wrapper {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .info-content {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .tour-navigation {
+    padding: 0.75rem;
+  }
+
+  .nav-wrapper {
+    padding: 0.625rem;
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    flex-direction: column;
+    padding: 0.875rem 0.5rem;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-label {
+    font-size: 0.8rem;
+  }
+
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+
+  .nav-home .nav-icon {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tour-page-container {
+    padding-bottom: 5rem;
+  }
+
+  .tour-header-content {
+    gap: 0.5rem;
+  }
+
+  .back-btn span:not(.back-icon) {
+    display: none;
+  }
+
+  .back-btn {
+    padding: 0.5rem;
+    min-width: 40px;
+  }
+
+  .nav-label {
+    display: none;
+  }
+
+  .nav-btn {
+    padding: 1rem 0.75rem;
+  }
+
+  .nav-home {
+    flex: 1;
+  }
+}
+
+/* ========================================================================== */
+/* RTL SUPPORT */
+/* ========================================================================== */
+
+html[dir="rtl"] .back-btn:hover {
+  transform: translateX(3px);
+}
+
+html[dir="rtl"] .back-btn:hover .back-icon {
+  transform: translateX(2px);
+}
+
+html[dir="rtl"] .nav-prev:hover .nav-icon {
+  transform: translateX(3px);
+}
+
+html[dir="rtl"] .nav-next:hover .nav-icon {
+  transform: translateX(-3px);
+}
+
+/* ========================================================================== */
+/* LOADING STATES */
+/* ========================================================================== */
+
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--glass-border);
+  border-top-color: var(--text-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================================================== */
+/* ACCESSIBILITY */
+/* ========================================================================== */
+
+.nav-btn:focus-visible,
+.back-btn:focus-visible,
+.icon-btn:focus-visible,
+.glass-select:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================================================== */
+/* SMOOTH SCROLLBAR STYLING */
+/* ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-overlay);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-bg);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--input-bg);
+  background-clip: padding-box;
+}
+
+/* ========================================================================== */
+/* ENHANCED MARKER SELECTION */
+/* ========================================================================== */
+
+.leaflet-marker-icon {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.leaflet-marker-icon.selected {
+  filter: hue-rotate(120deg) saturate(2) brightness(1.3);
+  z-index: 1000 !important;
+}
+
+/* ========================================================================== */
+/* MODERN POPUP STYLING */
+/* ========================================================================== */
+
+.modern-popup .leaflet-popup-content-wrapper {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+
+.modern-popup .leaflet-popup-tip {
   display: none;
+}
+
+.temporary-bubble .leaflet-popup-tip,
+.temporary-bubble .leaflet-popup-tip-container {
+  display: none;
+}
+
+/* ========================================================================== */
+/* SMOOTH MAP TILE LOADING */
+/* ========================================================================== */
+
+.map-tiles,
+.satellite-tiles {
+  transition: opacity 0.3s ease;
 }

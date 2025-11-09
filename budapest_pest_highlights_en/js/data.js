@@ -9,7 +9,7 @@ const stops = [
     "lon": 19.0530956,
     "geometry": [
       [
-        47.500966,
+        47.500951,
         19.08542
       ],
       [
@@ -61,24 +61,28 @@ const stops = [
         19.070256
       ],
       [
-        47.497061,
-        19.069689
+        47.496682,
+        19.068351
       ],
       [
-        47.497751,
-        19.068717
+        47.497147,
+        19.067746
       ],
       [
-        47.495583,
-        19.060166
+        47.495585,
+        19.06026
       ],
       [
-        47.495654,
-        19.059753
+        47.495658,
+        19.059929
       ],
       [
-        47.495816,
-        19.059647
+        47.495685,
+        19.059937
+      ],
+      [
+        47.495803,
+        19.059686
       ],
       [
         47.497706,
@@ -87,6 +91,10 @@ const stops = [
       [
         47.498092,
         19.054988
+      ],
+      [
+        47.49809,
+        19.054852
       ],
       [
         47.498091,
@@ -126,8 +134,8 @@ const stops = [
     "id": 2,
     "stop_id": "vorosmarty_ter",
     "title": "Vörösmarty Square",
-    "description": "Vörösmarty Square is one of the most central, bustling, and beloved squares in the heart of Pest, serving as a cultural, commercial, and social hub for over a century. The square is named after the national poet Mihály Vörösmarty, whose impressive statue stands at its center, gazing over the urban bustle. Around the statue, locals and tourists gather, street artists, musicians, and children chasing pigeons—a classic Budapest urban scene.\n\nThe square was designed in the 19th century as part of the city’s modern development and quickly became a key commercial center: luxury shops, banks, offices, cafés, and restaurants opened here. The surrounding buildings combine Neo-Classical, Art Nouveau, and Belle Époque styles, with sculpted facades, wide display windows, and ornate iron balconies. One of the standout buildings is Gerbeaud House—a legendary patisserie and café founded in 1858, which has become a city institution. Writers, artists, politicians, and socialites used to meet here to taste the famous Dobos and Esterházy cakes.\n\nOver the years, the square has been a stage for demonstrations, national celebrations, Christmas fairs, and spring markets. Every year, a colorful Christmas market is held here with craft stalls, hot pastries, mulled wine, and handmade gifts—a magical winter experience for the whole family. In summer, the square fills with ice cream stands, street performances, and open seating areas.\n\nVörösmarty Square has appeared in literature, paintings, and films as a symbol of Budapest’s dynamic urbanity. Many historical figures—from poets to prime ministers—have spent time here, and some say that anyone who tastes Dobos cake at Gerbeaud is guaranteed a particularly sweet year.\n\nToday, the square is a popular meeting point, a starting station for Váci Street and the main boulevards, and a center for all kinds of urban events. Here’s a tip: Sit on one of the balconies, order coffee and cake, and watch the passersby—it’s the best way to soak up the pace and charm of Pest.\n\nOur next stop: Váci Street. Famous shopping promenade, fashion shops, cafés, and Belle Époque architecture",
-    "audio": "audio/vorosmarty_ter_vaci_street_2997d3d236369489becb8e75044133a5.mp3",
+    "description": "Vörösmarty Square is one of the most central, bustling, and beloved squares in the heart of Pest, serving as a cultural, commercial, and social hub for over a century. The square is named after the national poet Mihály Vörösmarty, whose impressive statue stands at its center, gazing over the urban bustle. Around the statue, locals and tourists gather, street artists, musicians, and children chasing pigeons—a classic Budapest urban scene.\n\nThe square was designed in the 19th century as part of the city’s modern development and quickly became a key commercial center: luxury shops, banks, offices, cafés, and restaurants opened here. The surrounding buildings combine Neo-Classical, Art Nouveau, and Belle Époque styles, with sculpted facades, wide display windows, and ornate iron balconies. One of the standout buildings is Gerbeaud House—a legendary patisserie and café founded in 1858, which has become a city institution. Writers, artists, politicians, and socialites used to meet here to taste the famous Dobos and Esterházy cakes.\n\nOver the years, the square has been a stage for demonstrations, national celebrations, Christmas fairs, and spring markets. Every year, a colorful Christmas market is held here with craft stalls, hot pastries, mulled wine, and handmade gifts—a magical winter experience for the whole family. In summer, the square fills with ice cream stands, street performances, and open seating areas.\n\nVörösmarty Square has appeared in literature, paintings, and films as a symbol of Budapest’s dynamic urbanity. Many historical figures—from poets to prime ministers—have spent time here, and some say that anyone who tastes Dobos cake at Gerbeaud is guaranteed a particularly sweet year.\n\nToday, the square is a popular meeting point, a starting station for Váci Street and the main boulevards, and a center for all kinds of urban events. Here’s a tip: Sit on one of the balconies, order coffee and cake, and watch the passersby—it’s the best way to soak up the pace and charm of Pest.\n\nOur next stop: Péterffy Palace. 18th-century Baroque palace, historic decorations, and the 1838 flood story",
+    "audio": "audio/vorosmarty_ter_peterffy_palace_f7aaac0b3948e19fcb5c589a528f0083.mp3",
     "lat": 47.4966817,
     "lon": 19.0503341,
     "geometry": [
@@ -179,12 +187,12 @@ const stops = [
   },
   {
     "id": 3,
-    "stop_id": "vaci_street",
-    "title": "Váci Street",
-    "description": "Váci Street is the most famous and beloved pedestrian promenade in Pest, the beating heart of Budapest’s shopping and entertainment experience. Stretching from Vörösmarty Square to the Great Market Hall, the street has been a key commercial axis since the 18th century, blending old urban tradition with a modern, vibrant atmosphere.\n\nVáci Street’s architecture is a feast for the eyes: buildings on both sides showcase Belle Époque, Neo-Classical, and Art Nouveau styles, with colorful facades, iron balconies, floral decorations, and tempting shop windows. Many houses have been carefully restored, some bearing historic plaques telling of famous residents, old shops, and dramatic events.\n\nAlong the street, you’ll find a wealth of international and local fashion stores, luxury boutiques, jewelry shops, souvenir stands, art galleries, trendy cafés, restaurants, and bakeries. The street is always lively: street performers, musicians, jugglers, tourists from around the world, and locals strolling, shopping, and enjoying the vibe.... Váci Street has appeared in literature, paintings, and Hungarian films as a symbol of commerce, cosmopolitanism, and modern urban life. Many historical figures—merchants, bankers, writers, and artists—have worked here, and some say every shop tells a story of love, success, or mystery.\n\nOver the years, the street has also been a stage for demonstrations, holiday parades, marches, and public events. A local legend says that whoever finds a coin on Váci Street is guaranteed good luck and successful shopping.\n\nToday, Váci Street is a must for every visitor to Budapest—whether you’re looking for high fashion, unique gifts, or just want to sit in a café and people-watch. Here’s a tip: Look for the hidden inner courtyards—sometimes you’ll discover small art galleries or intimate cafés with a unique atmosphere.\n\nOur next stop: Parisian Court (Párisi Udvar). Art Nouveau and eclectic gem, commercial gallery, stunning glass ceilings, and mosaics",
-    "audio": "audio/vaci_street_parisian_court_449e0a2cd993fa2395bab9c0eccc4605.mp3",
-    "lat": 47.4928841,
-    "lon": 19.0531542,
+    "stop_id": "peterffy_palace",
+    "title": "Péterffy Palace",
+    "description": "Péterffy Palace, located on Petőfi Sándor Street in the heart of Pest, is one of the city’s most beautiful and oldest historic buildings, reflecting the urban Baroque style of the 18th century. The palace was built in 1756 for the noble Péterffy family, designed by architect András Mayerhoffer, and is considered one of the first private houses built outside the old city walls.\n\nThe facade is characterized by stone arches, decorative columns, tall windows with wooden shutters, ornate pediments, and wide staircases. The grand entrance leads to a Viennese-style inner courtyard with ornate iron balconies, arches, and a small garden. The interior features spacious halls, painted ceilings, ancient wooden floors, and walls decorated with frescoes.\n\nThe palace witnessed dramatic events in Budapest’s history—especially during the great flood of 1838, when the entire area was flooded, and many residents found refuge within its walls. On the facade, there is still a stone plaque marking the water level during the flood—a silent testament to nature’s power and urban resilience.\n\nOver the years, the palace has served as a residence, commercial headquarters, offices, art gallery, and meeting place for intellectuals. Many historical figures—writers, poets, revolutionaries—have visited, and the building has appeared in paintings, books, and films as a symbol of Pest’s glorious past.\n\nA local legend says that on stormy nights, you can hear the sound of flowing water in the courtyard and the whispers of the palace’s first residents. Today, the building is mainly used for offices and temporary exhibitions, but the courtyard is sometimes open to visitors—here’s a tip: Look for the historic flood plaque, and imagine old Budapest when the Danube surged through the city.\n\nOur next stop: Parisian Court (Párisi Udvar). Art Nouveau and eclectic gem, commercial gallery, stunning glass ceilings, and mosaics",
+    "audio": "audio/peterffy_palace_parisian_court_711d050f5092c4db3be42c877f7f4b9c.mp3",
+    "lat": 47.4937441,
+    "lon": 19.0552161,
     "geometry": [
       [
         47.496711,
@@ -207,8 +215,24 @@ const stops = [
         19.050927
       ],
       [
-        47.492884,
-        19.053154
+        47.495522,
+        19.051453
+      ],
+      [
+        47.49569,
+        19.052317
+      ],
+      [
+        47.494909,
+        19.053312
+      ],
+      [
+        47.494916,
+        19.053331
+      ],
+      [
+        47.493642,
+        19.055048
       ]
     ]
   },
@@ -216,49 +240,49 @@ const stops = [
     "id": 4,
     "stop_id": "parisian_court",
     "title": "Parisian Court (Párisi Udvar)",
-    "description": "The Parisian Court, or Párisi Udvar, is one of Pest’s architectural and historical gems—a building like no other in Budapest. The impressive gallery is located in the city center, at the corner of Ferenciek Square, and was built between 1909–1913 on the ruins of the famous Paris Hotel. The building was designed by renowned architects Henrik Schmahl and Dezső Károlyi in an eclectic style combining Art Nouveau, Neo-Gothic, Moorish, and Eastern elements.\n\nThe exterior facade stands out with its giant windows, decorative columns, statues, arches, colorful ceramic ornaments, and pointed turrets. The main entrance leads to a stunning interior gallery—a high hall with colorful glass ceilings, mosaics, marble columns, ornate iron railings, stained glass windows, and geometric and Eastern design details.\n\nIn the past, the court served as a luxury commercial center—fashion shops, jewelry, cafés, offices, and luxury apartments. Here, businessmen, diplomats, artists, and writers used to meet, and the gallery became a symbol of wealth, innovation, and European lifestyle. The building has appeared in literature, paintings, and films as a symbol of fashion, culture, and cosmopolitanism.\n\nOver the years, the place’s prestige faded, and it went through periods of neglect, but in the early 21st century, it was carefully restored and became a luxury hotel, commercial gallery, and cultural center. Today, you can admire the original design, sit in the elegant café, marvel at the stained glass and mosaics, and experience the atmosphere of early 20th-century Budapest.\n\nA local legend says that on quiet nights, you can hear the piano music of one of the first shop owners, who continues to play here forever. Here’s a tip: Look up at the stunning glass ceiling—the reflected light creates a magical feeling unlike anywhere else in the city.\n\nOur next stop: Péterffy Palace. 18th-century Baroque palace, historic decorations, and the 1838 flood story",
-    "audio": "audio/parisian_court_peterffy_palace_9ec1a95fc39882815fbb0f1022eb7d46.mp3",
-    "lat": 47.4932337,
-    "lon": 19.0548758,
+    "description": "The Parisian Court, or Párisi Udvar, is one of Pest’s architectural and historical gems—a building like no other in Budapest. The impressive gallery is located in the city center, at the corner of Ferenciek Square, and was built between 1909–1913 on the ruins of the famous Paris Hotel. The building was designed by renowned architects Henrik Schmahl and Dezső Károlyi in an eclectic style combining Art Nouveau, Neo-Gothic, Moorish, and Eastern elements.\n\nThe exterior facade stands out with its giant windows, decorative columns, statues, arches, colorful ceramic ornaments, and pointed turrets. The main entrance leads to a stunning interior gallery—a high hall with colorful glass ceilings, mosaics, marble columns, ornate iron railings, stained glass windows, and geometric and Eastern design details.\n\nIn the past, the court served as a luxury commercial center—fashion shops, jewelry, cafés, offices, and luxury apartments. Here, businessmen, diplomats, artists, and writers used to meet, and the gallery became a symbol of wealth, innovation, and European lifestyle. The building has appeared in literature, paintings, and films as a symbol of fashion, culture, and cosmopolitanism.\n\nOver the years, the place’s prestige faded, and it went through periods of neglect, but in the early 21st century, it was carefully restored and became a luxury hotel, commercial gallery, and cultural center. Today, you can admire the original design, sit in the elegant café, marvel at the stained glass and mosaics, and experience the atmosphere of early 20th-century Budapest.\n\nA local legend says that on quiet nights, you can hear the piano music of one of the first shop owners, who continues to play here forever. Here’s a tip: Look up at the stunning glass ceiling—the reflected light creates a magical feeling unlike anywhere else in the city.\n\nOur next stop: Váci Street. Famous shopping promenade, fashion shops, cafés, and Belle Époque architecture",
+    "audio": "audio/parisian_court_vaci_street_c6ff5f9480b88fb28d35fe98be2892b1.mp3",
+    "lat": 47.4932187,
+    "lon": 19.0547452,
     "geometry": [
       [
-        47.492884,
-        19.053154
-      ],
-      [
-        47.492923,
-        19.053125
-      ],
-      [
-        47.493058,
-        19.054187
-      ],
-      [
-        47.493211,
-        19.054882
-      ]
-    ]
-  },
-  {
-    "id": 5,
-    "stop_id": "peterffy_palace",
-    "title": "Péterffy Palace",
-    "description": "Péterffy Palace, located on Petőfi Sándor Street in the heart of Pest, is one of the city’s most beautiful and oldest historic buildings, reflecting the urban Baroque style of the 18th century. The palace was built in 1756 for the noble Péterffy family, designed by architect András Mayerhoffer, and is considered one of the first private houses built outside the old city walls.\n\nThe facade is characterized by stone arches, decorative columns, tall windows with wooden shutters, ornate pediments, and wide staircases. The grand entrance leads to a Viennese-style inner courtyard with ornate iron balconies, arches, and a small garden. The interior features spacious halls, painted ceilings, ancient wooden floors, and walls decorated with frescoes.\n\nThe palace witnessed dramatic events in Budapest’s history—especially during the great flood of 1838, when the entire area was flooded, and many residents found refuge within its walls. On the facade, there is still a stone plaque marking the water level during the flood—a silent testament to nature’s power and urban resilience.\n\nOver the years, the palace has served as a residence, commercial headquarters, offices, art gallery, and meeting place for intellectuals. Many historical figures—writers, poets, revolutionaries—have visited, and the building has appeared in paintings, books, and films as a symbol of Pest’s glorious past.\n\nA local legend says that on stormy nights, you can hear the sound of flowing water in the courtyard and the whispers of the palace’s first residents. Today, the building is mainly used for offices and temporary exhibitions, but the courtyard is sometimes open to visitors—here’s a tip: Look for the historic flood plaque, and imagine old Budapest when the Danube surged through the city.\n\nOur next stop: Great Market Hall (Central Market Hall). Historic covered market, Neo-Gothic and Art Nouveau architecture, culinary and experiential center",
-    "audio": "audio/peterffy_palace_great_market_hall_b218964490e12fe0acb188ab5995982c.mp3",
-    "lat": 47.4937441,
-    "lon": 19.0552161,
-    "geometry": [
-      [
-        47.493211,
-        19.054882
+        47.493642,
+        19.055048
       ],
       [
         47.493404,
         19.055353
       ],
       [
-        47.493642,
-        19.055048
+        47.493194,
+        19.054752
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "stop_id": "vaci_street",
+    "title": "Váci Street",
+    "description": "Váci Street is the most famous and beloved pedestrian promenade in Pest, the beating heart of Budapest’s shopping and entertainment experience. Stretching from Vörösmarty Square to the Great Market Hall, the street has been a key commercial axis since the 18th century, blending old urban tradition with a modern, vibrant atmosphere.\n\nVáci Street’s architecture is a feast for the eyes: buildings on both sides showcase Belle Époque, Neo-Classical, and Art Nouveau styles, with colorful facades, iron balconies, floral decorations, and tempting shop windows. Many houses have been carefully restored, some bearing historic plaques telling of famous residents, old shops, and dramatic events.\n\nAlong the street, you’ll find a wealth of international and local fashion stores, luxury boutiques, jewelry shops, souvenir stands, art galleries, trendy cafés, restaurants, and bakeries. The street is always lively: street performers, musicians, jugglers, tourists from around the world, and locals strolling, shopping, and enjoying the vibe.... Váci Street has appeared in literature, paintings, and Hungarian films as a symbol of commerce, cosmopolitanism, and modern urban life. Many historical figures—merchants, bankers, writers, and artists—have worked here, and some say every shop tells a story of love, success, or mystery.\n\nOver the years, the street has also been a stage for demonstrations, holiday parades, marches, and public events. A local legend says that whoever finds a coin on Váci Street is guaranteed good luck and successful shopping.\n\nToday, Váci Street is a must for every visitor to Budapest—whether you’re looking for high fashion, unique gifts, or just want to sit in a café and people-watch. Here’s a tip: Look for the hidden inner courtyards—sometimes you’ll discover small art galleries or intimate cafés with a unique atmosphere.\n\nOur next stop: Great Market Hall (Central Market Hall). Historic covered market, Neo-Gothic and Art Nouveau architecture, culinary and experiential center",
+    "audio": "audio/vaci_street_great_market_hall_3f23d2452c4cdac166af392032959640.mp3",
+    "lat": 47.4925262,
+    "lon": 19.0532705,
+    "geometry": [
+      [
+        47.493194,
+        19.054752
+      ],
+      [
+        47.493058,
+        19.054187
+      ],
+      [
+        47.492886,
+        19.053022
+      ],
+      [
+        47.492526,
+        19.053271
       ]
     ]
   },
@@ -268,44 +292,32 @@ const stops = [
     "title": "Great Market Hall (Central Market Hall)",
     "description": "The Great Market Hall of Budapest, also known as the Central Market Hall, is one of the city’s most authentic, colorful, and beloved sites—a celebration of flavors, aromas, tradition, and architecture. The market was built in 1897, designed by architect Samu Pecz, in Neo-Gothic style with Art Nouveau touches, and has since served as a culinary, social, and cultural center for locals and visitors from around the world.\n\nThe market’s facade is especially impressive: a colorful Zsolnay tile roof, stone arches, cast iron columns, large windows, and decorative sculptures. Inside is a vast, three-story hall, naturally lit, with stalls arranged along wide interior boulevards. On the ground floor, you’ll find a bounty of vegetable, fruit, meat, fish, cheese, pastry, spice, and local delicacy stalls—including the famous Hungarian paprika, Trappista cheese, salami, honey, wines, and chocolates.\n\nThe upper floor is dedicated to souvenirs, handicrafts, embroidered linens, porcelain, traditional dolls, and colorful scarves. Here you’ll also find Hungarian street food stalls—langos (fried dough), goulash, palacsinta (crepes), and kürtőskalács (chimney cake)—an especially authentic and tasty culinary experience. In the basement are fish, pickles, specialty spices, and delicatessens.\n\nThe market has appeared in literature, paintings, and films as a symbol of Budapest’s urban life and Hungary’s gastronomic tradition. Many historical figures—chefs, merchants, artists—have worked here, and some say that anyone who buys paprika at the Great Market is destined to cook a particularly successful dish.\n\nOver the years, the market has also hosted celebrations, culinary festivals, art exhibitions, and community events. A local legend says that on full moon nights, the spirits of old merchants wander among the stalls, blessing the shoppers.\n\nToday, the Great Market Hall is a must for every visitor—a place to taste, smell, shop, and experience the real Budapest. Here’s a tip: Come early in the morning to enjoy the local atmosphere, and don’t forget to try a hot langos with sour cream and cheese.\n\nOur next stop: Ervin Szabó Library. Neo-Baroque palace, city library, magnificent cultural hall",
     "audio": "audio/great_market_hall_ervin_szabo_library_cf233a97c709206003fee174f32e6cf2.mp3",
-    "lat": 47.4865753,
-    "lon": 19.0589936,
+    "lat": 47.4862216,
+    "lon": 19.0593733,
     "geometry": [
       [
-        47.493642,
-        19.055048
+        47.492526,
+        19.053271
       ],
       [
-        47.492188,
-        19.056798
+        47.492566,
+        19.053396
       ],
       [
-        47.492012,
-        19.056556
+        47.491968,
+        19.053865
       ],
       [
-        47.490855,
-        19.056673
-      ],
-      [
-        47.490787,
-        19.056396
-      ],
-      [
-        47.489387,
-        19.057507
-      ],
-      [
-        47.488708,
-        19.056697
+        47.49193,
+        19.053752
       ],
       [
         47.48779,
         19.057555
       ],
       [
-        47.487369,
-        19.05788
+        47.487754,
+        19.057476
       ],
       [
         47.487221,
@@ -316,8 +328,8 @@ const stops = [
         19.058139
       ],
       [
-        47.486575,
-        19.058993
+        47.486233,
+        19.059394
       ]
     ]
   },
@@ -331,24 +343,16 @@ const stops = [
     "lon": 19.0648989,
     "geometry": [
       [
-        47.486575,
-        19.058993
+        47.486233,
+        19.059394
       ],
       [
-        47.4865,
-        19.059081
+        47.486322,
+        19.05929
       ],
       [
-        47.486649,
-        19.059488
-      ],
-      [
-        47.486587,
-        19.059558
-      ],
-      [
-        47.486591,
-        19.059647
+        47.486513,
+        19.059732
       ],
       [
         47.486439,
@@ -379,8 +383,8 @@ const stops = [
         19.064336
       ],
       [
-        47.489253,
-        19.064271
+        47.489274,
+        19.064222
       ],
       [
         47.489483,
@@ -426,20 +430,16 @@ const stops = [
         19.063603
       ],
       [
-        47.494856,
-        19.06263
+        47.494862,
+        19.062638
       ],
       [
         47.495146,
         19.062768
       ],
       [
-        47.495465,
-        19.06289
-      ],
-      [
-        47.49544,
-        19.062814
+        47.495196,
+        19.062956
       ],
       [
         47.497815,
@@ -532,7 +532,7 @@ const stops = [
     "title": "Budapest Opera House",
     "description": "The Budapest Opera House is one of the city’s most impressive cultural and architectural landmarks—a true gem in the heart of Andrássy Avenue. The building was inaugurated in 1884, designed by architect Miklós Ybl, considered Hungary’s “national architect.” The opera was built in grand Neo-Renaissance style with Baroque influences and is regarded as one of the most beautiful and best-quality opera houses in the world.\n\nThe building’s facade is breathtaking: Corinthian columns, statues of great musicians—including Franz Liszt and Ferenc Erkel—wide staircases, and ornate balconies. Above the main entrance sits a colorful tiled roof and statues of muses, with every detail meticulously designed. The interior is just as lavish—a horseshoe-shaped main hall, painted ceilings, giant crystal chandeliers, plush velvet seats, and gilded railings.\n\nThe Opera House has always been a cultural center for Budapest’s elite—here, Hungarian opera premieres, gala concerts, balls, and glittering masquerade parties have taken place. Visitors and guests have included emperors, kings, renowned composers, artists, politicians, and intellectuals. Franz Liszt, Hungary’s national composer, was personally involved in planning the hall’s acoustics, considered among the best in Europe.\n\nOver the years, the Opera has also experienced dramatic moments—revolutions, bombings during wars, renovations, and restorations. The building was recently restored in period style, with careful preservation of its historical details.... The Opera House has appeared in literature, paintings, and films as a symbol of luxury, culture, and vibrant nightlife. A local legend claims that in one of the basement rooms, the ghost of an unknown composer hides, playing mysterious tunes on the piano every night.\n\nToday, you can enjoy top-tier opera, ballet, and concerts here, or join a guided tour that reveals the building’s secrets and history. Here’s a tip: Don’t miss the upper balcony—it offers a wonderful view of Andrássy Avenue, especially in the evening when the building is bathed in golden light.\n\nOur next stop: Liszt Ferenc Academy of Music. Prestigious music institution, impressive architecture, and famous concert hall",
     "audio": "audio/opera_house_liszt_academy_b602377ec07b79c99841d5a4f02f5c1a.mp3",
-    "lat": 47.50287,
+    "lat": 47.5028701,
     "lon": 19.0581677,
     "geometry": [
       [
@@ -564,20 +564,28 @@ const stops = [
         19.052573
       ],
       [
-        47.502373,
-        19.052713
+        47.502382,
+        19.052711
       ],
       [
-        47.502544,
-        19.054157
+        47.502539,
+        19.054158
       ],
       [
-        47.502633,
-        19.054908
+        47.502595,
+        19.054669
       ],
       [
-        47.502302,
-        19.0549
+        47.502462,
+        19.054667
+      ],
+      [
+        47.502467,
+        19.055111
+      ],
+      [
+        47.502305,
+        19.055108
       ],
       [
         47.502316,
@@ -647,8 +655,8 @@ const stops = [
         19.064064
       ],
       [
-        47.503221,
-        19.064343
+        47.503229,
+        19.064354
       ]
     ]
   },
@@ -662,8 +670,8 @@ const stops = [
     "lon": 19.0654377,
     "geometry": [
       [
-        47.503221,
-        19.064343
+        47.503229,
+        19.064354
       ],
       [
         47.503385,
@@ -732,8 +740,8 @@ const stops = [
     "title": "Heroes’ Square",
     "description": "Heroes’ Square (Hősök tere) is one of the most impressive, largest, and most important squares in Budapest, a symbolic gateway to Hungary’s history, culture, and national pride. The square was built at the end of the 19th century as part of the Millennium celebrations of the Magyar settlement, and is located at the end of Andrássy Avenue, opposite City Park (Városliget).\n\nAt the center of the square stands a 36-meter-high victory column, topped by a statue of the Archangel Gabriel holding the Hungarian crown and a double cross—a symbol of Christianity and the coronation of St. Stephen. Around the column is a dramatic row of statues of the seven Magyar chieftains, founders of the Hungarian people, on horseback. Behind the column are two giant triumphal arches, with statues of kings, generals, statesmen, and heroes from Hungarian history—each representing an era, value, or national struggle.\n\nThe square’s open granite-paved front is flanked by important cultural buildings: the Museum of Fine Arts (Szépművészeti Múzeum) and the Museum of Modern Art (Műcsarnok). Over the years, the square has been a stage for state ceremonies, parades, demonstrations, national celebrations, and memorial days—here, welcoming ceremonies for leaders, freedom rallies, and pivotal historical events have taken place.\n\nThe square has appeared in literature, paintings, and films as a symbol of power, freedom, tradition, and national pride. Many historical figures—kings, revolutionaries, artists—have spoken here, and some say that anyone who circles the victory column seven times is granted courage.\n\nToday, Heroes’ Square is a must for every visitor to Budapest—a place to take in history, snap unforgettable photos, and enter the adjacent City Park. Here’s a tip: Come in the early morning or at sunset, when the soft light highlights the statues and the atmosphere is especially festive.\n\nOur next stop: City Park (Városliget). Green lung in the heart of Pest, Vajdahunyad Castle, lakes, zoo, and museums",
     "audio": "audio/heroes_square_city_park_f1c76a7389213d6299a2f2663022dfe4.mp3",
-    "lat": 47.5148856,
-    "lon": 19.0777663,
+    "lat": 47.5147474,
+    "lon": 19.0787176,
     "geometry": [
       [
         47.508299,
@@ -772,20 +780,16 @@ const stops = [
         19.077689
       ],
       [
-        47.514293,
-        19.077735
+        47.514715,
+        19.078364
       ],
       [
-        47.51452,
-        19.077416
+        47.514607,
+        19.078527
       ],
       [
-        47.514856,
-        19.077925
-      ],
-      [
-        47.514925,
-        19.077828
+        47.514747,
+        19.078718
       ]
     ]
   },
@@ -799,28 +803,12 @@ const stops = [
     "lon": 19.0843677,
     "geometry": [
       [
-        47.514925,
-        19.077828
+        47.514747,
+        19.078718
       ],
       [
-        47.514856,
-        19.077925
-      ],
-      [
-        47.515128,
-        19.078341
-      ],
-      [
-        47.514912,
-        19.078657
-      ],
-      [
-        47.514715,
-        19.078364
-      ],
-      [
-        47.514607,
-        19.078527
+        47.514913,
+        19.078887
       ],
       [
         47.513697,
@@ -889,8 +877,8 @@ const stops = [
     "title": "Keleti Railway Station (Keleti pályaudvar)",
     "description": "Keleti Railway Station, or Keleti pályaudvar, is not only Budapest’s main transportation gateway but also an impressive architectural landmark and a symbol of the city’s golden age at the end of the 19th century. The station was inaugurated in 1884, designed by architects János Feketeházy and Gyula Rochlitz, in grand Neo-Renaissance style, and has served ever since as Budapest’s main entry and exit point to all of Europe.\n\nThe facade is especially impressive: giant stone arches, Corinthian columns, statues of engineers and scientists (James Watt and George Stephenson), a large central clock, stained glass windows, and massive iron doors. The main entrance hall is high and bright, with glass ceilings, marble floors, historic notice boards, and newspaper, coffee, and pastry stands.\n\nOver the years, the station has been the scene of dramatic encounters: here, emperors, kings, diplomats, artists, and revolutionaries were received; from here, luxury trains like the Orient Express departed; and here, refugees, soldiers, and migrants passed during times of war and crisis. The station has appeared in literature, paintings, and films as a symbol of journey, farewell, hope, and new beginnings.\n\nThe station has undergone many renovations and upgrades over the years but has retained its historic character. Today, it features modern platforms, shops, restaurants, service centers, and underground passages. A local legend says that beneath the station runs a secret corridor used by the resistance during World War II.\n\nKeleti Station is an excellent starting point for trips throughout Hungary and Europe—trains depart from here to Vienna, Prague, Munich, Berlin, Bucharest, and more. Here’s a tip: Stop for coffee in the main hall, look up at the ceiling, and imagine the hundreds of thousands of travelers who have passed through here over the generations—each with their own story.",
     "audio": "audio/keleti_railway_station_5a399228079b10b7a8b3151e39bf9632.mp3",
-    "lat": 47.5010096,
-    "lon": 19.0854933,
+    "lat": 47.5009514,
+    "lon": 19.0854897,
     "geometry": [
       [
         47.517991,
@@ -985,7 +973,7 @@ const stops = [
         19.084905
       ],
       [
-        47.500966,
+        47.500951,
         19.08542
       ]
     ]
