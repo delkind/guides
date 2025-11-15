@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="tour-page-title"></title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.css"/>
+    <link rel="stylesheet" href="https://opengeo.tech/maps/leaflet-compass/src/leaflet-compass.css"/>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="tour-page-container">
+    <!-- Compact Header with Title and Controls -->
+    <header class="tour-hero-header glass-card">
+        <div class="tour-header-content">
+            <a href="../index.html" class="back-btn glass-btn">
+                <span class="back-icon">←</span>
+                <span id="back-link-text"></span>
+            </a>
+            <h1 class="tour-page-title" id="tour-title"></h1>
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                <span class="theme-icon">🌓</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Current Stop Banner -->
+    <section class="stop-banner glass-card">
+        <div class="stop-banner-content">
+            <span class="stop-icon">📍</span>
+            <h2 id="title" class="stop-title"></h2>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="tour-content">
+        
+        <section class="map-section-tour">
+            <div class="map-container-wrapper">
+                <div id="map"></div>
+            </div>
+        </section>
+        
+
+        <section class="info-section">
+            <div class="glass-card info-content" id="info"></div>
+        </section>
+    </main>
+
+    <!-- Navigation Controls -->
+    <nav class="tour-navigation">
+        <div class="nav-wrapper glass-card">
+            <button class="nav-btn nav-prev glass-btn" id="prev_button">
+                <span class="nav-icon">←</span>
+                <span class="nav-label" id="prev-label">Previous</span>
+            </button>
+            <button class="nav-btn nav-home glass-btn" onclick="firstStop()">
+                <span class="nav-icon">⊙</span>
+                <span class="nav-label" id="home-label">Start</span>
+            </button>
+            <button class="nav-btn nav-next glass-btn" id="next_button">
+                <span class="nav-label" id="next-label">Next</span>
+                <span class="nav-icon">→</span>
+            </button>
+        </div>
+    </nav>
+</div>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/plyr@3/dist/plyr.polyfilled.js"></script>
+    <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate-src.js"></script>
+    <script src="https://opengeo.tech/maps/leaflet-compass/dist/leaflet-compass.min.js"></script>
+
+
+<!-- DECLARE CONSTANTS ONCE, BEFORE OTHER SCRIPTS -->
+<script>
+    // Tour configuration - declared once
+    const tour_id = 'jewish_tbilisi_ru';
+    const tour_lang = 'ru';
+</script>
+
+<!-- Load tour data -->
+<script src="js/data.js"></script>
+
+<!-- Load map functionality -->
+<script src="../js/map.js?hash=180bd0e3e2ef609e95c03c6dec59e582a7483267b03a63ed210cd03818ffcc45"></script>
+
+<!-- Tour page initialization -->
+<script>
+    let rtl = false;
+
+    function fixViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    window.addEventListener('resize', fixViewportHeight);
+    fixViewportHeight();
+
+    function initTheme() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.body.classList.toggle('dark', theme === 'dark');
+
+        // Update map.js state if it exists
+        if (typeof state !== 'undefined') {
+            state.isDark = theme === 'dark';
+        }
+    }
+
+    function initThemeToggle() {
+        const btn = document.getElementById('theme-toggle');
+        if (!btn) {
+            console.error('Theme toggle button not found');
+            return;
+        }
+
+        let touching = false;
+
+        const toggleTheme = () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            // Update map.js state if it exists
+            if (typeof state !== 'undefined') {
+                state.isDark = isDark;
+            }
+
+            // Update Plyr theme if player exists
+            if (typeof state !== 'undefined' && state.player && state.player.elements) {
+                state.player.elements.container.classList.toggle('plyr--dark', isDark);
+            }
+
+            console.log('Theme toggled to:', isDark ? 'dark' : 'light');
+        };
+
+        const resetButton = () => {
+            btn.blur();
+            btn.style.transform = '';
+            touching = false;
+        };
+
+        // Click handler (desktop)
+        btn.addEventListener('click', (e) => {
+            if (!touching) {
+                toggleTheme();
+                setTimeout(resetButton, 150);
+            }
+        });
+
+        // Touch handlers (mobile)
+        btn.addEventListener('touchstart', (e) => {
+            touching = true;
+            e.preventDefault();
+        }, { passive: false });
+
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleTheme();
+            setTimeout(resetButton, 100);
+        }, { passive: false });
+
+        btn.addEventListener('touchcancel', resetButton);
+    }
+
+    window.addEventListener('popstate', () => {
+        const stopNo = getInitialStopIndex();
+        if (typeof showStop === 'function') {
+            showStop(stopNo, false);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        initThemeToggle();
+
+        const lang = localStorage.getItem('uiLang') || tour_lang;
+
+        fetch(`../js/locales.json`)
+            .then(r => r.json())
+            .then(all => {
+                rtl = (all[tour_lang].rtl);
+                return all[lang];
+            })
+            .then(strings => {
+                document.documentElement.lang = tour_lang;
+                document.documentElement.dir = rtl ? "rtl" : "ltr";
+
+                document.getElementById('back-link-text').textContent = strings.all_tours;
+                document.getElementById('tour-title').textContent = "Прогулка по еврейскому Тбилиси";
+                document.title = "Прогулка по еврейскому Тбилиси";
+                document.getElementById('title').textContent = strings.next_stop_announcement || '';
+
+                document.getElementById('prev-label').textContent = strings.previous || 'Previous';
+                document.getElementById('next-label').textContent = strings.next || 'Next';
+                document.getElementById('home-label').textContent = strings.start || 'Start';
+
+                if (rtl) {
+                    document.getElementById("next_button").onclick = prevStop;
+                    document.getElementById("prev_button").onclick = nextStop;
+                    const nextIcon = document.querySelector('.nav-next .nav-icon');
+                    const prevIcon = document.querySelector('.nav-prev .nav-icon');
+                    if (nextIcon) nextIcon.textContent = "←";
+                    if (prevIcon) prevIcon.textContent = "→";
+                } else {
+                    document.getElementById("next_button").onclick = nextStop;
+                    document.getElementById("prev_button").onclick = prevStop;
+                }
+            })
+            .catch(console.error);
+    });
+</script>
+</body>
+</html>

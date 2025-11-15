@@ -375,5 +375,18 @@
     "length": 13,
     "duration": 153,
     "stops_count": 20
+  },
+  {
+    "id": "jewish_tbilisi_ru",
+    "title": "Прогулка по еврейскому Тбилиси",
+    "description": "Аудиогид по богатому еврейскому наследию Тбилиси - от древних грузинских еврейских традиций до современной жизни общины.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 8,
+    "duration": 93,
+    "stops_count": 12
   }
 ]
