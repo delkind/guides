@@ -18,8 +18,7 @@ const LICENSES = [
   ['Rubik', 'SIL Open Font License 1.1'],
   ['Material Symbols', 'Apache License 2.0'],
 ];
-// The importmap versions every module by content hash: the closest thing the web app has to a version name.
-const VERSION = new URL(import.meta.url).searchParams.get('v') ?? 'dev';
+const VERSION = document.documentElement.dataset.version || 'dev';
 
 const speedLabel = v => t('speed_value', new Intl.NumberFormat(lang(), { maximumFractionDigits: 1 }).format(v));
 
