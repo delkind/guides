@@ -1,0 +1,279 @@
+/* Tour screen (map, top bar, FABs, stop sheet, stop bar) and museum mode. Port of A/tour/*. */
+
+.tour { position: fixed; inset: 0; overflow: hidden; background: var(--map-land); --ts-sheet-h: 0px; --ts-peek-h: 0px; --ts-shadow: 0 3px 8px rgba(0, 0, 0, .24); }
+.tour__map { position: absolute; inset: 0; z-index: 0; }
+.tour .maplibregl-ctrl-bottom-left, .tour .maplibregl-ctrl-bottom-right { bottom: var(--ts-peek-h); }
+
+.ts-1line { display: block; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ts-2lines { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.ts-muted { margin: 0; color: var(--on-surface-variant); }
+
+/* ============================================================ top bar */
+.tour__top {
+  position: fixed; z-index: 6; top: calc(8px + env(safe-area-inset-top)); inset-inline: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ts-glass { box-shadow: var(--ts-shadow); flex: none; }
+.ts-glass:disabled { cursor: default; opacity: .6; }
+.ts-pill {
+  flex: 1; min-width: 0; min-height: 48px; padding: 4px 18px; border-radius: 24px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--glass); box-shadow: var(--ts-shadow);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+
+/* ============================================================ banners and chips */
+.tour__banners {
+  position: fixed; z-index: 5; top: calc(64px + env(safe-area-inset-top)); inset-inline: 12px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px; pointer-events: none;
+}
+.ts-banner {
+  width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px;
+  background: var(--warn-soft); color: var(--warn); box-shadow: var(--ts-shadow);
+  font-size: .875rem; line-height: 1.25rem; pointer-events: auto;
+}
+.ts-banner .msr { font-size: 20px; }
+.ts-chip {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 4px 10px; border-radius: 14px;
+  background: var(--glass); color: var(--on-surface-variant); box-shadow: var(--shadow-1);
+  font-size: .75rem; line-height: 1rem; font-weight: 500;
+}
+.ts-chip .msr { font-size: 18px; }
+
+/* ============================================================ map buttons */
+.tour__fabs {
+  /* Clears the map attribution line (10px margin + 24px) that sits on the sheet's top edge. */
+  position: fixed; z-index: 5; inset-inline-end: 16px; bottom: calc(var(--ts-sheet-h) + 42px);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+}
+.tour__fabs--row { flex-direction: row; align-items: center; }
+.ts-fab {
+  position: relative; width: 48px; height: 48px; border-radius: 14px; border: 0; padding: 0;
+  display: grid; place-items: center; cursor: pointer;
+  background: var(--surface); color: var(--primary); box-shadow: var(--ts-shadow);
+}
+.ts-fab::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; transition: opacity .15s; pointer-events: none; }
+.ts-fab:hover::after { opacity: .08; }
+.ts-fab--big { width: 56px; height: 56px; border-radius: 16px; }
+.ts-fab--you { color: var(--you); }
+.ts-compass--on { background: var(--primary-container); }
+.ts-needle { display: block; transition: transform .12s linear; }
+.ts-layers { position: relative; }
+.ts-menu {
+  position: absolute; top: 0; inset-inline-end: calc(100% + 8px); min-width: 220px; padding: 8px 0;
+  border-radius: var(--radius-xs); background: var(--surface-container); box-shadow: var(--shadow-3);
+}
+.tour__fabs--row .ts-menu { top: auto; bottom: calc(100% + 8px); inset-inline-end: auto; inset-inline-start: 0; }
+.ts-menu button {
+  width: 100%; min-height: 48px; padding: 0 16px; border: 0; background: none; cursor: pointer;
+  display: flex; align-items: center; gap: 12px; text-align: start; font-size: .875rem; color: var(--on-surface);
+}
+.ts-menu button:hover { background: rgba(127, 127, 127, .08); }
+.ts-menu button:disabled { opacity: .38; cursor: default; }
+.ts-menu [aria-checked="true"] .msr { color: var(--primary); }
+.ts-locate {
+  height: 48px; padding: 0 16px; border: 0; border-radius: 24px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); color: var(--on-surface); box-shadow: var(--ts-shadow);
+  font-size: .875rem; font-weight: 500;
+}
+.ts-locate .msr { font-size: 20px; color: var(--you); }
+
+/* ============================================================ markers (the map stays light in dark mode) */
+.ts-marker { width: 48px; height: 48px; padding: 0; border: 0; background: none; display: grid; place-items: center; cursor: pointer; }
+.ts-marker__more {
+  position: absolute; top: 0; right: 0; min-width: 18px; min-height: 18px; padding: 1px 4px; border-radius: 9px;
+  background: #fff; color: #121C27; border: 1px solid #CACDCC; font: 700 10px/14px var(--font); text-align: center;
+}
+
+/* ============================================================ arrival card host, loading, failure */
+.tour__arrival { position: fixed; z-index: 8; inset-inline: 12px; bottom: calc(var(--ts-sheet-h) + 12px); }
+.tour__status { position: fixed; inset: 0; z-index: 7; display: grid; place-items: center; padding: 24px; pointer-events: none; }
+.tour__status > * { pointer-events: auto; }
+.ts-failed {
+  max-width: 360px; padding: 20px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-3);
+  display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+}
+.ts-failed .msr { color: var(--on-surface-variant); }
+.ts-failed p { margin: 0; }
+.ts-failed__btns { display: flex; gap: 12px; }
+
+/* ============================================================ the sheet */
+.tsheet {
+  position: fixed; z-index: 10; inset-inline: 0; bottom: 0; height: 0; overflow: hidden;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--surface); color: var(--on-surface); box-shadow: 0 -2px 16px rgba(0, 0, 0, .22);
+}
+.tsheet--flat { border-radius: 0; }
+.tsheet--dragging { user-select: none; -webkit-user-select: none; }
+.tsheet__pane { position: absolute; top: 0; inset-inline: 0; visibility: hidden; pointer-events: none; padding-bottom: env(safe-area-inset-bottom); }
+.tsheet__pane.is-shown { visibility: visible; pointer-events: auto; }
+.tsheet__pane--half { display: flex; flex-direction: column; }
+.tsheet__pane--full { bottom: 0; display: flex; flex-direction: column; padding-bottom: 0; }
+.ts-half__scroll { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+
+.ts-handle { display: block; width: 100%; height: 48px; padding: 12px 0 0; border: 0; background: none; cursor: grab; }
+.ts-handle span { display: block; width: 32px; height: 4px; margin: 0 auto; border-radius: 2px; background: var(--outline); opacity: .45; }
+
+.ts-titles { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ts-head { display: flex; align-items: center; gap: 12px; padding: 2px 16px 0; }
+.ts-head--full { padding: 0; }
+.ts-head h2 { min-width: 0; }
+.ts-pad { padding: 10px 16px 0; }
+
+/* Peek */
+.ts-peek__row { display: flex; align-items: center; gap: 12px; padding: 2px 16px 0; }
+.ts-peek__row--compact { padding-bottom: 8px; }
+.ts-peek__head {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 4px 0;
+  border: 0; background: none; color: inherit; text-align: start; cursor: pointer;
+}
+.ts-peek__bar { flex: 0 1 320px; min-width: 200px; }
+
+/* Player controls: always left to right, like Android's media controls. */
+.ts-play { flex: none; border: 0; padding: 0; display: grid; place-items: center; cursor: pointer; background: var(--primary); color: var(--on-primary); position: relative; overflow: hidden; }
+.ts-play::after { content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; transition: opacity .15s; }
+.ts-play:hover::after { opacity: .08; }
+.ts-play--64 { width: 64px; height: 64px; border-radius: 20px; }
+.ts-play--64 .msr { font-size: 32px; }
+.ts-play--56 { width: 56px; height: 56px; border-radius: 18px; }
+.ts-play--56 .msr { font-size: 28px; }
+.ts-play--48 { width: 48px; height: 48px; border-radius: 16px; }
+.ts-scrub { display: flex; align-items: center; gap: 10px; padding: 4px 16px 0; }
+.ts-time { font-size: .75rem; line-height: 1rem; color: var(--on-surface-variant); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ts-scrub .scrubber, .ts-docked__scrub .scrubber { flex: 1; min-width: 0; }
+/* style.css flips the fill under any [dir=rtl] ancestor; these scrubbers stay left to right. */
+.ts-scrub .scrubber::-webkit-slider-runnable-track, .ts-docked__scrub .scrubber::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, var(--primary) var(--pct), var(--surface-container-high) var(--pct));
+}
+.scrubber:disabled { cursor: default; opacity: .6; }
+.ts-transport { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 4px 16px 8px; }
+.ts-square {
+  flex: none; width: 56px; height: 56px; border-radius: 18px; border: 0; padding: 0;
+  display: grid; place-items: center; cursor: pointer; position: relative; overflow: hidden;
+  background: var(--surface-container); color: var(--on-surface);
+}
+.ts-square::after { content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; transition: opacity .15s; }
+.ts-square:hover::after { opacity: .08; }
+.ts-square__icon { font-size: 28px; }
+.ts-square--speed { font: 600 15px/1 var(--font); }
+
+/* Stop bar */
+.ts-barpad { padding: 8px 16px; }
+.ts-barrow { display: flex; align-items: center; gap: 12px; }
+.ts-bar {
+  flex: 1; min-width: 0; min-height: 56px; border-radius: 18px; border: 0;
+  display: flex; align-items: center; gap: 12px; padding-block: 8px; padding-inline: 12px 16px;
+  background: var(--primary-container); color: var(--on-primary-container);
+  text-align: start; cursor: pointer; position: relative; overflow: hidden;
+}
+.ts-bar::after { content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; transition: opacity .15s; pointer-events: none; }
+.ts-bar:hover::after { opacity: .08; }
+.ts-bar--solid { background: var(--primary); color: var(--on-primary); }
+.ts-bar--last { background: none; color: var(--on-surface-variant); cursor: default; font-size: .875rem; line-height: 1.25rem; font-weight: 500; }
+.ts-bar--last::after { display: none; }
+.ts-bar__text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ts-bar__eyebrow { font-size: .75rem; line-height: 1rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ts-bar__title { font-size: .875rem; line-height: 1.25rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ts-bar--pulse { animation: ts-pulse .7s ease-in-out; }
+@keyframes ts-pulse { 50% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(29, 79, 159, .25); } }
+@media (prefers-reduced-motion: reduce) { .ts-bar--pulse { animation: none; } }
+
+/* Half */
+.ts-pic { padding: 12px 16px 0; }
+.ts-pic--full { padding: 0; }
+.ts-pic--full .pic { border-radius: 0; }
+.ts-summary {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+  width: calc(100% - 32px); margin: 10px 16px 0; padding: 0; border: 0; background: none; cursor: pointer;
+  text-align: start; font-size: .875rem; line-height: 1.25rem; color: var(--on-surface-variant);
+}
+.ts-ask { margin-top: -2px; }
+.ts-ask .mso { font-size: 20px; }
+
+/* Full */
+.ts-full__head { flex: none; height: 64px; display: flex; align-items: center; gap: 4px; padding-inline: 4px; }
+.ts-full__head .t-title-medium { flex: 1; }
+.tsheet--flat .ts-full__head { height: calc(64px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
+.ts-full__scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.ts-full__body { padding: 16px 16px 32px; display: flex; flex-direction: column; gap: 10px; }
+.ts-label { display: flex; align-items: center; gap: 8px; margin: 6px 0 0; color: var(--outline); font-size: .75rem; line-height: 1rem; font-weight: 500; }
+.ts-label .msr { font-size: 18px; }
+.ts-text { display: flex; flex-direction: column; gap: 14px; user-select: text; -webkit-user-select: text; }
+.ts-text p { margin: 0; font-size: 1rem; line-height: 1.625rem; color: var(--on-surface); }
+.ts-text .ts-text__teaser { color: var(--on-surface-variant); }
+.ts-ideas { margin-top: 8px; padding: 14px 12px 6px; border-radius: 20px; background: var(--surface-container-low); display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.ts-ideas__title { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--on-surface-variant); font-size: .75rem; line-height: 1rem; font-weight: 500; }
+.ts-ideas__title .mso { font-size: 18px; }
+.ts-ideas__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ts-ideas .chip { white-space: normal; height: auto; min-height: 32px; padding-block: 6px; text-align: start; }
+.ts-full__bar { flex: none; background: var(--surface-container); border-top: 1px solid var(--outline-variant); }
+.ts-docked {
+  flex: none; display: flex; align-items: center; gap: 12px;
+  padding-block: 10px calc(10px + env(safe-area-inset-bottom)); padding-inline: 16px 12px;
+  background: var(--surface-container); border-top: 1px solid var(--outline-variant);
+}
+.ts-full__bar + .ts-docked { border-top: 0; }
+.ts-docked__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ts-docked__scrub { display: flex; align-items: center; gap: 8px; }
+.ts-docked__btns { display: flex; align-items: center; gap: 8px; }
+
+/* All stops */
+.ts-list__head { padding: 0 0 8px; }
+.ts-list ul, .museum__list { list-style: none; margin: 0 calc(-1 * var(--gutter)); padding: 0; }
+.ts-list__row {
+  width: 100%; min-height: 56px; padding: 8px 16px; border: 0; background: none; color: inherit; cursor: pointer;
+  display: flex; align-items: center; gap: 16px; text-align: start;
+}
+.ts-list__row > .t-title-small { flex: 1; min-width: 0; }
+.ts-list__row:hover { background: rgba(127, 127, 127, .08); }
+.ts-list__row.is-current { background: var(--blaze-soft); }
+
+/* ============================================================ desktop: the sheet is a card at the inline start */
+@media (min-width: 840px) {
+  .tsheet { inset-inline: 16px auto; bottom: 16px; width: 440px; border-radius: var(--radius-xl); box-shadow: var(--shadow-3); }
+  .tour__top, .tour__banners, .tour__arrival { inset-inline: 16px auto; width: 440px; }
+  .tour__top { top: 16px; }
+  .tour__banners { top: 72px; }
+  .tour__fabs { bottom: 16px; }
+}
+
+/* ============================================================ museum mode */
+.museum { max-width: 840px; margin-inline: auto; padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+.museum__top {
+  position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 4px;
+  min-height: calc(64px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 4px 0; background: var(--background);
+}
+.museum__titles { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.museum__hash span { font: 600 18px/1 var(--font); }
+.museum__hash:disabled { opacity: .38; cursor: default; }
+.museum .tour__status { position: static; padding: 64px 24px; }
+.museum__auto { display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 12px 16px; margin-top: 6px; cursor: pointer; border-bottom: 1px solid var(--outline-variant); }
+.museum__auto-text { flex: 1; display: flex; flex-direction: column; }
+.museum__switch {
+  -webkit-appearance: none; appearance: none; flex: none; position: relative; margin: 0; cursor: pointer;
+  width: 52px; height: 32px; border-radius: 16px; border: 2px solid var(--outline); background: var(--surface-container-high);
+  transition: background .15s;
+}
+.museum__switch::before {
+  content: ""; position: absolute; top: 50%; inset-inline-start: 6px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--outline); transform: translateY(-50%); transition: inset-inline-start .15s, width .15s, height .15s;
+}
+.museum__switch:checked { background: var(--primary); border-color: var(--primary); }
+.museum__switch:checked::before { inset-inline-start: 22px; width: 24px; height: 24px; background: var(--on-primary); }
+.museum__text { padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--outline-variant); }
+.museum__list-head { padding: 12px 16px 4px; color: var(--outline); }
+.museum__list { margin: 0; }
+.museum__thumb { flex: none; width: 48px; height: 48px; border-radius: 10px; object-fit: cover; background: var(--map-land); }
+.museum__now { color: var(--blaze); }
+.museum__done { font-size: 20px; color: var(--outline); }
+.ts-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.ts-field input {
+  min-height: 48px; padding: 0 12px; border-radius: var(--radius-xs); border: 1px solid var(--outline);
+  background: var(--surface); font-size: 1rem;
+}
+.ts-field input[aria-invalid="true"] { border-color: var(--error); }
+.ts-field__error { margin: 0 0 16px; color: var(--error); font-size: .75rem; line-height: 1rem; }
+
+/* A wrapped attribution (narrow screens, satellite credits) would run under the FAB column. */
+.tour .maplibregl-ctrl-attrib { max-width: calc(100vw - 96px); }

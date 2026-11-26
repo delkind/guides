@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Guide – Pest Gems: Boulevards, Culture, and Urban Life</title>
+    <meta name="description" content="Audio tour through the streets of Pest, the lively side of Budapest, along grand boulevards, cultural sites, historic squares, and urban tales. The route passes architectural highlights, elegant cafés, cultural institutions, and symbols of modern urban life.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Audio Guide – Pest Gems: Boulevards, Culture, and Urban Life">
+    <meta property="og:description" content="Audio tour through the streets of Pest, the lively side of Budapest, along grand boulevards, cultural sites, historic squares, and urban tales. The route passes architectural highlights, elegant cafés, cultural institutions, and symbols of modern urban life.">
+    <meta property="og:image" content="../budapest_pest_highlights_en/img/erzsebet_ter.09510a34.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "budapest_pest_highlights_en";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/budapest_pest_highlights_en">Audio Guide – Pest Gems: Boulevards, Culture, and Urban Life</a></noscript>
+</body>
+</html>

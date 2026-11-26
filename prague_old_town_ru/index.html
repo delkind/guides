@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Старый город Праги</title>
+    <meta name="description" content="Маршрут по самым знаковым местам Старого города — от Пороховой башни до Карлова моста, включая площади, церкви, театры, музеи и исторические здания.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Старый город Праги">
+    <meta property="og:description" content="Маршрут по самым знаковым местам Старого города — от Пороховой башни до Карлова моста, включая площади, церкви, театры, музеи и исторические здания.">
+    <meta property="og:image" content="../prague_old_town_ru/img/old_town_square.63e2415e.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "prague_old_town_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/prague_old_town_ru">Старый город Праги</a></noscript>
+</body>
+</html>

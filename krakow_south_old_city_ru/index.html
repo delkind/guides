@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Южная часть Старого город Кракова</title>
+    <meta name="description" content="Аудиогид по главным достопримечательностям южной части Старого города Кракова — от Главной площади до Вавеля">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Южная часть Старого город Кракова">
+    <meta property="og:description" content="Аудиогид по главным достопримечательностям южной части Старого города Кракова — от Главной площади до Вавеля">
+    <meta property="og:image" content="../krakow_south_old_city_ru/img/wawel_castle.3e567fa0.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "krakow_south_old_city_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/krakow_south_old_city_ru">Южная часть Старого город Кракова</a></noscript>
+</body>
+</html>

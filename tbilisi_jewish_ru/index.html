@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Еврейский Тбилиси</title>
+    <meta name="description" content="Прогулка по Нижней Кале, где жили грузинские евреи и ашкеназы Тифлиса, от Большой синагоги к бывшим молитвенным домам, Еврейскому музею и синагоге Бейт Рахель.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Еврейский Тбилиси">
+    <meta property="og:description" content="Прогулка по Нижней Кале, где жили грузинские евреи и ашкеназы Тифлиса, от Большой синагоги к бывшим молитвенным домам, Еврейскому музею и синагоге Бейт Рахель.">
+    <meta property="og:image" content="../tbilisi_jewish_ru/img/great_synagogue.4f791ba8.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "tbilisi_jewish_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/tbilisi_jewish_ru">Еврейский Тбилиси</a></noscript>
+</body>
+</html>

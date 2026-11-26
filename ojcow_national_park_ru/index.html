@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Аудиогид по Ойцовскому национальному парку</title>
+    <meta name="description" content="Аудиогид по основным достопримечательностям Ойцовского национального парка — жемчужины природы и истории Малопольши.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Аудиогид по Ойцовскому национальному парку">
+    <meta property="og:description" content="Аудиогид по основным достопримечательностям Ойцовского национального парка — жемчужины природы и истории Малопольши.">
+    <meta property="og:image" content="../ojcow_national_park_ru/img/pradnik_valley.c89ab7af.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "ojcow_national_park_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/ojcow_national_park_ru">Аудиогид по Ойцовскому национальному парку</a></noscript>
+</body>
+</html>

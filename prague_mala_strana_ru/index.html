@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пешая экскурсия по Мала Стране и Пражскому Граду</title>
+    <meta name="description" content="Аудиогид по самым интересным и знаковым местам Мала Страны и Пражского Града — от Карлова моста до Петршинской башни, с историческими памятниками, садами, музеями и легендами старой Праги.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пешая экскурсия по Мала Стране и Пражскому Граду">
+    <meta property="og:description" content="Аудиогид по самым интересным и знаковым местам Мала Страны и Пражского Града — от Карлова моста до Петршинской башни, с историческими памятниками, садами, музеями и легендами старой Праги.">
+    <meta property="og:image" content="../prague_mala_strana_ru/img/charles_bridge.24160ccb.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "prague_mala_strana_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/prague_mala_strana_ru">Пешая экскурсия по Мала Стране и Пражскому Граду</a></noscript>
+</body>
+</html>

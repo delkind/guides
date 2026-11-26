@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Danube Promenade – Audio Guide to Monuments and City Views in Budapest</title>
+    <meta name="description" content="Audio guide to the main attractions, statues, and historical sites along the Danube Promenade, on the Pest side of Budapest. The tour follows the sequence of monuments, bridges, and views toward Buda Hill, with an emphasis on memory, culture, and urban history.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Danube Promenade – Audio Guide to Monuments and City Views in Budapest">
+    <meta property="og:description" content="Audio guide to the main attractions, statues, and historical sites along the Danube Promenade, on the Pest side of Budapest. The tour follows the sequence of monuments, bridges, and views toward Buda Hill, with an emphasis on memory, culture, and urban history.">
+    <meta property="og:image" content="../danube_promenade_en_en/img/inner_city_parish_church.60c69b19.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "danube_promenade_en_en";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/danube_promenade_en_en">Danube Promenade – Audio Guide to Monuments and City Views in Budapest</a></noscript>
+</body>
+</html>

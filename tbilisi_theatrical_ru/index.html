@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Театральный Тифлис: от марионеток Габриадзе до театра Марджанишвили</title>
+    <meta name="description" content="Вечерняя прогулка по истории театра, оперы, балета и кукол в Тбилиси, от башни Габриадзе в старом городе через проспект Руставели к театру Марджанишвили.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Театральный Тифлис: от марионеток Габриадзе до театра Марджанишвили">
+    <meta property="og:description" content="Вечерняя прогулка по истории театра, оперы, балета и кукол в Тбилиси, от башни Габриадзе в старом городе через проспект Руставели к театру Марджанишвили.">
+    <meta property="og:image" content="../tbilisi_theatrical_ru/img/opera_house.b5925bb1.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "tbilisi_theatrical_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/tbilisi_theatrical_ru">Театральный Тифлис: от марионеток Габриадзе до театра Марджанишвили</a></noscript>
+</body>
+</html>

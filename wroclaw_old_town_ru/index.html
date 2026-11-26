@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Комплексная экскурсия по Старому городу Вроцлава</title>
+    <meta name="description" content="Подробный аудиогид по историческим, архитектурным и художественным жемчужинам Старого города Вроцлава.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Комплексная экскурсия по Старому городу Вроцлава">
+    <meta property="og:description" content="Подробный аудиогид по историческим, архитектурным и художественным жемчужинам Старого города Вроцлава.">
+    <meta property="og:image" content="../wroclaw_old_town_ru/img/main_square.b9029d88.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "wroclaw_old_town_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/wroclaw_old_town_ru">Комплексная экскурсия по Старому городу Вроцлава</a></noscript>
+</body>
+</html>

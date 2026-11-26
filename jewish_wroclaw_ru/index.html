@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Еврейский Вроцлав: наследие и память</title>
+    <meta name="description" content="Маршрут по ключевым объектам еврейской истории Вроцлава.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Еврейский Вроцлав: наследие и память">
+    <meta property="og:description" content="Маршрут по ключевым объектам еврейской истории Вроцлава.">
+    <meta property="og:image" content="../jewish_wroclaw_ru/img/white_stork_synagogue.1e26d0dd.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "jewish_wroclaw_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/jewish_wroclaw_ru">Еврейский Вроцлав: наследие и память</a></noscript>
+</body>
+</html>

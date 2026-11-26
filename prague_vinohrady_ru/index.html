@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пешеходная экскурсия по Виноградам в Праге</title>
+    <meta name="description" content="Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пешеходная экскурсия по Виноградам в Праге">
+    <meta property="og:description" content="Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.">
+    <meta property="og:image" content="../prague_vinohrady_ru/img/fantova_kavarna.ac1b5766.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "prague_vinohrady_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/prague_vinohrady_ru">Пешеходная экскурсия по Виноградам в Праге</a></noscript>
+</body>
+</html>

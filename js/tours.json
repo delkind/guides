@@ -1,0 +1,968 @@
+[
+  {
+    "id": "jerusalem_downtown_ru",
+    "title": "Пешеходная экскурсия по центру Иерусалима",
+    "description": "Пешеходная экскурсия по современному центру Иерусалима: оживлённые улицы, исторические районы, правительственные здания, музеи и кампус Гиват Рам.",
+    "country": "Israel",
+    "city": "Jerusalem",
+    "city_lat": 31.7788472,
+    "city_lon": 35.2257856,
+    "language": "ru",
+    "length": 10,
+    "duration": 196,
+    "stops_count": 18,
+    "cover": {
+      "src": "jerusalem_downtown_ru/img/mamilla_mall.b4bf1678.thumb.webp",
+      "alt": "Мамилла и стены Старого города ночью, вид с крыши отеля «Мамилла»",
+      "credit": {
+        "author": "Navot Miller",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_city_walls_and_mamilla_ave._at_night_-_as_seen_from_%22Rooftop%22_restauran_-_Jerusalem,_Israel.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_old_city_he",
+    "title": "סיור בעיר העתיקה של קרקוב",
+    "description": "מדריך קולי לאטרקציות המרכזיות של העיר העתיקה בקרקוב.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "he",
+    "length": 5,
+    "duration": 137,
+    "stops_count": 36,
+    "cover": {
+      "src": "krakow_old_city_he/img/grunwald_monument.70606987.thumb.webp",
+      "alt": "אנדרטת גרונוולד בכיכר מטייקו, עם המלך יגיילו רכוב על סוס בראש הכן",
+      "credit": {
+        "author": "Jeremiah Z. Cockroach",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Grunwald_Monument,_Matejko_Square,_Krak%C3%B3w,_Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_pest_highlights_en",
+    "title": "Audio Guide – Pest Gems: Boulevards, Culture, and Urban Life",
+    "description": "Audio tour through the streets of Pest, the lively side of Budapest, along grand boulevards, cultural sites, historic squares, and urban tales. The route passes architectural highlights, elegant cafés, cultural institutions, and symbols of modern urban life.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "en",
+    "length": 13,
+    "duration": 196,
+    "stops_count": 17,
+    "cover": {
+      "src": "budapest_pest_highlights_en/img/erzsebet_ter.09510a34.thumb.webp",
+      "alt": "The Danubius Fountain on Erzsébet Square, with allegorical figures of Hungary's rivers",
+      "credit": {
+        "author": "Yoav Dothan",
+        "license": "Public domain",
+        "license_url": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Budapest_District_V.,_Danubius_Fountain_by_Leo_Fessler._-_2009,_BudapestDSCN3790.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_buda_castle_district_he",
+    "title": "מדריך קולי לרובע טירת בודה",
+    "description": "סיור קולי ברובע טירת בודה המשלב היסטוריה, אגדות ונופים פנורמיים עוצרי נשימה של בודפשט, מהגשר השרשראות ועד סמטאות הטירה.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "he",
+    "length": 3,
+    "duration": 80,
+    "stops_count": 18,
+    "cover": {
+      "src": "budapest_buda_castle_district_he/img/chain_bridge.b8a00bd8.thumb.webp",
+      "alt": "גשר השרשראות מעל הדנובה, עם מגדלי האבן והשרשראות התלויות",
+      "credit": {
+        "author": "Alireza Javaheri",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Budapest_-_Chain_Bridge_-_panoramio.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_kazimierz_en",
+    "title": "A walk around Jewish Kazimierz.",
+    "description": "A route through the historical district of Kazimierz in Krakow, covering architectural landmarks and Jewish heritage.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "en",
+    "length": 7,
+    "duration": 171,
+    "stops_count": 33,
+    "cover": {
+      "src": "krakow_kazimierz_en/img/st_catherine_church.de3ef0c8.thumb.webp",
+      "alt": "The tall Gothic brick Church of St. Catherine, seen from the west",
+      "credit": {
+        "author": "Jeremiah Z. Cockroach",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Church_of_St._Catherine_of_Alexandria_and_St._Margaret,_view_from_Ska%C5%82eczna_Street,_7-9_Augustia%C5%84ska_Street,_Kazimierz,_Krak%C3%B3w,_Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "prague_nove_mesto_ru",
+    "title": "Прогулка по Новому городу Праги (Nové Město)",
+    "description": "Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0874654,
+    "city_lon": 14.4212535,
+    "language": "ru",
+    "length": 10,
+    "duration": 229,
+    "stops_count": 34,
+    "cover": {
+      "src": "prague_nove_mesto_ru/img/national_museum.4759690f.thumb.webp",
+      "alt": "Неоренессансное здание Национального музея с куполом в верхней части Вацлавской площади",
+      "credit": {
+        "author": "Diego Delso",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Museo_Nacional,_Praga,_Rep%C3%BAblica_Checa,_2022-07-02,_DD_265-267_HDR.jpg"
+      }
+    }
+  },
+  {
+    "id": "danube_promenade_en_en",
+    "title": "Danube Promenade – Audio Guide to Monuments and City Views in Budapest",
+    "description": "Audio guide to the main attractions, statues, and historical sites along the Danube Promenade, on the Pest side of Budapest. The tour follows the sequence of monuments, bridges, and views toward Buda Hill, with an emphasis on memory, culture, and urban history.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "en",
+    "length": 5,
+    "duration": 102,
+    "stops_count": 19,
+    "cover": {
+      "src": "danube_promenade_en_en/img/inner_city_parish_church.60c69b19.thumb.webp",
+      "alt": "The Inner City Parish Church on Március 15 Square, with its twin baroque towers",
+      "credit": {
+        "author": "Misibacsi",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Belvarosi_plebaniatemplom_P8050103.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_jewish_quarter_he",
+    "title": "מדריך קולי – הרובע היהודי והברים ההרוסים- מורשת, עמידות וחיי לילה",
+    "description": "מסע קולי בין סמטאות הרובע היהודי של בודפשט, דרך בתי כנסת מפוארים, אתרי זיכרון, שווקים ססגוניים ותחנות חיים יהודיים – ועד לבר ההרוס הראשון ולסצנת חיי הלילה האלטרנטיבית שכבשה את העיר. הסיור משלב היסטוריה, תרבות, זיכרון, התחדשות ואווירה שאין דומה לה בעולם.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "he",
+    "length": 3,
+    "duration": 68,
+    "stops_count": 16,
+    "cover": {
+      "src": "budapest_jewish_quarter_he/img/dohany_synagogue.deeea783.thumb.webp",
+      "alt": "בית הכנסת ברחוב דוהאני בסגנון מורי, עם שני מגדלים בעלי כיפות בצל",
+      "credit": {
+        "author": "OsvátA",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Synagogue-Budapest.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_kazimierz_ru",
+    "title": "Прогулка по Казимежу",
+    "description": "Маршрут по историческому району Казимеж в Кракове, охватывающий архитектурные памятники и еврейское наследие",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "ru",
+    "length": 5,
+    "duration": 131,
+    "stops_count": 29,
+    "cover": {
+      "src": "krakow_kazimierz_ru/img/st_catherine_church.de3ef0c8.thumb.webp",
+      "alt": "Высокий готический кирпичный костёл Святой Екатерины, вид с запада",
+      "credit": {
+        "author": "Jeremiah Z. Cockroach",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Church_of_St._Catherine_of_Alexandria_and_St._Margaret,_view_from_Ska%C5%82eczna_Street,_7-9_Augustia%C5%84ska_Street,_Kazimierz,_Krak%C3%B3w,_Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_podgorje_ru",
+    "title": "Исторический тур по еврейскому гетто Подгуже",
+    "description": "Подробная пешеходная экскурсия по ключевым местам Краковского гетто и еврейского наследия в районе Подгуже.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "ru",
+    "length": 6,
+    "duration": 162,
+    "stops_count": 34,
+    "cover": {
+      "src": "krakow_podgorje_ru/img/bernatek_footbridge.5a9379d2.thumb.webp",
+      "alt": "Пешеходный мост Бернатка через Вислу, подсвеченный ночью",
+      "credit": {
+        "author": "Zygmunt Put",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Bernatek_foot-bridge_(night),Krakow,Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "wroclaw_old_town_ru",
+    "title": "Комплексная экскурсия по Старому городу Вроцлава",
+    "description": "Подробный аудиогид по историческим, архитектурным и художественным жемчужинам Старого города Вроцлава.",
+    "country": "Poland",
+    "city": "Wroclaw",
+    "city_lat": 51.1089776,
+    "city_lon": 17.0326689,
+    "language": "ru",
+    "length": 8,
+    "duration": 212,
+    "stops_count": 36,
+    "cover": {
+      "src": "wroclaw_old_town_ru/img/main_square.b9029d88.thumb.webp",
+      "alt": "Пешеходная Рыночная площадь Вроцлава с цветными фасадами",
+      "credit": {
+        "author": "",
+        "license": "Public domain",
+        "license_url": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Wroclaw-Rynek-7.2005.jpg"
+      }
+    }
+  },
+  {
+    "id": "prague_vinohrady_ru",
+    "title": "Пешеходная экскурсия по Виноградам в Праге",
+    "description": "Подробная пешеходная экскурсия по элегантному району Винограды в Праге: парки, площади, архитектурные жемчужины, исторические места и яркая городская жизнь.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0874654,
+    "city_lon": 14.4212535,
+    "language": "ru",
+    "length": 9,
+    "duration": 178,
+    "stops_count": 23,
+    "cover": {
+      "src": "prague_vinohrady_ru/img/fantova_kavarna.ac1b5766.thumb.webp",
+      "alt": "Купольный зал в стиле модерн в старом здании Главного вокзала, где находится кафе Фанта",
+      "credit": {
+        "author": "Thomas Ledl",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Prag_Jugendstil_Hauptbahnhof_7.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_danube_promenade_he",
+    "title": "טיילת הדנובה – מדריך קולי למונומנטים ונוף העיר בבודפשט",
+    "description": "מדריך קולי לאטרקציות המרכזיות, הפסלים והאתרים ההיסטוריים בטיילת הדנובה, בצד הפשט של בודפשט. הסיור עוקב אחר רצף המונומנטים, הגשרים והנוף לעבר גבעת בודה, עם דגש על זיכרון, תרבות והיסטוריה עירונית.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "he",
+    "length": 5,
+    "duration": 101,
+    "stops_count": 19,
+    "cover": {
+      "src": "budapest_danube_promenade_he/img/inner_city_parish_church.60c69b19.thumb.webp",
+      "alt": "כנסיית הקהילה של העיר הפנימית בכיכר 15 במרץ, עם שני מגדלים בסגנון בארוק",
+      "credit": {
+        "author": "Misibacsi",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Belvarosi_plebaniatemplom_P8050103.jpg"
+      }
+    }
+  },
+  {
+    "id": "ojcow_national_park_ru",
+    "title": "Аудиогид по Ойцовскому национальному парку",
+    "description": "Аудиогид по основным достопримечательностям Ойцовского национального парка — жемчужины природы и истории Малопольши.",
+    "country": "Poland",
+    "city": "Ojców",
+    "city_lat": 50.2096249,
+    "city_lon": 19.8294802,
+    "language": "ru",
+    "length": 8,
+    "duration": 137,
+    "stops_count": 15,
+    "cover": {
+      "src": "ojcow_national_park_ru/img/pradnik_valley.c89ab7af.thumb.webp",
+      "alt": "Долина Прондника в Ойцуве на открытке 1899 года",
+      "credit": {
+        "author": "Unknown author Unknown author",
+        "license": "Public domain",
+        "license_url": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Pradnik_Valley_in_Ojcow_1899.jpg"
+      }
+    }
+  },
+  {
+    "id": "prague_mala_strana_ru",
+    "title": "Пешая экскурсия по Мала Стране и Пражскому Граду",
+    "description": "Аудиогид по самым интересным и знаковым местам Мала Страны и Пражского Града — от Карлова моста до Петршинской башни, с историческими памятниками, садами, музеями и легендами старой Праги.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0874654,
+    "city_lon": 14.4212535,
+    "language": "ru",
+    "length": 7,
+    "duration": 173,
+    "stops_count": 27,
+    "cover": {
+      "src": "prague_mala_strana_ru/img/charles_bridge.24160ccb.thumb.webp",
+      "alt": "Карлов мост через Влтаву, вид со Сметановой набережной",
+      "credit": {
+        "author": "Paul Korecky",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:2018-08-13_CZ_Praha_01,_Vltava,_Karl%C5%AFv_most,_Smetanovo_n%C3%A1b%C5%99e%C5%BE%C3%AD_(50058347953).jpg"
+      }
+    }
+  },
+  {
+    "id": "vienna_center_exploration_he",
+    "title": "סיור רגלי במרכז וינה – מסע היסטורי ואדריכלי",
+    "description": "מדריך קולי לסיור רגלי במרכז ההיסטורי של וינה, בין הארמונות, הכיכרות, בתי הכנסת, המוזיאונים והאתרים היהודיים המרכזיים של העיר.",
+    "country": "Austria",
+    "city": "Vienna",
+    "city_lat": 48.2083537,
+    "city_lon": 16.3725042,
+    "language": "he",
+    "length": 23,
+    "duration": 368,
+    "stops_count": 37,
+    "cover": {
+      "src": "vienna_center_exploration_he/img/staatsoper.d5a9b466.thumb.webp",
+      "alt": "חזית הניאו־רנסנס של בית האופרה הממלכתי של וינה",
+      "credit": {
+        "author": "P e z i",
+        "license": "CC BY-SA 3.0 at",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/at/",
+        "source": "https://commons.wikimedia.org/wiki/File:Staatsoper_Wien_DSC_5273w.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_jewish_quarter_en",
+    "title": "Audio Guide – The Jewish Quarter and Ruin Bars: Heritage, Resilience, and Nightlife",
+    "description": "An audio journey through the alleys of Budapest's Jewish Quarter, from magnificent synagogues, memorial sites, vibrant markets, and Jewish life stations – to the first ruin bar and the alternative nightlife scene that has taken over the city. The tour blends history, culture, memory, renewal, and an atmosphere unlike anywhere else in the world.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "en",
+    "length": 3,
+    "duration": 67,
+    "stops_count": 16,
+    "cover": {
+      "src": "budapest_jewish_quarter_en/img/dohany_synagogue.deeea783.thumb.webp",
+      "alt": "The Moorish-style Dohány Street Synagogue with its two onion-domed towers",
+      "credit": {
+        "author": "OsvátA",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Synagogue-Budapest.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_north_old_city_kleparz_ru",
+    "title": "Клепарж и северная  часть Старого города Кракова",
+    "description": "Аудиогид по главным достопримечательностям Клепаржа и северной части Старого города Кракова — от Флорианских ворот и Барбакана до университетских зданий и рыночных площадей.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "ru",
+    "length": 5,
+    "duration": 107,
+    "stops_count": 23,
+    "cover": {
+      "src": "krakow_north_old_city_kleparz_ru/img/grunwald_monument.70606987.thumb.webp",
+      "alt": "Грюнвальдский памятник на площади Матейко с конной статуей короля Ягайло",
+      "credit": {
+        "author": "Jeremiah Z. Cockroach",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Grunwald_Monument,_Matejko_Square,_Krak%C3%B3w,_Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_old_city_en",
+    "title": "A walk around the Old Town of Krakow",
+    "description": "Audio guide to the main attractions of the Old Town of Krakow.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "en",
+    "length": 5,
+    "duration": 145,
+    "stops_count": 36,
+    "cover": {
+      "src": "krakow_old_city_en/img/grunwald_monument.70606987.thumb.webp",
+      "alt": "The Grunwald Monument on Matejko Square, with King Jagiełło on horseback atop the pedestal",
+      "credit": {
+        "author": "Jeremiah Z. Cockroach",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Grunwald_Monument,_Matejko_Square,_Krak%C3%B3w,_Poland.jpg"
+      }
+    }
+  },
+  {
+    "id": "budapest_pest_highlights_he",
+    "title": "מדריך קולי - פניני פשט- שדרות, תרבות וחיים עירוניים",
+    "description": "סיור קולי ברחובות פשט, הצד התוסס של בודפשט, דרך שדרות מפוארות, אתרי תרבות, כיכרות היסטוריות וסיפורים אורבניים. המסלול עובר בין נקודות השיא הארכיטקטוניות, בתי קפה מפוארים, מוסדות תרבות וסמלים של החיים העירוניים המודרניים.",
+    "country": "Hungary",
+    "city": "Budapest",
+    "city_lat": 47.4813896,
+    "city_lon": 19.1457723,
+    "language": "he",
+    "length": 13,
+    "duration": 198,
+    "stops_count": 17,
+    "cover": {
+      "src": "budapest_pest_highlights_he/img/erzsebet_ter.09510a34.thumb.webp",
+      "alt": "מזרקת דנוביוס בכיכר ארז'בט, עם דמויות אלגוריות של נהרות הונגריה",
+      "credit": {
+        "author": "Yoav Dothan",
+        "license": "Public domain",
+        "license_url": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Budapest_District_V.,_Danubius_Fountain_by_Leo_Fessler._-_2009,_BudapestDSCN3790.jpg"
+      }
+    }
+  },
+  {
+    "id": "jewish_wroclaw_ru",
+    "title": "Еврейский Вроцлав: наследие и память",
+    "description": "Маршрут по ключевым объектам еврейской истории Вроцлава.",
+    "country": "Poland",
+    "city": "Wroclaw",
+    "city_lat": 51.1089776,
+    "city_lon": 17.0326689,
+    "language": "ru",
+    "length": 11,
+    "duration": 199,
+    "stops_count": 20,
+    "cover": {
+      "src": "jewish_wroclaw_ru/img/white_stork_synagogue.1e26d0dd.thumb.webp",
+      "alt": "Классицистический фасад синагоги «Под Белым Аистом»",
+      "credit": {
+        "author": "Isabelles Knowledge",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Synagoge_zum_Wei%C3%9Fen_Storch_Fotografin_Isabelle_Knispel.jpg"
+      }
+    }
+  },
+  {
+    "id": "prague_jewish_quarter_ru",
+    "title": "Еврейский квартал (Йозефов) и окрестности",
+    "description": "Расширенный маршрут по Еврейскому кварталу и его окрестностям — синагоги, музеи, кладбища, легенды, а также близлежащие архитектурные и культурные памятники.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0874654,
+    "city_lon": 14.4212535,
+    "language": "ru",
+    "length": 2,
+    "duration": 59,
+    "stops_count": 18,
+    "cover": {
+      "src": "prague_jewish_quarter_ru/img/jewish_quarter.4c2c4f73.thumb.webp",
+      "alt": "Ресторан в Йозефове рядом со Староновой синагогой",
+      "credit": {
+        "author": "Balou46",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:CZ-prag-josefov_restaur-syn.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakow_south_old_city_ru",
+    "title": "Южная часть Старого город Кракова",
+    "description": "Аудиогид по главным достопримечательностям южной части Старого города Кракова — от Главной площади до Вавеля",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "ru",
+    "length": 5,
+    "duration": 113,
+    "stops_count": 25,
+    "cover": {
+      "src": "krakow_south_old_city_ru/img/wawel_castle.3e567fa0.thumb.webp",
+      "alt": "Вавельский холм с королевским замком и собором над Вислой",
+      "credit": {
+        "author": "Stanislau 93",
+        "license": "CC BY-SA 3.0 pl",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/pl/",
+        "source": "https://commons.wikimedia.org/wiki/File:Wawel_on_Wisla.JPG"
+      }
+    }
+  },
+  {
+    "id": "krakow_nowa_huta_ru",
+    "title": "Нова-Хута: Прогулка по социалистической архитектуре",
+    "description": "Аудиогид по главным достопримечательностям района Нова-Хута в Кракове, с акцентом на архитектуру социалистического реализма, градостроительство и социальную историю этого образцового социалистического города Польши.",
+    "country": "Poland",
+    "city": "Krakow",
+    "city_lat": 50.0619474,
+    "city_lon": 19.9368564,
+    "language": "ru",
+    "length": 12,
+    "duration": 186,
+    "stops_count": 13,
+    "cover": {
+      "src": "krakow_nowa_huta_ru/img/plac_centralny.e0173f5d.thumb.webp",
+      "alt": "Центральная площадь Новой Гуты и аллея Солидарности с трамваем",
+      "credit": {
+        "author": "Paul Korecky",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:2018-10-31_PL_Krak%C3%B3w_XVIII_Nowa_Huta,_Aleja_Solidarno%C5%9Bci,_Plac_Centralny_im._Ronalda_Reagana,_E1_HW162_linia_22_(51225621264).jpg"
+      }
+    }
+  },
+  {
+    "id": "prague_old_town_ru",
+    "title": "Старый город Праги",
+    "description": "Маршрут по самым знаковым местам Старого города — от Пороховой башни до Карлова моста, включая площади, церкви, театры, музеи и исторические здания.",
+    "country": "Czechia",
+    "city": "Prague",
+    "city_lat": 50.0874654,
+    "city_lon": 14.4212535,
+    "language": "ru",
+    "length": 7,
+    "duration": 161,
+    "stops_count": 34,
+    "cover": {
+      "src": "prague_old_town_ru/img/old_town_square.63e2415e.thumb.webp",
+      "alt": "Панорама Староместской площади с Тынским храмом и ратушей",
+      "credit": {
+        "author": "Estec GmbH, Billig Hotel in Prag",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Prague_old_town_square_panorama.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_rustaveli_aghmashenebeli_ru",
+    "title": "От площади Свободы до Нойтифлиса: Руставели и Агмашенебели",
+    "description": "Парадный проспект Руставели с оперой, театрами и дворцом наместника, а затем бывшая немецкая колония на левом берегу Куры.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 5,
+    "duration": 91,
+    "stops_count": 16,
+    "cover": {
+      "src": "tbilisi_rustaveli_aghmashenebeli_ru/img/opera_theatre.2c79dfb4.thumb.webp",
+      "alt": "Фасад в жёлтые и красные полосы со стрельчатыми арками и двумя купольными башенками",
+      "credit": {
+        "author": "Francisco Anzola",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:National_Opera_House._Tbilisi,_Georgia.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_sololaki_betlemi_ru",
+    "title": "Сололаки и Бетлеми: старый Тифлис у подножия Нарикалы",
+    "description": "Прогулка от Большой синагоги и Сиони через расписные парадные и особняки Сололаки к ступеням Бетлеми и статуе Матери Грузии.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 5,
+    "duration": 84,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_sololaki_betlemi_ru/img/sioni_cathedral.65eee865.thumb.webp",
+      "alt": "Храм из желтоватого камня с высоким барабаном под конической крышей и невысокой пристройкой у входа, в вечернем свете",
+      "credit": {
+        "author": "Supanut Arunoprayote",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi_Sioni_Cathedral_09.23.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_abanotubani_narikala_ru",
+    "title": "Абанотубани и Нарикала: где родился Тбилиси",
+    "description": "От зороастрийского храма огня через Мейдан и серные бани к водопаду Легвтахеви, мечети и крепости Нарикала на гребне хребта.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 4,
+    "duration": 69,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_abanotubani_narikala_ru/img/orbeliani_bath.1aed4418.thumb.webp",
+      "alt": "Фасад с сине-бирюзовыми изразцами, стрельчатой аркой, балконом и двумя башенками по краям",
+      "credit": {
+        "author": "Supanut Arunoprayote",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Orbeliani_Baths_20230921.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_avlabari_ru",
+    "title": "Авлабари: левый берег над Курой",
+    "description": "Прогулка от Метехского моста и храма на скале через парк Рике и мост Мира к собору Самеба и армянским церквям старого Авлабари.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 101,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_avlabari_ru/img/metekhi_church.d9b6ccb8.thumb.webp",
+      "alt": "Каменный храм с гранёным барабаном и полукруглыми апсидами на скалистом склоне, рядом высокая ель",
+      "credit": {
+        "author": "Alexxx1979",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi_The_Metekhi_Church_of_Assumption_IMG_8842_1920.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_chugureti_kukia_ru",
+    "title": "Чугурети и Кукия: нетуристический левый берег",
+    "description": "Прогулка за пределами пешеходной зоны по верхнему проспекту Агмашенебели, мимо расписных парадных, старых кинотеатров и дворов с галереями к саду Муштаиди и Дезертирскому базару.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 109,
+    "stops_count": 20,
+    "cover": {
+      "src": "tbilisi_chugureti_kukia_ru/img/kakhidze_center.f019d2c5.thumb.webp",
+      "alt": "Белый двухэтажный фасад с треугольным фронтоном в центре, арочными окнами и двумя боковыми ризалитами",
+      "credit": {
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi-Aghmashenebeli-16-123-2019-gje.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_entrances_ru",
+    "title": "Парадные Тбилиси",
+    "description": "Прогулка по Сололаки и нижней части Мтацминды к домам рубежа девятнадцатого и двадцатого веков с расписными, мозаичными и мраморными парадными, от площади Гудиашвили до улиц Атонели и Табукашвили.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 5,
+    "duration": 97,
+    "stops_count": 18,
+    "cover": {
+      "src": "tbilisi_entrances_ru/img/chonkadze_4.d7ac210b.thumb.webp",
+      "alt": "Арочный проём с лепным декором и металлической дверью, ведущей к лестнице в тоннеле, рядом витрина пекарни",
+      "credit": {
+        "author": "Alexey Komarov",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Anna_Madatova_House_2023-07-13-1.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_jewish_ru",
+    "title": "Еврейский Тбилиси",
+    "description": "Прогулка по Нижней Кале, где жили грузинские евреи и ашкеназы Тифлиса, от Большой синагоги к бывшим молитвенным домам, Еврейскому музею и синагоге Бейт Рахель.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 2,
+    "duration": 40,
+    "stops_count": 10,
+    "cover": {
+      "src": "tbilisi_jewish_ru/img/great_synagogue.4f791ba8.thumb.webp",
+      "alt": "Краснокирпичный фасад с большим круглым окном над входом, украшенный грузинскими и израильскими флагами",
+      "credit": {
+        "author": "Kober",
+        "license": "Public domain",
+        "license_url": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Synagogue_in_Tbilisi,_Georgia.JPG"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_literary_ru",
+    "title": "Литературный Тифлис",
+    "description": "Прогулка по местам поэтов и писателей, от могилы Саят-Новы и Сионского собора через Сололаки и проспект Руставели к Пантеону на Мтацминде.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 7,
+    "duration": 115,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_literary_ru/img/sioni_wedding.05448e63.thumb.webp",
+      "alt": "Каменный храм с конусным куполом на высоком барабане, за ним колокольни, справа голые ветви дерева",
+      "credit": {
+        "author": "Milan Tvrdy",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Sioni_Cathedral,_Tbilisi_(16867215089).jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_many_faiths_ru",
+    "title": "Многоконфессиональный Тифлис",
+    "description": "Прогулка по Кале, Мейдану и Авлабари мимо храма огня, армянских и грузинских церквей, синагог, мечети и католического собора, которые веками стояли бок о бок.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 106,
+    "stops_count": 16,
+    "cover": {
+      "src": "tbilisi_many_faiths_ru/img/sioni_cathedral.65eee865.thumb.webp",
+      "alt": "Каменный собор с высоким барабаном и конической главой на фоне синего неба, перед ним мощёный двор",
+      "credit": {
+        "author": "Supanut Arunoprayote",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi_Sioni_Cathedral_09.23.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_mtatsminda_ru",
+    "title": "Мтацминда: дома над Руставели и Пантеон",
+    "description": "Прогулка по тихим улицам склона Мтацминды, мимо домов с памятными досками, особняков и нижней станции фуникулёра, с крутым пешим подъёмом к церкви Мамадавити и Пантеону.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 4,
+    "duration": 87,
+    "stops_count": 19,
+    "cover": {
+      "src": "tbilisi_mtatsminda_ru/img/wardrop_monument.59fe1da0.thumb.webp",
+      "alt": "Бронзовые фигуры брата и сестры в сквере: мужчина поднял руку, женщина прижимает к груди книгу",
+      "credit": {
+        "author": "Jelger Groeneveld",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Statue_of_Oliver_and_Marjory_Wardrop_in_Tbilisi_(2).jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_soviet_architecture_ru",
+    "title": "Советский Тбилиси: от сталинского ампира до модернизма",
+    "description": "Прогулка от проспекта Руставели до площади Героев мимо сталинских дворцов, модернистских гостиниц и бетонных куполов, по которым можно прочитать полвека советской архитектуры Тбилиси.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 112,
+    "stops_count": 17,
+    "cover": {
+      "src": "tbilisi_soviet_architecture_ru/img/hotel_iveria.6416fa8b.thumb.webp",
+      "alt": "Высокая пластина гостиницы с полосами стекла над бассейном площади, справа решётчатый фасад бывшего телеграфа",
+      "credit": {
+        "author": "Max Benidze from Tbilisi",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:ვარდების_მოედანი_(28214821770).jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_vake_chavchavadze_ru",
+    "title": "Ваке и проспект Чавчавадзе: сталинский ампир и университет",
+    "description": "Прогулка от первого корпуса Тбилисского университета по проспекту Чавчавадзе и тихим улицам Ваке к парадной лестнице и мемориалу парка Ваке.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 104,
+    "stops_count": 16,
+    "cover": {
+      "src": "tbilisi_vake_chavchavadze_ru/img/tsu_first_building.46f130ff.thumb.webp",
+      "alt": "Белый фасад с пилястрами и куполом за высокими кедрами, к входу поднимается изогнутый пандус",
+      "credit": {
+        "author": "Patrik Kunec",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi,_Georgia_-_Building_of_the_Tbilisi_State_University_-_2023.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_theatrical_ru",
+    "title": "Театральный Тифлис: от марионеток Габриадзе до театра Марджанишвили",
+    "description": "Вечерняя прогулка по истории театра, оперы, балета и кукол в Тбилиси, от башни Габриадзе в старом городе через проспект Руставели к театру Марджанишвили.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 5,
+    "duration": 99,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_theatrical_ru/img/opera_house.b5925bb1.thumb.webp",
+      "alt": "Полосатое жёлто-красное здание в мавританском стиле с куполами и большой аркой входа",
+      "credit": {
+        "author": "Davit butulashvili",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:თბილისის_ოპერისა_და_ბალეტის_თეატრი_05.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_bridges_evening_ru",
+    "title": "Мосты над Курой: вечерняя прогулка",
+    "description": "Вечерняя прогулка вдоль Куры от Метехского моста до моста Галактиона Табидзе, о переправах, исчезнувших островах и о том, как набережные изменили город.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 98,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_bridges_evening_ru/img/peace_bridge.c2f72f41.thumb.webp",
+      "alt": "Подсвеченная изогнутая крыша моста Мира над ночной Курой, выше над склоном светятся стены крепости Нарикала",
+      "credit": {
+        "author": "Peyman Zehtab Fard",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Peace_Bridge_and_Narikala,_Tbilisi.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_night_panoramas_ru",
+    "title": "Огни и панорамы Старого города",
+    "description": "Вечерняя прогулка по смотровым точкам старого Тбилиси, от лестницы Бетлеми и стен Нарикалы до мостов через Куру, с рассказом о том, что именно вы видите.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 6,
+    "duration": 110,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_night_panoramas_ru/img/narikala_cable_top.6330f246.thumb.webp",
+      "alt": "Вечерний город сверху: огни старых кварталов, светящийся мост Мира, купол дворца и золотой собор Самеба на холме",
+      "credit": {
+        "author": "Maxim Melnikov",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Tbilisi_(30087727760).jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_leftbank_evening_ru",
+    "title": "Левый берег после заката",
+    "description": "Вечерняя прогулка по левому берегу Куры, от парка Дедаэна через пешеходный проспект Агмашенебели и улицу Марджанишвили к двору Фабрики и лютеранской церкви Примирения.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 5,
+    "duration": 94,
+    "stops_count": 16,
+    "cover": {
+      "src": "tbilisi_leftbank_evening_ru/img/ninoshvili_street_fabrika.3f02b8da.thumb.webp",
+      "alt": "Вечерний двор бывшей фабрики, полный людей за столиками, над ними гирлянды лампочек и флажков, справа стена в зелени",
+      "credit": {
+        "author": "Alf Altendorf",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Fabrika_Tbilisi,_an_urban_culture_hub_in_the_capital_of_Georgia.jpg"
+      }
+    }
+  },
+  {
+    "id": "tbilisi_shardeni_evening_ru",
+    "title": "Шардени и Верхняя Кала вечером",
+    "description": "Вечерняя прогулка от оживлённых улиц Шардени и Бамбис Риги к базилике Анчисхати, падающей башне Габриадзе и старой городской стене на улице Бараташвили.",
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "city_lat": 41.6934591,
+    "city_lon": 44.8014495,
+    "language": "ru",
+    "length": 2,
+    "duration": 57,
+    "stops_count": 15,
+    "cover": {
+      "src": "tbilisi_shardeni_evening_ru/img/gabriadze_clock_tower.a53f7390.thumb.webp",
+      "alt": "Кривая башня из камня и кирпича с большим циферблатом, колоколом наверху и подпирающей балкой",
+      "credit": {
+        "author": "Marcin Konsek",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:2014_Tbilisi,_Wie%C5%BCa_zegarowa_(01).jpg"
+      }
+    }
+  }
+]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Прогулка по Новому городу Праги (Nové Město)</title>
+    <meta name="description" content="Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Прогулка по Новому городу Праги (Nové Město)">
+    <meta property="og:description" content="Аудиогид по главным достопримечательностям и скрытым жемчужинам Нового города Праги: история, архитектура, легенды и современная жизнь.">
+    <meta property="og:image" content="../prague_nove_mesto_ru/img/national_museum.4759690f.thumb.webp">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        (function () {
+            var id = "prague_nove_mesto_ru";
+            // Old links carry a 0-based ?stop=k; the app's stop ids are 1-based.
+            var k = parseInt(new URLSearchParams(location.search).get('stop'), 10);
+            location.replace('../#/tour/' + encodeURIComponent(id) + (k >= 0 ? '/play?stop=' + (k + 1) : ''));
+        })();
+    </script>
+</head>
+<body>
+    <noscript><a href="../#/tour/prague_nove_mesto_ru">Прогулка по Новому городу Праги (Nové Město)</a></noscript>
+</body>
+</html>
